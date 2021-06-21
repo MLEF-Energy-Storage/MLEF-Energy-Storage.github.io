@@ -1,0 +1,202 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 2. v2.0 | 20110126
+  License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/*
+  ========================================
+  Grid
+  ========================================
+*/
+
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+header {
+  display: block;
+  width: 80%;
+  margin: 1% auto;
+  padding: 1%;
+  background-color: #8CAFF4;
+  color: white;
+  border: 5px solid #8CAFF4;
+}
+
+section:before,
+section:after {
+  display: table;
+}
+
+section:after{
+  clear:both;
+}
+section {
+  clear: both;
+}
+
+section {  
+  width: 80%;
+  margin: 1% auto;
+  padding: 1%;
+}
+
+.photo {
+  display: inline-block;
+  width: 20%;
+}
+
+.picture img{
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  float: left;
+  padding: 1%;
+  vertical-align: center;
+}
+
+.description {
+  display: inline-block;
+  width: 75%;
+  height: 100%;
+  margin: auto;
+  float: right;
+  padding: 1%;
+  border: 5px solid #8CAFF4;
+  vertical-align: top;
+}
+
+html {
+  font-family: 'Montserrat', 'Verenda', Arial, sans-serif;
+}
+
+h1 {
+  font-size: 50px;
+  line-height: 55px;
+  font-weight: 500;
+}
+
+h2 {
+  font-size: 30px;
+  line-height: 50px;
+  font-weight: 400;
+}
+
+p {
+  font-size: 18px;
+  line-height: 25px;
+  font-weight: 300;
+  text-algin: left;
+}
+
+.fieldname {
+  font-weight: 400;
+  color: #8CAFF4;
+}
+
+.gitlink {
+  display: inline-block;
+  text-align: center;
+  font-size: 30px;
+  text-decoration: none;
+  font-weight: 500;
+  color: #8CAFF4;
+ }
+
+.gitlink:link, .gitlink:visited {
+  font-size: 30px;
+}
+
+.gitlink:hover, .gitlink:active{
+  font-size: 35px;
+}
+
+.btn {
+  display: inline-block;
+  text-align: center;
+  font-size: 18px;
+  text-decoration: none;
+  color: #8CAFF4;
+ }
+
+.btn:link, .btn:visited {
+  font-size: 18px;
+}
+
+.btn:hover, .btn:active{
+  font-size: 24px;
+}
+
+.projlink {
+  display: inline-block;
+  width: 30%;
+  margin: 1% auto;
+  text-align: center;
+  font-size: 20px;
+  text-decoration: none;
+  background-color: #8CAFF4;
+  color: white;
+  border: 5px solid #8CAFF4; 
+  border-radius: 5px;
+ }
+
+.projlink:link, .projlink:visited {
+  font-size: 20px;
+  background-color: #8CAFF4;
+  color: white;
+  border: 5px solid #8CAFF4;
+}
+
+.projlink:hover, .projlink:active{
+  font-size: 25px;
+  background-color: #8CAFF4;
+  border: 5px solid #8CAFF4; 
+  color: white;
+}
