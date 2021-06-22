@@ -14,6 +14,24 @@
       </h1>
     </header>
     <section class="proj">
+      <p>
+        Storing energy from intermittent renewables, such as wind and solar, is one of the most pressing challenges we face for enabling a sustainable civilization. 
+        The scale of the problem is immense. 
+        A wide array of energy storage technologies are under development, each with their own advantages and disadvantages for various use cases. 
+        Scientific research into energy storage technologies has exploded in recent years and sorting through this large body of knowledge to understand the state of field is an important and challenging problem.
+        This project uses artificial intelligence to extract insights from the scientific literature with the goal of being able to better direct research efforts and investments towards promising technologies.
+        Below are links to different visualizations of the data using a variety of natural language processing techniques and accompanying visuals.<br><br>
+      </p>
+    </section>
+    <section class="proj">
+      <h2> The Data </h2>
+      <p>
+        Each of the machine learning algorithms used below were trained on a collection of article abstracts pulled from Microsoft Academic related to energy storage.
+        The abstracts were obtained with the search term "Energy Storage", keeping the top 100,000 results.
+        Duplicate papers were removed (identified by DOI) and opnly articles in english were retained, resulting in approximately 40,000 abstracts.
+      </p>
+    </section>
+    <section class="proj">
       <h2>
         For more details, please visit our    
         <a class="gitlink" href="https://github.com/MLEF-Energy-Storage"> GitHub </a>
@@ -22,17 +40,23 @@
       <a class="projlink" href="#w2v"> Word2Vec </a>
       <a class="projlink" href="#corex"> Corex Modeling </a>
     </section>
-        <section id="LDA">
+    <section id="LDA">
       <h2>
         Topic Modeling with LDA and Louvian Communities
       </h2>
       <div class="photo">
-        <img src="lda.png" alt="lda" class="picture" style='height: 100%; width: 100%; object-fit: contain'>
+        <img src="lda.PNG" alt="lda" class="picture" style='height: 100%; width: 100%; object-fit: contain'>
       </div>
       <div class="description">
         <p>
           <span class="fieldname"> Description: </span> 
-          LDA (Latent Dirichlet Allocation) is a common alogirhtm used for Topic Modeling... <br> <br>       
+          LDA (Latent Dirichlet Allocation) is a common alogirhtm used for Topic Modeling.
+          It is an unsupervised machine learning technique to determine a set of topics that can represent the modeled collection of texts (corpus).
+          Topics in this sense are probability distributions over words learned from the corpus.
+          Each document is given a probability of being in each topic, and we performed the topic modeling with 80 topics.
+          To understand the high level structure of the corpus, the probability that a given pair of topics are presented together in the same paper is calculated.
+          This co-occurence matrix defines the edges of a graphs where the nodes represent each topic.
+          Research communities are then determined through the Louvian community detection algorithm.<br> <br>       
 
           <span class="fieldname"> Project Website: </span> 
           <a class="btn" href="ES_networkplot_red.html"> Energy Storage Network Plot </a>
@@ -50,8 +74,11 @@
       <div class="description">
         <p>
           <span class="fieldname"> Description: </span> 
-          Word2Vec is an ML algorithm for encoding words as vectors.  You can see the similarities between the words by visualizing the vectors.
-          We use PCA (principal componenet analysis) to visualize these vectors in 2D space. <br> <br>
+          Word2Vec is an ML algorithm for embedding words as vectors.  
+          The words in the corpus are contextually embedded into an array of numbers that can be conceptualized as a point in high dimensional space.
+          We can easily compare how close these vectors are in high dimensional space, giving us a good idea of how similar the words are.
+          Since we can't easily visualize high dimensional space, we use Principal Component Analysis (PCA) to select the two most informative dimensions and plot those
+          for more accessible human visualization and comprehension. <br> <br>
 
           <span class="fieldname"> Writeup: </span> 
           <a class="btn" href="href=W2V_PCA.html"> Word2Vector Plot </a>
