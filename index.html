@@ -36,9 +36,6 @@
         For more details, please visit our    
         <a class="gitlink" href="https://github.com/MLEF-Energy-Storage"> GitHub </a>
       </h2>
-      <a class="projlink" href="#LDA"> Graph Modeling with LDA </a>
-      <a class="projlink" href="#w2v"> Word2Vec </a>
-      <a class="projlink" href="#corex"> Corex Modeling </a>
     </section>
     <section id="LDA">
       <h2>
@@ -50,13 +47,40 @@
       <div class="description">
         <p>
           <span class="fieldname"> Description: </span> 
-          LDA (Latent Dirichlet Allocation) is a common alogirhtm used for Topic Modeling.
-          It is an unsupervised machine learning technique to determine a set of topics that can represent the modeled collection of texts (corpus).
-          Topics in this sense are probability distributions over words learned from the corpus.
-          Each document is given a probability of being in each topic, and we performed the topic modeling with 80 topics.
-          To understand the high level structure of the corpus, the probability that a given pair of topics are presented together in the same paper is calculated.
-          This co-occurence matrix defines the edges of a graphs where the nodes represent each topic.
-          Research communities are then determined through the Louvian community detection algorithm.<br> <br>       
+          
+          Topic modeling is a machine learning problem where you have a collection (corpus) of documents, and you want to extract topics from the unstructured text data.
+          In our case, our corpus is the set of abstracts pulled from Microsoft Academic, and we want to extract topics of interesting research from these texts.
+          Once we've extracted these topics, we create a graph of topics where each node is a topic and each edge represents the probability of these topics co-occuring in an abstract.
+          Different features of the graph convey further information about how prevelant a topic is or how frequently it has shown up in abstracts in the past five years.<br><br>
+
+          <span class="fieldname"> Goal: </span> 
+          
+          The goal of this modeling and visualization is to algorithmically produce a high-level overview of the field and 
+          to allow users to interactively explore different topics and the connections between them.
+          We hope this provides insight into surprising connections between different areas of the field or trending topics of interest.
+          This visualization can also be used to explore literature in the field related to each topic or their connections.<br><br>
+          
+          <span class="fieldname"> Algorithms: </span> 
+          
+          This visualization relies primarily on two techniques: Latend Dirichlet Allocation and Louvain Community Detection.<br><br>
+     
+          <b> Latent Dirichlet Allocation (LDA) </b> is a popular algorithm used for topic modeling.
+          It models topics as probability distributions over words.  
+          (<e> ex: the topic of "pets" contains the word "cat" with a high probability and "solar_panel" with a low probability. </e>)
+          Topics can be represented by the words that have the highest probability of belonging to the topic.
+          Furthermore, each document has a certain probability of containing each topic.  
+          (<e> ex: An article about healthy pet diets has a high probability of containing the topics "food", "pets", and "health" and a low probability of containing the topic "foreign_politics."</e>)
+          We performed topic modeling with 100 topics and then produced a graph where nodes represent topics and edges represent the probability of topics occuring in the same document.
+          (<e> ex: the topics "health" and "food" are more likely to co-occur than "pets" and "foreign_politics".</e>) <br><br>
+          
+          <b> Louvain Community Detection </b>
+          The Louvain Community Detection algorithm is used on large intereconnected graphs to separate nodes into related groups or communities.
+          It starts out by defining each node as an individual community.
+          It then uses a similarity metric to compare adjacent nodes, and if they are similar enough, it merges the two communities.
+          When it has gone through every node, it creates a new graph in which each community is a single node.
+          It repeats this process until no nodes are similar enough to merge.
+          The end result is a grouping of similar nodes into research communities.
+          These are represented by the colors of the nodes in our graph.<br> <br>       
 
           <span class="fieldname"> Visuals: </span> 
           <a class="btn" href="ES_networkplot_red.html"> Energy Storage Network Plot </a>
