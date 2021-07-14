@@ -64,16 +64,16 @@
           
           This visualization relies primarily on two techniques: Latend Dirichlet Allocation and Louvain Community Detection.<br><br>
      
-          <b> Latent Dirichlet Allocation (LDA) </b> is a popular algorithm used for topic modeling.
+          <span class="bolded"> Latent Dirichlet Allocation (LDA) </span> is a popular algorithm used for topic modeling.
           It models topics as probability distributions over words.  
-          (<e> ex: the topic of "pets" contains the word "cat" with a high probability and "solar_panel" with a low probability. </e>)
+          (<span class="emp"> ex: the topic of "pets" contains the word "cat" with a high probability and "solar_panel" with a low probability. </span>)
           Topics can be represented by the words that have the highest probability of belonging to the topic.
           Furthermore, each document has a certain probability of containing each topic.  
-          (<e> ex: An article about healthy pet diets has a high probability of containing the topics "food", "pets", and "health" and a low probability of containing the topic "foreign_politics."</e>)
+          (<span class="emp"> ex: An article about healthy pet diets has a high probability of containing the topics "food", "pets", and "health" and a low probability of containing the topic "foreign_politics."</span>)
           We performed topic modeling with 100 topics and then produced a graph where nodes represent topics and edges represent the probability of topics occuring in the same document.
-          (<e> ex: the topics "health" and "food" are more likely to co-occur than "pets" and "foreign_politics".</e>) <br><br>
-          
-          <b> Louvain Community Detection </b>
+          (<span class="emp"> ex: the topics "health" and "food" are more likely to co-occur than "pets" and "foreign_politics".</span>) <br><br>
+
+          <span class="bolded"> Louvain Community Detection </span>
           The Louvain Community Detection algorithm is used on large intereconnected graphs to separate nodes into related groups or communities.
           It starts out by defining each node as an individual community.
           It then uses a similarity metric to compare adjacent nodes, and if they are similar enough, it merges the two communities.
@@ -98,12 +98,40 @@
       <div class="description">
         <p>
           <span class="fieldname"> Description: </span> 
-          Word2Vec is an ML algorithm for embedding words as vectors.  
-          The words in the corpus are contextually embedded into an array of numbers that can be conceptualized as a point in high dimensional space.
+          In natural language processing, words are often embedded into a numerical vector that encodes the meaning of the words.
+          Similarly to how we embed colors by their RGB values, we can encode words using numerical vectors.
+          Unlike with colors where the first dimension represents the red component etc, we don't know what each dimension in a word vector represents.
+          Instead, the embeddings are learned from the context and surrounding words and machine learning algorithms.
+          These word vectors can be conceptualized as a point in high dimensional space.
           We can easily compare how close these vectors are in high dimensional space, giving us a good idea of how similar the words are.
-          Since we can't easily visualize high dimensional space, we use Principal Component Analysis (PCA) to select the two most informative dimensions and plot those
-          for more accessible human visualization and comprehension. <br> <br>
-
+          We then projected these words onto a two dimensional plane so that we could spacially visualize the relationships between different words.
+          Another cool feature of word vectors is that you can do math with them.  
+          By adding and subtracting vectors, you can search for new, relevant words.
+          <span class="emp"> ex: if you take the embedding of "King" and subtract the embedding of "Man", the resultant vector represents the relationship between "King" and "Man".
+          If you then add this new vector to the embedding of "Woman", the resulting vector is most similar to the embedding of "Queen".</span><br><br>
+          
+          <span class="fieldname"> Goal: </span> 
+          The goal of this visualization is to be able to choose words out of the collection of abstracts and explore their relationships either by
+          seeing how close they are on the two dimensional visualization, or my experimenting with vector math. <br><br>
+          
+          <span class="fieldname"> Algorithms: </span> 
+          
+          This visualization relies primarily on two techniques: Word2Vec and Principal Component Analysis.<br><br>
+          
+          <span class="bolded"> Word2Vec </span>
+          Word2vec is a word embedding technique that uses a neural network to learn word associations from a large corpus of text.
+          For each word, it uses the current word embedding to try to predict the words in some window around it.
+          When it incorrectly predicts a word, it uses the error to update the word embedding and improve.
+          The end result is a word embedding for each word in the corpus that is learned from the context of surrounding words.
+          <br><br>
+          
+          <span class="bolded"> Principal Component Analysis (PCA) </span>
+          is a dimensionality reduction technique that projects points in higher dimensions into a lower dimensional space.
+          Each of the word vectors are 200 dimensional, but we can visualize at most 3 dimensions, and in this case, we want to view the vectors on a 2D screen.
+          There are many different ways you could project down to 2D, but we want to choose the one that preserves as much of the initial information as possible.
+          PCA uses linear algebra to find the projection that preserves the most variance/relevant information so that we can visualize these 200D vectors on a 2D screen without losing too much information.
+          <br><br>
+          
           <span class="fieldname"> Visuals: </span> 
           <a class="btn" href="W2V_PCA.html"> Word2Vector Plot </a>
         </p>
