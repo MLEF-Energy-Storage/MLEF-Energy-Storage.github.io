@@ -143,6 +143,14 @@ p {
   color: #8CC286;
 }
 
+.bolded{
+  font-weight: 500;
+}
+
+.emp {
+  fonst-style: italic;
+}
+
 .gitlink {
   display: inline-block;
   text-align: center;
