@@ -7,20 +7,18 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
     <script>
-      function expandText(){
-        var coll = document.getElementsByClassName("collapsible");
+      function expandText(id){
+        var coll = document.getElementsById(id);
         var i;
-        console.log('script called');
+
         for (i = 0; i < coll.length; i++) {
           coll[i].addEventListener("click", function() {
             this.classList.toggle("active");
             var content = this.nextElementSibling;
             if (content.style.display === "block") {
-              console.log('hide');
               content.style.display = "none";
             } else {
               content.style.display = "block";
-              console.log('display');
             }
           });
         }
@@ -42,7 +40,7 @@
         Scientific research into energy storage technologies has exploded in recent years and sorting through this large body of knowledge to understand the state of field is an important and challenging problem.<br><br>      
       </p>
         
-        <button type="button" class="collapsible" onclick="expandText()"> Read More </button>
+        <button type="button" class="collapsible" id="problem_text" onclick="expandText("problem_text")"> Read More </button>
         <div class="extended">
           <p> Here is more information about the problem.  In theory, this text should be show when clicked.  Change just seems to be on hover? </p>
         </div>
