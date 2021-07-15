@@ -19,24 +19,44 @@
         Storing energy from intermittent renewables, such as wind and solar, is one of the most pressing challenges we face for enabling a sustainable civilization. 
         The scale of the problem is immense. 
         A wide array of energy storage technologies are under development, each with their own advantages and disadvantages for various use cases. 
-        Scientific research into energy storage technologies has exploded in recent years and sorting through this large body of knowledge to understand the state of field is an important and challenging problem.<br><br>
+        Scientific research into energy storage technologies has exploded in recent years and sorting through this large body of knowledge to understand the state of field is an important and challenging problem.<br><br>      
       </p>
+        
+        <button type="button" class="collapsible"> Read More </button>
+        <div class="extended">
+          <p> Here is more information about the problem </p>
+        </div>
+      
       <h2> The Goal </h2> 
       <p>
         This project uses artificial intelligence to extract insights from the scientific literature with the goal of being able to better direct research efforts and investments towards promising technologies.
         Below are links to different visualizations of the data using a variety of natural language processing techniques and accompanying visuals.<br><br>
       </p>
+      
+      <button type="button" class="collapsible"> Read More </button>
+      <div class="extended">
+        <p> Here is more information about the problem </p>
+      </div>
+      
+      
       <h2> The Data </h2>
       <p>
         Each of the machine learning algorithms used below were trained on a collection of article abstracts pulled from Microsoft Academic related to energy storage.
         The abstracts were obtained with the search term "Energy Storage", keeping the top 100,000 results.
         Duplicate papers were removed (identified by DOI) and opnly articles in english were retained, resulting in approximately 40,000 abstracts.<br><br>
       </p>
+      
+      <button type="button" class="collapsible"> Read More </button>
+      <div class="extended">
+        <p> Here is more information about the problem </p>
+      </div>
+      
       <h2>
-        For more details, please visit our    
+        To see our code, please visit our    
         <a class="gitlink" href="https://github.com/MLEF-Energy-Storage"> GitHub </a>
       </h2>
     </section>
+    
     <section id="LDA">
       <h2>
         Topic Modeling with LDA and Louvian Communities
@@ -62,6 +82,7 @@
           
           <span class="fieldname"> Algorithms: </span> 
           
+        <p>
           This visualization relies primarily on two techniques: Latend Dirichlet Allocation and Louvain Community Detection.<br><br>
      
           <span class="bolded"> Latent Dirichlet Allocation (LDA) </span> is a popular algorithm used for topic modeling.
@@ -72,7 +93,14 @@
           (<span class="emp"> ex: An article about healthy pet diets has a high probability of containing the topics "food", "pets", and "health" and a low probability of containing the topic "foreign_politics."</span>)
           We performed topic modeling with 100 topics and then produced a graph where nodes represent topics and edges represent the probability of topics occuring in the same document.
           (<span class="emp"> ex: the topics "health" and "food" are more likely to co-occur than "pets" and "foreign_politics".</span>) <br><br>
+        </p>
+          
+        <button type="button" class="collapsible"> Read More </button>
+        <div class="extended">
+          <p> Here is more information about the problem </p>
+        </div>
 
+        <p>  
           <span class="bolded"> Louvain Community Detection </span>
           The Louvain Community Detection algorithm is used on large intereconnected graphs to separate nodes into related groups or communities.
           It starts out by defining each node as an individual community.
@@ -80,12 +108,19 @@
           When it has gone through every node, it creates a new graph in which each community is a single node.
           It repeats this process until no nodes are similar enough to merge.
           The end result is a grouping of similar nodes into research communities.
-          These are represented by the colors of the nodes in our graph.<br> <br>       
+          These are represented by the colors of the nodes in our graph.<br> <br>
+        </p>
+        
+        <button type="button" class="collapsible"> Read More </button>
+        <div class="extended">
+          <p> Here is more information about the problem </p>
+        </div>
 
+        <p>
           <span class="fieldname"> Visuals: </span> 
           <a class="btn" href="ES_networkplot_7_13.html"> Energy Storage Network Plot </a>
-
         </p>
+        
       </div>
     </section>
     <section id="w2v">
@@ -109,11 +144,14 @@
           By adding and subtracting vectors, you can search for new, relevant words.
           <span class="emp"> ex: if you take the embedding of "King" and subtract the embedding of "Man", the resultant vector represents the relationship between "King" and "Man".
           If you then add this new vector to the embedding of "Woman", the resulting vector is most similar to the embedding of "Queen".</span><br><br>
-          
+        </p>
+        <p>
           <span class="fieldname"> Goal: </span> 
           The goal of this visualization is to be able to choose words out of the collection of abstracts and explore their relationships either by
           seeing how close they are on the two dimensional visualization, or my experimenting with vector math. <br><br>
-          
+        </p>
+        
+        <p>
           <span class="fieldname"> Algorithms: </span> 
           
           This visualization relies primarily on two techniques: Word2Vec and Principal Component Analysis.<br><br>
@@ -124,14 +162,28 @@
           When it incorrectly predicts a word, it uses the error to update the word embedding and improve.
           The end result is a word embedding for each word in the corpus that is learned from the context of surrounding words.
           <br><br>
-          
+        </p>
+        
+        <button type="button" class="collapsible"> Read More </button>
+        <div class="extended">
+          <p> Here is more information about the problem </p>
+        </div>
+        
+        <p>
           <span class="bolded"> Principal Component Analysis (PCA) </span>
           is a dimensionality reduction technique that projects points in higher dimensions into a lower dimensional space.
           Each of the word vectors are 200 dimensional, but we can visualize at most 3 dimensions, and in this case, we want to view the vectors on a 2D screen.
           There are many different ways you could project down to 2D, but we want to choose the one that preserves as much of the initial information as possible.
           PCA uses linear algebra to find the projection that preserves the most variance/relevant information so that we can visualize these 200D vectors on a 2D screen without losing too much information.
           <br><br>
-          
+        </p>
+        
+        <button type="button" class="collapsible"> Read More </button>
+        <div class="extended">
+          <p> Here is more information about the problem </p>
+        </div>
+        
+        <p>
           <span class="fieldname"> Visuals: </span> 
           <a class="btn" href="W2V_PCA.html"> Word2Vector Plot </a>
         </p>
