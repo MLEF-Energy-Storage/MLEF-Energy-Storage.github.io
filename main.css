@@ -172,7 +172,7 @@ p {
   background-color: #8CC286;
   color: white;
   cursor: pointer;
-  padding: 18px;
+  padding: 5px;
   width: 100%;
   border: none;
   text-align: left;
@@ -182,7 +182,7 @@ p {
 
 /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
 .active, .collapsible:hover {
-  background-color: #ccc;
+  background-color: #6DA367;
 }
 
 .extended {
