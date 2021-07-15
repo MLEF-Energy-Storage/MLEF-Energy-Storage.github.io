@@ -7,19 +7,21 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
     <script>
-      var coll = document.getElementsByClassName("collapsible");
-      var i;
-
-      for (i = 0; i < coll.length; i++) {
-        coll[i].addEventListener("click", function() {
-          this.classList.toggle("active");
-          var content = this.nextElementSibling;
-          if (content.style.display === "block") {
-            content.style.display = "none";
-          } else {
-            content.style.display = "block";
-          }
-        });
+      function expandText(){
+        var coll = document.getElementsByClassName("collapsible");
+        var i;
+        console.log('script called');
+        for (i = 0; i < coll.length; i++) {
+          coll[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.display === "block") {
+              content.style.display = "none";
+            } else {
+              content.style.display = "block";
+            }
+          });
+        }
       }
     </script>
   </head>
@@ -38,7 +40,7 @@
         Scientific research into energy storage technologies has exploded in recent years and sorting through this large body of knowledge to understand the state of field is an important and challenging problem.<br><br>      
       </p>
         
-        <button type="button" class="collapsible"> Read More </button>
+        <button type="button" class="collapsible" onclick="expandText()"> Read More </button>
         <div class="extended">
           <p> Here is more information about the problem </p>
         </div>
