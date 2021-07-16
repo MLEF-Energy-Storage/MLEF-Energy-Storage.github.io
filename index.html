@@ -17,9 +17,9 @@
       <h2> The Problem </h2>
       <p>
         Storing energy from intermittent renewables, such as wind and solar, is one of the most pressing challenges we face for enabling a sustainable civilization. 
-        The scale of the problem is immense. 
         A wide array of energy storage technologies are under development, each with their own advantages and disadvantages for various use cases. 
-        Scientific research into energy storage technologies has exploded in recent years and sorting through this large body of knowledge to understand the state of field is an important and challenging problem.<br>      
+        Scientific research into energy storage technologies has exploded in recent years and sorting through this large body of knowledge to understand the state of field 
+        is an important and challenging problem.<br>      
       </p>
 
       <button type="button" class="collapsible"> Read More </button>
@@ -29,25 +29,19 @@
 
       <h2> <br> The Goal </h2> 
       <p>
-        This project uses artificial intelligence to extract insights from the scientific literature with the goal of being able to better direct research efforts and investments towards promising technologies.
-        Below are links to different visualizations of the data using a variety of natural language processing techniques and accompanying visuals.<br>
+        This project uses a variety of natural language processing techniques to extract insights from the scientific literature with the goal of being able to better direct research 
+        efforts and investments towards promising technologies.<br>
       </p>
-      
-      <button type="button" class="collapsible"> Read More </button>
-      <div class="extended">
-        <p> Here is more information about the problem </p>
-      </div>
       
       <h2> <br> The Data </h2>
       <p>
-        Each of the machine learning algorithms used below were trained on a collection of article abstracts pulled from Microsoft Academic related to energy storage.
-        The abstracts were obtained with the search term "Energy Storage", keeping the top 100,000 results.
-        Duplicate papers were removed (identified by DOI) and opnly articles in english were retained, resulting in approximately 40,000 abstracts.<br>
+        The data is composed of -n- abstracts of scientific papers related to energy storage.  
+        The papers were pulled from the S2ORK database of scientific papers for natural language processing.<br>
       </p>
       
       <button type="button" class="collapsible"> Read More </button>
       <div class="extended">
-        <p> Here is more information about the problem </p>
+        <p> Here is more information about the data. </p>
       </div>
             
       <h2>
@@ -82,38 +76,42 @@
           <span class="fieldname"> Algorithms: </span> 
           
           This visualization relies primarily on two techniques: Latend Dirichlet Allocation and Louvain Community Detection.<br><br>
-     
-          <span class="bolded"> Latent Dirichlet Allocation (LDA) </span> is a popular algorithm used for topic modeling.
-          It models topics as probability distributions over words.  
-          (<span class="emp"> ex: the topic of "pets" contains the word "cat" with a high probability and "solar_panel" with a low probability. </span>)
-          Topics can be represented by the words that have the highest probability of belonging to the topic.
-          Furthermore, each document has a certain probability of containing each topic.  
-          (<span class="emp"> ex: An article about healthy pet diets has a high probability of containing the topics "food", "pets", and "health" and a low probability of containing the topic "foreign_politics."</span>)
-          We performed topic modeling with 100 topics and then produced a graph where nodes represent topics and edges represent the probability of topics occuring in the same document.
-          (<span class="emp"> ex: the topics "health" and "food" are more likely to co-occur than "pets" and "foreign_politics".</span>) <br>
         </p>
+    
+        <button type="button" class="collapsible"> Read More </button>
+        <div class="extended">
+          <p><br>
+            <span class="bolded"> Latent Dirichlet Allocation (LDA) </span> is a popular algorithm used for topic modeling.
+            It models topics as probability distributions over words. <br> 
+            (<span class="emp"> ex: the topic of "pets" has a high probability of containing the word "cat" and a low probability of containing the word "solar_panel". </span>)<br>
+            Topics can be represented by the words that have the highest probability of belonging to the topic. Furthermore, each document has a certain probability of containing each topic.  <br>
+            (<span class="emp"> ex: An article about healthy pet diets has a high probability of containing the topics "food", "pets", and "health" and a low probability of containing the topic "energy_storage."</span>)<br>
+            We performed topic modeling with 100 topics and then produced a graph where nodes represent topics and edges represent the probability of topics occuring in the same document.<br>
+            (<span class="emp"> ex: the topics "health" and "food" are more likely to co-occur than "pets" and "energy_storage".</span>) <br>
+          </p>
           
-        <button type="button" class="collapsible"> Read More </button>
-        <div class="extended" id="lda">
-          <p> Here is more information about the problem </p>
-        </div>
+          <button type="button" class="collapsible"> Read More </button>
+          <div class="extended" id="lda">
+            <p> Even more in depth discussion of LDA. </p>
+          </div>
 
-        <p>  
-          <br> <span class="bolded"> Louvain Community Detection </span>
-          The Louvain Community Detection algorithm is used on large intereconnected graphs to separate nodes into related groups or communities.
-          It starts out by defining each node as an individual community.
-          It then uses a similarity metric to compare adjacent nodes, and if they are similar enough, it merges the two communities.
-          When it has gone through every node, it creates a new graph in which each community is a single node.
-          It repeats this process until no nodes are similar enough to merge.
-          The end result is a grouping of similar nodes into research communities.
-          These are represented by the colors of the nodes in our graph.<br>
-        </p>
-        
-        <button type="button" class="collapsible"> Read More </button>
-        <div class="extended" id='louvain'>
-          <p> Here is more information about the problem </p>
+          <p> <br><br> 
+            <span class="bolded"> Louvain Community Detection </span>
+            The Louvain Community Detection algorithm is used on large intereconnected graphs to separate nodes into related groups or communities.
+            It starts out by defining each node as an individual community.
+            It then uses a similarity metric to compare adjacent nodes, and if they are similar enough, it merges the two communities.
+            When it has gone through every node, it creates a new graph in which each community is a single node.
+            It repeats this process until no nodes are similar enough to merge.
+            The end result is a grouping of similar nodes into research communities.
+            These are represented by the colors of the nodes in our graph.<br>
+          </p>
+          
+          <button type="button" class="collapsible"> Read More </button>
+          <div class="extended" id="louvain">
+            <p> Even more in depth discussion of Louvain community detection. </p>
+          </div>
         </div>
-
+                    
         <p> <br>
           <span class="fieldname"> Visuals: </span> 
           <a class="btn" href="ES_networkplot_7_13.html"> Energy Storage Network Plot </a>
@@ -151,36 +149,40 @@
         
         <p>
           <span class="fieldname"> Algorithms: </span> 
-          
           This visualization relies primarily on two techniques: Word2Vec and Principal Component Analysis.<br><br>
+        </p>
+
+        <button type="button" class="collapsible"> Read More </button>
+        <div class="extended">
+          <p><br>
+            <span class="bolded"> Word2Vec </span>
+            Word2vec is a word embedding technique that uses a neural network to learn word associations from a large corpus of text.
+            For each word, it uses the current word embedding to try to predict the words in some window around it.
+            When it incorrectly predicts a word, it uses the error to update the word embedding and improve.
+            The end result is a word embedding for each word in the corpus that is learned from the context of surrounding words.
+            <br>
+          </p>
           
-          <span class="bolded"> Word2Vec </span>
-          Word2vec is a word embedding technique that uses a neural network to learn word associations from a large corpus of text.
-          For each word, it uses the current word embedding to try to predict the words in some window around it.
-          When it incorrectly predicts a word, it uses the error to update the word embedding and improve.
-          The end result is a word embedding for each word in the corpus that is learned from the context of surrounding words.
-          <br>
-        </p>
-        
-        <button type="button" class="collapsible"> Read More </button>
-        <div class="extended" id="Word2Vec">
-          <p> Here is more information about the problem </p>
+          <button type="button" class="collapsible"> Read More </button>
+          <div class="extended" id="word2vec">
+            <p> Even more in depth discussion of Word2Vec. </p>
+          </div>
+          
+          <p><br><br>
+            <span class="bolded"> Principal Component Analysis (PCA) </span>
+            is a dimensionality reduction technique that projects points in higher dimensions into a lower dimensional space.
+            Each of the word vectors are 200 dimensional, but we can visualize at most 3 dimensions, and in this case, we want to view the vectors on a 2D screen.
+            There are many different ways you could project down to 2D, but we want to choose the one that preserves as much of the initial information as possible.
+            PCA uses linear algebra to find the projection that preserves the most variance/relevant information so that we can visualize these 200D vectors on a 2D screen without losing too much information.
+            <br>
+          </p>
+          
+          <button type="button" class="collapsible"> Read More </button>
+          <div class="extended" id="pca">
+            <p> Even more in depth discussion of PCA. </p>
+          </div>
         </div>
-        
-        <p> <br>
-          <span class="bolded"> Principal Component Analysis (PCA) </span>
-          is a dimensionality reduction technique that projects points in higher dimensions into a lower dimensional space.
-          Each of the word vectors are 200 dimensional, but we can visualize at most 3 dimensions, and in this case, we want to view the vectors on a 2D screen.
-          There are many different ways you could project down to 2D, but we want to choose the one that preserves as much of the initial information as possible.
-          PCA uses linear algebra to find the projection that preserves the most variance/relevant information so that we can visualize these 200D vectors on a 2D screen without losing too much information.
-          <br>
-        </p>
-        
-        <button type="button" class="collapsible"> Read More </button>
-        <div class="extended" id="PCA">
-          <p> Here is more information about the problem </p>
-        </div>
-      
+          
         <p> <br>
           <span class="fieldname"> Visuals: </span> 
           <a class="btn" href="W2V_PCA.html"> Word2Vector Plot </a>
@@ -192,7 +194,7 @@
         Work done by Bryce Elizabeth Yahn and Lee Aspitarte in 2021.  Built upon work by Raihan Ahmed and Lee Aspitarte in 2020.<br><br>
       </p>
 
-        <button type="button" class="collapsible"> Bios </button>
+      <button type="button" class="collapsible"> Bios </button>
       <div class="extended">
         <p>
           <span class="bolded"> Lee Aspitarte </span> received his Bachelor of Science in physics from Washington State University, Washington, U.S., in 2011 and his 
