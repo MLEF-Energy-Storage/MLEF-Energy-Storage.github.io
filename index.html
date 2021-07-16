@@ -6,24 +6,6 @@
     <link rel="stylesheet" href="main.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
-    <script>
-      function expandText() {
-        var coll = document.getElementsByClassName("collapsible");
-        var i;
-
-        for (i = 0; i < coll.length; i++) {
-          coll[i].addEventListener("click", function() {
-            this.classList.toggle("active");
-            var content = this.nextElementSibling;
-            if (content.style.display === "block") {
-              content.style.display = "none";
-            } else {
-              content.style.display = "block";
-            }
-          });
-        }
-      }
-    </script>
   </head>
   <body>
     <header>
@@ -40,7 +22,7 @@
         Scientific research into energy storage technologies has exploded in recent years and sorting through this large body of knowledge to understand the state of field is an important and challenging problem.<br>      
       </p>
 
-      <button type="button" class="collapsible" onclick="expandText()"> Read More </button>
+      <button type="button" class="collapsible"> Read More </button>
       <div class="extended", id="problem">
         <p> Here is more information about the problem </p>
       </div>
@@ -51,7 +33,7 @@
         Below are links to different visualizations of the data using a variety of natural language processing techniques and accompanying visuals.<br>
       </p>
       
-      <button type="button" class="collapsible" onclick="expandText()"> Read More </button>
+      <button type="button" class="collapsible"> Read More </button>
       <div class="extended">
         <p> Here is more information about the problem </p>
       </div>
@@ -63,7 +45,7 @@
         Duplicate papers were removed (identified by DOI) and opnly articles in english were retained, resulting in approximately 40,000 abstracts.<br>
       </p>
       
-      <button type="button" class="collapsible" onclick="expandText()"> Read More </button>
+      <button type="button" class="collapsible"> Read More </button>
       <div class="extended">
         <p> Here is more information about the problem </p>
       </div>
@@ -111,7 +93,7 @@
           (<span class="emp"> ex: the topics "health" and "food" are more likely to co-occur than "pets" and "foreign_politics".</span>) <br>
         </p>
           
-        <button type="button" class="collapsible" onclick="expandText()"> Read More </button>
+        <button type="button" class="collapsible"> Read More </button>
         <div class="extended" id="lda">
           <p> Here is more information about the problem </p>
         </div>
@@ -127,7 +109,7 @@
           These are represented by the colors of the nodes in our graph.<br>
         </p>
         
-        <button type="button" class="collapsible" onclick="expandText()"> Read More </button>
+        <button type="button" class="collapsible"> Read More </button>
         <div class="extended" id='louvain'>
           <p> Here is more information about the problem </p>
         </div>
@@ -180,7 +162,7 @@
           <br>
         </p>
         
-        <button type="button" class="collapsible" onclick="expandText()"> Read More </button>
+        <button type="button" class="collapsible"> Read More </button>
         <div class="extended" id="Word2Vec">
           <p> Here is more information about the problem </p>
         </div>
@@ -194,7 +176,7 @@
           <br>
         </p>
         
-        <button type="button" class="collapsible" onclick="expandText()"> Read More </button>
+        <button type="button" class="collapsible"> Read More </button>
         <div class="extended" id="PCA">
           <p> Here is more information about the problem </p>
         </div>
@@ -210,7 +192,7 @@
         Work done by Bryce Elizabeth Yahn and Lee Aspitarte in 2021.  Built upon work by Raihan Ahmed and Lee Aspitarte in 2020.<br><br>
       </p>
 
-      <button type="button" class="collapsible" onclick="expandText()"> Bios </button>
+        <button type="button" class="collapsible"> Bios </button>
       <div class="extended">
         <p>
           <span class="bolded"> Lee Aspitarte </span> received his Bachelor of Science in physics from Washington State University, Washington, U.S., in 2011 and his 
@@ -238,5 +220,23 @@
         </p>
       </div>
     </section>
+    <script>
+      var coll = document.getElementsByClassName("collapsible");
+      var i;
+      
+      for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function() {
+          this.classList.toggle("active");
+          var content = this.nextElementSibling;
+          if (content.style.display === "block") {
+            content.style.display = "none";
+            console.log('hide');
+          } else {
+            content.style.display = "block";
+            console.log('display');
+          }
+        });
+      }
+    </script>
   </body>
 </html>
