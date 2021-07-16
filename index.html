@@ -130,14 +130,12 @@
         <p>
           <span class="fieldname"> Description: </span> 
           In natural language processing, words are often embedded into a numerical vector that encodes the meaning of the words.
-          Similarly to how we embed colors by their RGB values, we can encode words using numerical vectors.
-          Unlike with colors where the first dimension represents the red component etc, we don't know what each dimension in a word vector represents.
-          Instead, the embeddings are learned from the context and surrounding words and machine learning algorithms.
+          The embeddings are learned from the context and surrounding words using machine learning algorithms.
           These word vectors can be conceptualized as a point in high dimensional space.
           We can easily compare how close these vectors are in high dimensional space, giving us a good idea of how similar the words are.
           We then projected these words onto a two dimensional plane so that we could spacially visualize the relationships between different words.
           Another cool feature of word vectors is that you can do math with them.  
-          By adding and subtracting vectors, you can search for new, relevant words.
+          By adding and subtracting vectors, you can search for relevant words.<br>
           <span class="emp"> ex: if you take the embedding of "King" and subtract the embedding of "Man", the resultant vector represents the relationship between "King" and "Man".
           If you then add this new vector to the embedding of "Woman", the resulting vector is most similar to the embedding of "Queen".</span><br><br>
         </p>
