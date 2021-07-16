@@ -135,20 +135,19 @@ p {
   font-size: 18px;
   line-height: 25px;
   font-weight: 300;
-  text-algin: left;
+  text-align: left;
 }
 
-.fieldname {
-  font-weight: 400;
-  color: #8CC286;
-}
-
-.bolded{
+.fieldname{
   font-weight: 500;
 }
 
+.bolded{
+  font-weight: 400;
+}
+
 .emp {
-  fonst-style: italic;
+  font-style: italic;
 }
 
 .gitlink {
@@ -166,14 +165,14 @@ p {
 
 .gitlink:hover, .gitlink:active{
   font-size: 35px;
+  color: #6DA367;
 }
 
 .collapsible {
   background-color: #8CC286;
   color: white;
   cursor: pointer;
-  padding: 5px;
-  width: 20%;
+  padding: 7px;
   border: none;
   text-align: left;
   outline: none;
@@ -194,42 +193,18 @@ p {
 .btn {
   display: inline-block;
   text-align: center;
-  font-size: 18px;
+  font-size: 20px;
   text-decoration: none;
   color: #8CC286;
+  font-weight: 500;
  }
 
 .btn:link, .btn:visited {
-  font-size: 18px;
+  font-size: 20px;
 }
 
 .btn:hover, .btn:active{
   font-size: 24px;
+  color: #6DA367;
 }
 
-.projlink {
-  display: inline-block;
-  width: 30%;
-  margin: 1% auto;
-  text-align: center;
-  font-size: 20px;
-  text-decoration: none;
-  background-color: #8CC286;
-  color: white;
-  border: 5px solid #8CC286; 
-  border-radius: 5px;
- }
-
-.projlink:link, .projlink:visited {
-  font-size: 20px;
-  background-color: #8CC286;
-  color: white;
-  border: 5px solid #8CC286;
-}
-
-.projlink:hover, .projlink:active{
-  font-size: 25px;
-  background-color: #8CC286;
-  border: 5px solid #8CC286; 
-  color: white;
-}

@@ -7,16 +7,21 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
     <script>
-      function expandText(buttonID){
-        document.getElementsByID(buttonID).addEventListener("click", function() {
-          this.classList.toggle("active");
-          var content = this.nextElementSibling;
-          if (content.style.display === "block") {
-            content.style.display = "none";
-          } else {
-            content.style.display = "block";
-          }
-        });
+      function expandText() {
+        var coll = document.getElementsByClassName("collapsible");
+        var i;
+
+        for (i = 0; i < coll.length; i++) {
+          coll[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.display === "block") {
+              content.style.display = "none";
+            } else {
+              content.style.display = "block";
+            }
+          });
+        }
       }
     </script>
   </head>
@@ -32,41 +37,39 @@
         Storing energy from intermittent renewables, such as wind and solar, is one of the most pressing challenges we face for enabling a sustainable civilization. 
         The scale of the problem is immense. 
         A wide array of energy storage technologies are under development, each with their own advantages and disadvantages for various use cases. 
-        Scientific research into energy storage technologies has exploded in recent years and sorting through this large body of knowledge to understand the state of field is an important and challenging problem.<br><br>      
+        Scientific research into energy storage technologies has exploded in recent years and sorting through this large body of knowledge to understand the state of field is an important and challenging problem.<br>      
       </p>
-        
-        <button type="button" class="collapsible" id="problem_text" onclick="expandText("problem_text")"> Read More </button>
-        <div class="extended">
-          <p> Here is more information about the problem.  In theory, this text should be show when clicked.  Change just seems to be on hover? </p>
-        </div>
-      <br>
-      <h2> The Goal </h2> 
+
+      <button type="button" class="collapsible" onclick="expandText()"> Read More </button>
+      <div class="extended", id="problem">
+        <p> Here is more information about the problem </p>
+      </div>
+
+      <h2> <br> The Goal </h2> 
       <p>
         This project uses artificial intelligence to extract insights from the scientific literature with the goal of being able to better direct research efforts and investments towards promising technologies.
-        Below are links to different visualizations of the data using a variety of natural language processing techniques and accompanying visuals.<br><br>
+        Below are links to different visualizations of the data using a variety of natural language processing techniques and accompanying visuals.<br>
       </p>
       
-      <button type="button" class="collapsible" id="goal_text" onclick="expandText("problem_text")"> Read More </button>
+      <button type="button" class="collapsible" onclick="expandText()"> Read More </button>
       <div class="extended">
         <p> Here is more information about the problem </p>
       </div>
-      <br>
       
-      <h2> The Data </h2>
+      <h2> <br> The Data </h2>
       <p>
         Each of the machine learning algorithms used below were trained on a collection of article abstracts pulled from Microsoft Academic related to energy storage.
         The abstracts were obtained with the search term "Energy Storage", keeping the top 100,000 results.
-        Duplicate papers were removed (identified by DOI) and opnly articles in english were retained, resulting in approximately 40,000 abstracts.<br><br>
+        Duplicate papers were removed (identified by DOI) and opnly articles in english were retained, resulting in approximately 40,000 abstracts.<br>
       </p>
       
-      <button type="button" class="collapsible" id="data_text" onclick="expandText("problem_text")"> Read More </button>
+      <button type="button" class="collapsible" onclick="expandText()"> Read More </button>
       <div class="extended">
         <p> Here is more information about the problem </p>
       </div>
-      <br>
-      
+            
       <h2>
-        To see our code, please visit our    
+        <br>To see our code, please visit our    
         <a class="gitlink" href="https://github.com/MLEF-Energy-Storage"> GitHub </a>
       </h2>
     </section>
@@ -96,7 +99,6 @@
           
           <span class="fieldname"> Algorithms: </span> 
           
-        <p>
           This visualization relies primarily on two techniques: Latend Dirichlet Allocation and Louvain Community Detection.<br><br>
      
           <span class="bolded"> Latent Dirichlet Allocation (LDA) </span> is a popular algorithm used for topic modeling.
@@ -106,33 +108,31 @@
           Furthermore, each document has a certain probability of containing each topic.  
           (<span class="emp"> ex: An article about healthy pet diets has a high probability of containing the topics "food", "pets", and "health" and a low probability of containing the topic "foreign_politics."</span>)
           We performed topic modeling with 100 topics and then produced a graph where nodes represent topics and edges represent the probability of topics occuring in the same document.
-          (<span class="emp"> ex: the topics "health" and "food" are more likely to co-occur than "pets" and "foreign_politics".</span>) <br><br>
+          (<span class="emp"> ex: the topics "health" and "food" are more likely to co-occur than "pets" and "foreign_politics".</span>) <br>
         </p>
           
-        <button type="button" class="collapsible"> Read More </button>
-        <div class="extended">
+        <button type="button" class="collapsible" onclick="expandText()"> Read More </button>
+        <div class="extended" id="lda">
           <p> Here is more information about the problem </p>
         </div>
-        <br>
 
         <p>  
-          <span class="bolded"> Louvain Community Detection </span>
+          <br> <span class="bolded"> Louvain Community Detection </span>
           The Louvain Community Detection algorithm is used on large intereconnected graphs to separate nodes into related groups or communities.
           It starts out by defining each node as an individual community.
           It then uses a similarity metric to compare adjacent nodes, and if they are similar enough, it merges the two communities.
           When it has gone through every node, it creates a new graph in which each community is a single node.
           It repeats this process until no nodes are similar enough to merge.
           The end result is a grouping of similar nodes into research communities.
-          These are represented by the colors of the nodes in our graph.<br> <br>
+          These are represented by the colors of the nodes in our graph.<br>
         </p>
         
-        <button type="button" class="collapsible"> Read More </button>
-        <div class="extended">
+        <button type="button" class="collapsible" onclick="expandText()"> Read More </button>
+        <div class="extended" id='louvain'>
           <p> Here is more information about the problem </p>
         </div>
-        <br>
 
-        <p>
+        <p> <br>
           <span class="fieldname"> Visuals: </span> 
           <a class="btn" href="ES_networkplot_7_13.html"> Energy Storage Network Plot </a>
         </p>
@@ -177,33 +177,64 @@
           For each word, it uses the current word embedding to try to predict the words in some window around it.
           When it incorrectly predicts a word, it uses the error to update the word embedding and improve.
           The end result is a word embedding for each word in the corpus that is learned from the context of surrounding words.
-          <br><br>
+          <br>
         </p>
         
-        <button type="button" class="collapsible"> Read More </button>
-        <div class="extended">
+        <button type="button" class="collapsible" onclick="expandText()"> Read More </button>
+        <div class="extended" id="Word2Vec">
           <p> Here is more information about the problem </p>
         </div>
-        <br>
         
-        <p>
+        <p> <br>
           <span class="bolded"> Principal Component Analysis (PCA) </span>
           is a dimensionality reduction technique that projects points in higher dimensions into a lower dimensional space.
           Each of the word vectors are 200 dimensional, but we can visualize at most 3 dimensions, and in this case, we want to view the vectors on a 2D screen.
           There are many different ways you could project down to 2D, but we want to choose the one that preserves as much of the initial information as possible.
           PCA uses linear algebra to find the projection that preserves the most variance/relevant information so that we can visualize these 200D vectors on a 2D screen without losing too much information.
-          <br><br>
+          <br>
         </p>
         
-        <button type="button" class="collapsible"> Read More </button>
-        <div class="extended">
+        <button type="button" class="collapsible" onclick="expandText()"> Read More </button>
+        <div class="extended" id="PCA">
           <p> Here is more information about the problem </p>
         </div>
-        <br>
-        
-        <p>
+      
+        <p> <br>
           <span class="fieldname"> Visuals: </span> 
           <a class="btn" href="W2V_PCA.html"> Word2Vector Plot </a>
+        </p>
+      </div>
+    </section>
+    <section>
+      <p>
+        Work done by Bryce Elizabeth Yahn and Lee Aspitarte in 2021.  Built upon work by Raihan Ahmed and Lee Aspitarte in 2020.<br><br>
+      </p>
+
+      <button type="button" class="collapsible" onclick="expandText()"> Bios </button>
+      <div class="extended">
+        <p>
+          <span class="bolded"> Lee Aspitarte </span> received his Bachelor of Science in physics from Washington State University, Washington, U.S., in 2011 and his 
+          PhD in physics from Oregon State University, Oregon, U.S., in 2017. From July to October of 2017, he was a Postdoctoral Researcher with the National Energy Technology 
+          Laboratory. Since 2017, he has been a Principal Research Scientist with Battelle, under the U.S. Department of Energy, at the National Energy Technology Laboratory
+           in Albany, Oregon. His interests include experimental research in the field of magnetohydrodynamic power generation and its associated subfields. 
+          Dr. Aspitarte’s awards and honors include the Ben and Elaine Whiteley Materials Research Fellowship (Oregon State University) and the Peter Fontana Outstanding Graduate 
+          Teaching Assistant Award (Oregon State Department of Physics).<br><br>
+
+          <span class="bolded"> Bryce Elizabeth Yahn </span> Bryce is a recent graduate of University of Rochester where she earned a bachelor of science in brain and cognitive sciences 
+          with a minor in mathematics.  She has participated in four research programs on her journey from studying the brain to working in the field of data science and artificial intelligence.  
+          She has conducted neuroscience research at the MIT Summer Research program, studied eye movements and attention in Berlin at Humboldt Universitat, and completed machine vision research 
+          at University of Rochester.  She is now gaining experience with natural language processing and data visualization working with the Department of Energy to better understand the vast 
+          body of scientific literature relating to renewable energy storage.  In September, she will be moving to Arlington, VA to start a data science position working in Leidos’s AI and 
+          machine learning accelerator group.  She is passionate about making STEM an inclusive and welcoming field for everyone and hopes to continue working towards that cause in every position 
+          she takes.  Outside of work, she is an avid rock climber, and likes to push herself to new heights by facing her fears and challenging herself every day.  She is also interested in 
+          photography.  She won a scholarship for a tuition free fifth year of college to study how photography can shape our perspectives and world views.<br><br>
+          
+          <span class="bolded"> Raihan Ahmed </span> was a rising senior pursuing his Bachelor of Science in computer science and minor in linguistics at Northeastern Illinois 
+          University in Chicago, IL at the time of this work. Raihan intends to pursue a PhD in computer science or linguistics. From 2017 to 2018, he was an undergraduate 
+          research assistant at the University of Illinois at Urbana-Champaign’s (UIUC) College of Agricultural, Consumer, and Environmental Sciences, as well as a teaching 
+          assistant and academic tutor with UIUC’s Department of Physics. Between 2018 and 2019, he was an information systems and technology co-op student with Apple. 
+          Since then, he has been a research fellow at the National Energy Technology Laboratory in Albany, Oregon. Mr. Ahmed’s awards and honors include the Mickey Leland 
+          Energy Fellowship (Oak Ridge Institute for Science and Education).<br><br>
         </p>
       </div>
     </section>
