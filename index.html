@@ -8,20 +8,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
     <script>
       function expandText(buttonID){
-        var coll = document.getElementsById(buttonID);
-        var i;
-
-        for (i = 0; i < coll.length; i++) {
-          coll[i].addEventListener("click", function() {
-            this.classList.toggle("active");
-            var content = this.nextElementSibling;
-            if (content.style.display === "block") {
-              content.style.display = "none";
-            } else {
-              content.style.display = "block";
-            }
-          });
-        }
+        document.getElementsByID(buttonID).addEventListener("click", function() {
+          this.classList.toggle("active");
+          var content = this.nextElementSibling;
+          if (content.style.display === "block") {
+            content.style.display = "none";
+          } else {
+            content.style.display = "block";
+          }
+        });
       }
     </script>
   </head>
@@ -51,7 +46,7 @@
         Below are links to different visualizations of the data using a variety of natural language processing techniques and accompanying visuals.<br><br>
       </p>
       
-      <button type="button" class="collapsible"> Read More </button>
+      <button type="button" class="collapsible" id="goal_text" onclick="expandText("problem_text")"> Read More </button>
       <div class="extended">
         <p> Here is more information about the problem </p>
       </div>
@@ -64,7 +59,7 @@
         Duplicate papers were removed (identified by DOI) and opnly articles in english were retained, resulting in approximately 40,000 abstracts.<br><br>
       </p>
       
-      <button type="button" class="collapsible"> Read More </button>
+      <button type="button" class="collapsible" id="data_text" onclick="expandText("problem_text")"> Read More </button>
       <div class="extended">
         <p> Here is more information about the problem </p>
       </div>
