@@ -24,7 +24,15 @@
 
       <button type="button" class="collapsible"> Read More </button>
       <div class="extended", id="problem">
-        <p> Here is more information about the problem </p>
+        <p> 
+           As the need for clean, sustainable energy has become more imperative, the amount of research in the field of energy storage has skyrocketed.<br>
+        </p>
+           <img src="Years.png" alt="Timeline of publications" style='height: 100; width: 100%; object-fit: contain'>
+        <p>
+          The plot above shows the distribution of publication year for the papers in our dataset, and it clearly demonstrates that the body of research is expanding at an unprecidented rate.
+          While this increase is a good thing, it makes it very difficult to maintain a high-level understanding of the state of the field and to stay aware of what progress is being made.
+          This lack of insight can lead to redundant research, inefficient investing of time and money, and oversight of areas with the greatest potential.
+        </p>
       </div>
 
       <h2> <br> The Goal </h2> 
@@ -32,23 +40,37 @@
         This project uses a variety of natural language processing techniques to extract insights from the scientific literature with the goal of being able to better direct research 
         efforts and investments towards promising technologies.<br>
       </p>
-      
+      <div class="extended", id="goal">
+        <p> 
+          While it's nearly impossible for any individual to read through the tens of thousands of papers found in our dataset, recent AI technology has the power to process all this 
+          data and more and to extract insights without the constraints of human pre-conceived ideas of what is or is not important.  
+          Furthermore, the machine learning techniques we use may find patterns and connections between different areas of the field that humans might not be able to recognize on their own.<br><br>
+          We have ultimately generated two interactive plots to allow researchers to explore the learned models of the field of energy storage.  (More details on techniques in the sections below)
+          The first plot shows a graph of topics extracted from the abstracts in our dataset.
+          Researchers can click on topics and find related papers and information about topic trends.  They can also look at the connections between topics and find papers and trends at the intersection of topics.
+          The second plot zooms in further to look at the relationships between individual key words in the data.
+          It allows researcher to explore embedded words from our data projected onto a 2D plane, and use word-vector math to look at relationships between different words (details on this in the Word2Vec section).
+        </p>
+      </div>
+
       <h2> <br> The Data </h2>
       <p>
-        The data is composed of -n- abstracts of scientific papers related to energy storage.  
+        The data is composed of ~60,000 abstracts of scientific papers related to energy storage.  
         The papers were pulled from the Semantic Scholar Open Research Corpus database of scientific papers for natural language processing.<br>
       </p>
       
       <button type="button" class="collapsible"> Read More </button>
       <div class="extended">
         <p> 
-          Our models were trained on ~60,000 abstracts relating to energy storage pulled from the Semantic Scholar Open Research Corpus.
+          Our models were trained on 54,125 abstracts relating to energy storage pulled from the Semantic Scholar Open Research Corpus.
           The corpus is a collection of research papers published in all fields in a JSON archive designed for ease of use in natural language processing tasks.
           The corpus is rich with metadata including the fields of study the abstract is from, authors, years published, and the in-citations 
           (papers that cite the current paper) and the out-citations (papers cited by the current paper).
         </p>
         <img src="FOS.png" alt="Fields of Study Figure" style='height: 100%; width: 100%; object-fit: contain'>
-        <img src="Years.png" alt="Years of Publication" style='height: 100%; width: 100%; object-fit: contain'>
+        <img src="Length.png" alt="Length of Abstract" style='height: 100%; width: 100%; object-fit: contain'>
+        <img src="InCite.png" alt="Number of external citations" style='height: 100%; width: 100%; object-fit: contain'>
+        <img src="OutCite.png" alt="Number of references per paper" style='height: 100%; width: 100%; object-fit: contain'>
       </div>
             
       <h2>
