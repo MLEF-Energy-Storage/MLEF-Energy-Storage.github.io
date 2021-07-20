@@ -27,7 +27,7 @@
         <p><br> 
            As the need for clean, sustainable energy has become more imperative, the amount of research in the field of energy storage has skyrocketed.<br>
         </p>
-           <img src="Years.png" alt="Timeline of publications" style='height: 75%; width: 75%; object-fit: contain'>
+           <img src="Years.png" alt="Timeline of publications" class="center_fig" style='height: 75%; width: 75%; object-fit: contain'>
         <p>
           The plot above shows the distribution of publication year for the papers in our dataset, and it clearly demonstrates that the body of research is expanding at an unprecidented rate.
           While this increase is a good thing, it makes it very difficult to maintain a high-level understanding of the state of the field and to stay aware of what progress is being made.
@@ -63,15 +63,27 @@
       <button type="button" class="collapsible"> Read More </button>
       <div class="extended">
         <p> <br>
-          Our models were trained on 54,125 abstracts relating to energy storage pulled from the Semantic Scholar Open Research Corpus.
+          Our models were trained on 54,125 abstracts from scientific papers relating to energy storage pulled from the Semantic Scholar Open Research Corpus.
           The corpus is a collection of research papers published in all fields in a JSON archive designed for ease of use in natural language processing tasks.
           The corpus is rich with metadata including the fields of study the abstract is from, authors, years published, and the in-citations 
-          (papers that cite the current paper) and the out-citations (papers cited by the current paper).
+          (papers that cite the current paper) and the out-citations (papers cited by the current paper).  The plots below give an overview of these features for our dataset.<br><br>
         </p>
-        <img src="FOS.png" alt="Fields of Study Figure" style='height: 75%; width: 75%; object-fit: contain'>
+        <img src="FOS.png" alt="Fields of Study Figure" class="center_fig" style='height: 75%; width: 75%; object-fit: contain'>
         <img src="Length.png" alt="Length of Abstract" style='height: 30%; width: 30%; object-fit: contain'>
         <img src="InCite.png" alt="Number of external citations" style='height: 30%; width: 30%; object-fit: contain'>
         <img src="OutCite.png" alt="Number of references per paper" style='height: 30%; width: 30%; object-fit: contain'>
+        <p>
+          To cultivate our dataset, we pulled all abstracts from the entire semantic scholar dataset with the search term "Energy Storage" in the title or abstract. (extract_papers_semantic.py).
+          Then we processed the the raw text.  First, we excluded papers in any language that wasn't english.  
+          Then we removed stop words, which are commonly used words in the english language that carry very little useful information for natural language processing such as (the, a, is, are) and punctuation.
+          Since many of the papers in our database are related to chemical and material engineering, we used the
+          <a href="https://github.com/materialsintelligence/mat2vec#supplementary-materials-for-unsupervised-word-embeddings-capture-latent-knowledge-from-materials-science-literature-nature--571-9598-2019"> mat2vec</a> processing library
+          to standardize the representation of checmical formulas. For example, converting all instances of "Lithium" to "li" to avoid redundancy.
+          We used WordNetLemmatizer which converts words to their meaningful base form while also considering the context.  
+          For example, the words "cycle", "cyclic", "cycled", and "cycling" would all be converted to "cycl".
+          """Porter stemming?""
+          The result is the processed text we use to train our models. (???text_process or text_process_semantic?)
+        </p>
       </div>
             
       <h2>
