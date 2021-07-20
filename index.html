@@ -27,7 +27,7 @@
         <p><br> 
            As the need for clean, sustainable energy has become more imperative, the amount of research in the field of energy storage has skyrocketed.<br>
         </p>
-           <img src="Years.png" alt="Timeline of publications" class="center_fig" style='height: 75%; width: 75%; object-fit: contain'>
+           <img src="Years.png" alt="Timeline of publications" class="center_fig" style='height: 70%; width: 70%; object-fit: contain'>
         <p>
           The plot above shows the distribution of publication year for the papers in our dataset, and it clearly demonstrates that the body of research is expanding at an unprecidented rate.
           While this increase is a good thing, it makes it very difficult to maintain a high-level understanding of the state of the field and to stay aware of what progress is being made.
@@ -68,11 +68,13 @@
           The corpus is rich with metadata including the fields of study the abstract is from, authors, years published, and the in-citations 
           (papers that cite the current paper) and the out-citations (papers cited by the current paper).  The plots below give an overview of these features for our dataset.<br><br>
         </p>
-        <img src="FOS.png" alt="Fields of Study Figure" class="center_fig" style='height: 75%; width: 75%; object-fit: contain'>
-        <img src="Length.png" alt="Length of Abstract" style='height: 30%; width: 30%; object-fit: contain'>
-        <img src="InCite.png" alt="Number of external citations" style='height: 30%; width: 30%; object-fit: contain'>
-        <img src="OutCite.png" alt="Number of references per paper" style='height: 30%; width: 30%; object-fit: contain'>
-        <p>
+        <img src="FOS.png" alt="Fields of Study Figure" class="center_fig" style='height: 70%; width: 70%; object-fit: contain'>
+        <div> 
+          <img src="Length.png" alt="Length of Abstract" style='height: 30%; width: 30%; object-fit: contain'>
+          <img src="InCite.png" alt="Number of external citations" style='height: 30%; width: 30%; object-fit: contain'>
+          <img src="OutCite.png" alt="Number of references per paper" style='height: 30%; width: 30%; object-fit: contain'>
+        </div>
+        <p> <br>
           To cultivate our dataset, we pulled all abstracts from the entire semantic scholar dataset with the search term "Energy Storage" in the title or abstract. (extract_papers_semantic.py).
           Then we processed the the raw text.  First, we excluded papers in any language that wasn't english.  
           Then we removed stop words, which are commonly used words in the english language that carry very little useful information for natural language processing such as (the, a, is, are) and punctuation.
