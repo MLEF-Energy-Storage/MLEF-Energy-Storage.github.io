@@ -138,31 +138,36 @@
           
           <button type="button" class="collapsible"> Read More </button>
           <div class="extended" id="lda">
-            <p> Latent Dirichlet Allocation is a generative probabilistic model often used for topic modeling.  It was first applied to machine learning 
+            <p> <br>
+              Latent Dirichlet Allocation is a generative probabilistic model often used for topic modeling.  It was first applied to machine learning 
               by David Blei, Andrew Ng, and Michael Jordan in their 2003 paper <a href="https://www.jmlr.org/papers/volume3/blei03a/blei03a.pdf"> Latent Dirichlet Allocation </a>.
               A generative probabilistic model simulates the random production of some outcome by defining a graph in which the nodes are conditionally 
               dependent random variables and the edges represent their relationship.  <br>
-              For instance, if we wanted to simulate whether or not you wear a coat each day for a week, we might model it using the graph below.
-              <img src="gen_prob_model.PNG" alt="generative probabilistic model" class="center_fig" style='height: 50%; width: 50%; object-fit: contain'>
+              For instance, if we wanted to simulate whether or not you wear a coat each day for a week, we might model it using the graph below.<br>
+            </p>
+            <img src="gen_prob_model.PNG" alt="generative probabilistic model" class="center_fig" style='height: 50%; width: 50%; object-fit: contain'>
+            <p> <br>
               Each day, there's some probability of it being cloudy or sunny.  Depending on that, there's some probability of it being cold or warm.
               And depending on that, there's some probability of you wearing a coat.  
               If we know the exact probability distributions, we can generate a simulation of your coat wearing habits.
               However, it's often difficult to know all of the probability distributions.
-              Often, the only observable part of the graph is the outcome (in this case, whether or not you're wearing a coat).
+              Often, the only observable part of the graph is the outcome (in this example, whether or not you're wearing a coat).
               In this case, we can apply sampling methods and <a href="http://mathcenter.oxford.emory.edu/site/math117/bayesTheorem/"> Bayes theorem </a> to use the observable variables to estimate the underlying distributions for the latent variables (unobservable variables).<br><br>
               
               Using a more complex generative model, we can generate a simplified simulation of writing scientific papers.
-              The model used in LDA is a three tier hierarchical Bayesian model. The boxes are "plates" representing repeated entities such as multiple papers, words, and topics.
-              <img src="LDA_plate.png" alt="LDA plate model" class="center_fig" style='height: 50%; width: 50%; object-fit: contain'>
+              The model used in LDA is a three tier hierarchical Bayesian model. The boxes are "plates" representing repeated entities such as multiple papers, words, and topics.<br>
+            </p>
+            <img src="LDA_plate.png" alt="LDA plate model" class="center_fig" style='height: 50%; width: 50%; object-fit: contain'>
+            <p><br>
               The only observable variable is the words in each paper.  The latent variables are the topics in the corpus of papers.
-              In this model, each topic is a <a href="http://mathcenter.oxford.emory.edu/site/math117/multinomialDistribution"> multinomial distribution</a> over words with parameter phi representing the probability of each word being used in that topic.
-              Each paper is a multinomial distribution over topics with parameter theta representing the probability of each topic being used in that document.
-              So for each document M in our corpus, there is a probability of it including topic Z which in turn has a probability of including each word N in the document.<br><br>
+              In this model, each topic is a <a href="http://mathcenter.oxford.emory.edu/site/math117/multinomialDistribution"> multinomial distribution</a> over words with parameter &phi; representing the probability of each word being used in that topic.
+              Each paper is a multinomial distribution over topics with parameter &theta; representing the probability of each topic being used in that document.
+              So for each document <span class="bolded">M</span> in our corpus, there is a probability of it including topic <span class="bolded">Z</span> which in turn has a probability of including each word <span class="bolded">N</span> in the document.<br><br>
               
               Taking it one step further, we model the parameters of our multinomial distributions using <a href="https://towardsdatascience.com/dirichlet-distribution-a82ab942a879"> Dirichlet distributions</a>.
-              In order to get the parameters phi_1...phi_K representing the probability of each word being used in topics 1-K, we use a Dirichlet distribution with parameter beta.
-              We use another Dirichlet distribution with parameter alpha to get the parameters theta_1...theta_M representing the probability of each topic being used in documents 1-M.
-              The Dirichlet distributions is the <a href="https://towardsdatascience.com/conjugate-prior-explained-75957dc80bfb"> conjugate prior </a> for the multinomial distribution parameters.  For our model, we set alpha as 1/num_topics and beta as 0.03.<br><br>
+              In order to get the parameters &phi;<span class="sub">1</span>...&phi;<span class="sub">K</span> representing the probability of each word being used in topics 1-<span class="bolded">K</span>, we use a Dirichlet distribution with parameter &beta;.
+              We use another Dirichlet distribution with parameter &alpha; to get the parameters &theta;<span class="sub">1</span>...&theta;<span class="sub">M</span> representing the probability of each topic being used in documents 1-<span class="bolded">M</span>.
+              The Dirichlet distributions is the <a href="https://towardsdatascience.com/conjugate-prior-explained-75957dc80bfb"> conjugate prior </a> for the multinomial distribution parameters.  For our model, we set &alpha; as 1/num_topics and &beta; as 0.03.<br><br>
 
               Now that we have our model, we can reverse engineer it using the words to infer the topics.
               To do this, we use <a href="https://towardsdatascience.com/gibbs-sampling-8e4844560ae5"> Gibbs sampling </a> which is a Markov chain Monte Carlo algorithm for approximating multivariate probability distributions.
@@ -170,7 +175,6 @@
               At the end of this process, we can define each topic by the top most probable words for that topic.
               We can also keep track of the documents with the highest probability of containing each topic as well as the probability of two topics co-occuring in the same document.
               This information can be used to define a graph in which the nodes are topics and the edges are weighted probabilities of topics co-occuring.
-
             </p>
           </div>
 
