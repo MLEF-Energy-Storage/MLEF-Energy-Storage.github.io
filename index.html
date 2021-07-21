@@ -25,13 +25,15 @@
       <button type="button" class="collapsible"> Read More </button>
       <div class="extended">
         <p><br> 
-           As the need for clean, sustainable energy has become more imperative, the amount of research in the field of energy storage has skyrocketed.<br>
+          As the need for clean, sustainable energy has become more imperative, the amount of research in the field of energy storage has skyrocketed.<br>
         </p>
            <img src="Years.png" alt="Timeline of publications" class="center_fig" style='height: 70%; width: 70%; object-fit: contain'>
         <p>
           The plot above shows the distribution of publication year for the papers in our dataset, and it clearly demonstrates that the body of research is expanding at an unprecidented rate.
           While this increase is a good thing, it makes it very difficult to maintain a high-level understanding of the state of the field and to stay aware of what progress is being made.
           This lack of insight can lead to redundant research, inefficient investing of time and money, and oversight of areas with the greatest potential.
+          To optimize effective allocation of resources, investigators and administrative bodies need a broad understanding of the current state of the field including
+          different areas of study and their connections as well as trends in areas of interest.
         </p>
       </div>
 
@@ -81,10 +83,10 @@
           Since many of the papers in our database are related to chemical and material engineering, we used the
           <a href="https://github.com/materialsintelligence/mat2vec#supplementary-materials-for-unsupervised-word-embeddings-capture-latent-knowledge-from-materials-science-literature-nature--571-9598-2019"> mat2vec</a> processing library
           to standardize the representation of checmical formulas. For example, converting all instances of "Lithium" to "li" to avoid redundancy.
-          We used WordNetLemmatizer which converts words to their meaningful base form while also considering the context.  
+          We used WordNetLemmatizer which converts words to their meaningful base form while also considering the context.
+          We also used porter stemming which reduces all variations of words to one root.  This is effective, though may limit interpretability in some cases.  
           For example, the words "cycle", "cyclic", "cycled", and "cycling" would all be converted to "cycl".
-          """Porter stemming?""
-          The result is the processed text we use to train our models. (???text_process or text_process_semantic?)
+          The result is the processed text we use to train our models.
         </p>
       </div>
             
@@ -125,7 +127,7 @@
         <button type="button" class="collapsible"> Read More </button>
         <div class="extended">
           <p><br>
-            <span class="bolded"> Latent Dirichlet Allocation (LDA) </span> is a popular algorithm used for topic modeling.
+            <span class="bolded"> Latent Dirichlet Allocation (LDA) </span> is a popular method used for topic modeling.
             It models topics as probability distributions over words. <br> 
             (<span class="emp"> ex: the topic of "pets" has a high probability of containing the word "cat" and a low probability of containing the word "solar_panel". </span>)<br>
             Topics can be represented by the words that have the highest probability of belonging to the topic. Furthermore, each document has a certain probability of containing each topic.  <br>
@@ -136,7 +138,41 @@
           
           <button type="button" class="collapsible"> Read More </button>
           <div class="extended" id="lda">
-            <p> Even more in depth discussion of LDA. </p>
+            <p> Latent Dirichlet Allocation is a generative probabilistic model often used for topic modeling.  It was first applied to machine learning 
+              by David Blei, Andrew Ng, and Michael Jordan in their 2003 paper <a href=https://www.jmlr.org/papers/volume3/blei03a/blei03a.pdf> Latent Dirichlet Allocation </a>.
+              A generative probabilistic model simulates the random production of some outcome by defining a graph in which the nodes are conditionally 
+              dependent random variables and the edges represent their relationship.  <br>
+              For instance, if we wanted to simulate whether or not you wear a coat each day for a week, we might model it using the graph below.
+              insert image here.
+              Each day, there's some probability of it being cloudy or sunny.  Depending on that, there's some probability of it being cold or warm.
+              And depending on that, there's some probability of you wearing a coat.  
+              If we know the exact probability distributions, we can generate a simulation of your coat wearing habits.
+              However, it's often difficult to know all of the probability distributions.
+              Often, the only observable part of the graph is the outcome (in this case, whether or not you're wearing a coat).
+              In this case, we can apply sampling methods and Bayes theorem () to use the observable variables to estimate the underlying distributions for the latent variables (unobservable variables).<br><br>
+              
+              Using a more complex generative model, we can generate a simplified simulation of writing scientific papers.
+              The model used in LDA is a three tier hierarchical Bayesian model. The boxes are "plates" representing repeated entities such as multiple papers, words, and topics.
+              insert image here.
+              The only observable variable is the words in each paper.  The latent variables are the topics in the corpus of papers.
+              In this model, each topic is a multinomial distribution () over words with parameter phi representing the probability of each word being used in that topic.
+              Each paper is a multinomial distribution over topics with parameter theta representing the probability of each topic being used in that document.
+              So for each document M in our corpus, there is a probability of it including topic Z which in turn has a probability of including each word N in the document.<br><br>
+              
+              Taking it one step further, we model the parameters of our multinomial distributions using Dirichlet distributions ().
+              In order to get the parameters phi_1...phi_K representing the probability of each word being used in topics 1-K, we use a Dirichlet distribution with parameter beta.
+              We use another Dirichlet distribution with parameter alpha to get the parameters theta_1...theta_M representing the probability of each topic being used in documents 1-M.
+              The Dirichlet distributions act as the priors () on the multinomial distribution parameters.  For our model, we set alpha as 1/num_topics and beta as 0.03.<br><br>
+
+              Now that we have our model, we can reverse engineer it using the words to infer the topics.
+              To do this, we use Gibbs sampling () which is a Markov chain Monte Carlo algorithm for approximating multivariate probability distributions.
+              This process approximates the joint distribution for all random variables in our plot.
+              At the end of this process, we can define each topic by the top most probable words for that topic.
+              We can also keep track of the documents with the highest probability of containing each topic as well as the probability of two topics co-occuring in the same document.
+              This information can be used to define a graph in which the nodes are topics and the edges are weighted probabilities of topics co-occuring.
+
+
+            </p>
           </div>
 
           <p> <br><br> 
