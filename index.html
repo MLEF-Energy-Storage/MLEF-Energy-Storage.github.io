@@ -180,7 +180,7 @@
 
           <p> <br><br> 
             <span class="bolded"> Louvain Community Detection </span>
-            The Louvain Community Detection algorithm is used on large intereconnected graphs to separate nodes into related groups or communities.
+            The Louvain method for community detection is used on large intereconnected graphs to separate nodes into related groups or communities.
             It starts out by defining each node as an individual community.
             It then uses a similarity metric to compare adjacent nodes, and if they are similar enough, it merges the two communities.
             When it has gone through every node, it creates a new graph in which each community is a single node.
@@ -191,7 +191,53 @@
           
           <button type="button" class="collapsible"> Read More </button>
           <div class="extended" id="louvain">
-            <p> Even more in depth discussion of Louvain community detection. </p>
+            <p><br> 
+              The Louvain method for community detection seeks to extract communities from large networks.
+              The method was invented by Blondel et al. in their 2008 paper <a href="https://arxiv.org/pdf/0803.0476.pdf"> Fast unfolding communities in large networks</a>. 
+              The communities are sets of highly interconnected nodes such that connections within communities are dense while connections between communities are sparse.
+              Precise optimization for this problem is computationally intractable... <br><br>
+              
+              The algorithm has two iterative phases.
+              To begin, each node in the network is assigned a different community.
+              In the first step,
+              For each node, <span class="bolded">i</span>, the gain modularity is calculated for the event in which <span class="bolded">i</span> 
+              is removed from its community and placed in the community of each of its neighbors <span class="bolded">j</span>.
+              The modularity is a value in the range of [-1/2,1] measuring the ratio of edge density inside vs between communities defined as
+            </p>
+            <img src="modularity.png" alt="modularity formula" class="center_fig" style='height: 30%; width: 30%; object-fit: contain'>
+            <p> <br>
+              Where<br>
+              <span class="bolded">m</span> is the total sum of edge weights in the graph<br>
+              <span class="bolded">A</span><span class="sub">ij</span> is the edge weight between nodes <span class="bolded">i</span> and <span class="bolded">j</span><br>
+              <span class="bolded">k</span><span class="sub">i</span> and <span class="bolded">k</span><span class="sub">j</span> are the sums of the weights of the edges 
+              connected to nodes <span class="bolded">i</span> and <span class="bolded">j</span> respectively.<br>
+              <span class="bolded">&delta;</span> is the Knonecker delta function where <span class="bolded">&delta;</span>(x,y)=1 if x=y and 0 otherwise.<br>
+              <span class="bolded">c</span><span class="sub">i</span> and <span class="bolded">c</span><span class="sub">j</span> are the communities of the 
+              nodes <span class="bolded">i</span> and <span class="bolded">j</span> respectively.<br><br>
+
+              The modularity gain is the change in modularity defined by<br>
+            </p>
+            <img src="modularity_gain.png" alt="modularity gain formula" class="center_fig" style='height: 60%; width: 60%; object-fit: contain'>
+            <p><br>
+              Where <br>
+              <span class="bolded">&Sigma;</span><span class="sub">in</span> is the sum of the weights of the edges inside the community <span class="bolded">C</span>that <span class="bolded">i</span> is joining<br>
+              <span class="bolded">k</span><span class="sub">i,in</span> is the sum of the weights of edges from <span class="bolded">i</span> to nodes in <span class="bolded">C</span><br>
+              <span class="bolded">m</span> is the total sum of edge weights in the graph<br>
+              <span class="bolded">&Sigma;</span><span class="sub">tot</span> is the sum of the weights of the edges incident to nodes in the <span class="bolded">C</span><br>
+              <span class="bolded">k</span><span class="sub">i</span> is the sum of the weights of edges incident to node <span class="bolded">i</span><br><br>
+            
+              If the max gain is positive, then the node <span class="bolded">i</span> is placed in the community with maximum gain.
+              Otherwise <span class="bolded">i</span> remains in its own community.<br><br>
+
+              In the second phase, a new network is defined in which the nodes are the communities found during the previous phase.
+              The new edge weights are set to the sum of the weights of the edges between the two communities in the previous network.
+              Edges between nodes in the same community become self loops in the new network.<br><br>
+
+              Once the second phase is complete, the first phase is repeated on this new graph, and the process repeats until there is no positive modularity gain from combining communities.<br>
+              The Louvain method for community detection runs in <span class="emp">O(nlogn)</span> time where <span class="emp">n</span> is the number of nodes in the network.
+
+            </p>
+
           </div>
         </div>
                     
