@@ -310,42 +310,42 @@
 
               Word2Vec is one such algorithm proposed by Google in 2013 in the paper <a href="https://arxiv.org/pdf/1301.3781.pdf">Efficient Estimation of Word Representations in Vector Space</a>.
               One of the main ideas of Word2Vec is that the vectors it produces preserve the similarities of word representations.
-              That is to say, similar words in our vocabulary (for example "boy" and "man") will have a greater cosine similarity () and will be closer together in vector space.
+              That is to say, similar words in our vocabulary (for example "boy" and "man") will have a greater <a href="https://en.wikipedia.org/wiki/Cosine_similarity">cosine similarity</a> and will be closer together in vector space.
               One interesting result of this is that you can perform operations using the vectors and find the nearest word vector to the solution.
               The famous example of this is that you can take the word vector for "king" and subtract the word vector for "man".
               The result will be a new word vector representing the difference between "king" and "man".
               If you then add this result to the vector for "woman", you get a new word vector, that is most similar to the word vector for "queen".
               Ultimately, by summing negative and positive word representations, you can find similar words derived from the meanings of the input words.<br><br>
 
-              To learn these useful word embeddings, Word2Vec uses a neural network (). 
+              To learn these useful word embeddings, Word2Vec uses a <a href="https://purnasaigudikandula.medium.com/a-beginner-intro-to-neural-networks-543267bda3c8">neural network</a>. 
 
               The data used to train the model is generated from the text of interest.  This could be all articles on wikipedia or, in our case, a corpus of scientific papers.
               We define a sliding window that scans through the text generating training samples for the model.  
               So if your window is 5 words long, then the first training sample will be the first 5 words of your text data, and the second will be words 2-6 and so on.<br><br>
 
               The ultimate goal will be for the model to predict whether or not words are neighbors (appear together in the text).
-              To do this, we generate positive and negative samples (Negative Sampling) for each word in the text.  
+              To do this, we generate positive and <a href="http://mccormickml.com/2017/01/11/word2vec-tutorial-part-2-negative-sampling/">negative samples</a> for each word in the text.  
               The positive samples are words that are actually neighbors, and the negative samples are random words from the vocab which are probably not neighbors. 
               There are two possible approaches for generating the positive samples: 
-              the first is a () continuous bag-of-words model (CBOW), and the second is a () continuous skip-gram model.<br><br>
+              <a href="https://jalammar.github.io/illustrated-word2vec/">the first is a continuous bag-of-words model (CBOW), and the second is a continuous skip-gram model.</a><br><br>
 
-              This explanation will use the example with a window of size 5 where the current window is "drinking coffee wakes me up".
+              This explanation will use the example with a window of size 5 where the current window is "drinking coffee wakes me up".<br><br>
 
-              We use the CBOW model where each training sample consists of one input word, your window size (<span class="emp">n</span>) minus 1 context words
+              For this project, we use the CBOW model where each training sample consists of one input word, your window size (<span class="emp">n</span>) minus 1 context words
               and a target value which is 1 for positive samples and 0 for negative samples.
               The input word is at the center of the sample. So for our example, the positive sample will have <br>
-              input = ["drinking", "coffee", "me", "up"] context = ["wakes"] target = 1. <br>
-              A negative sample might have 
-              input = ["drinking", "coffee", "me", "up"] context = ["dentist"] target = 0. <br><br>
+              Pos: input = ["drinking", "coffee", "me", "up"] context = ["wakes"] target = 1. <br>
+              A negative sample might have<br> 
+              Neg: input = ["drinking", "coffee", "me", "up"] context = ["dentist"] target = 0. <br><br>
 
               The skip-gram model is similar to CBOW except that instead of that window creating one sample, it will create <span class="emp">n</span>-1 separate samples. 
               For this example, the resulting four positive samples would be <br>
-              1. input=["wakes"] context=["drinking"] target=1, <br>
-              2. input=["wakes"] context=["coffee"] target=1, <br>
-              3. input=["wakes"] context=["me"] target=1, <br>
-              4. input=["wakes"] context=["up"] target=1.<br>
+              Pos 1: input=["wakes"] context=["drinking"] target=1, <br>
+              Pos 2: input=["wakes"] context=["coffee"] target=1, <br>
+              Pos 3: input=["wakes"] context=["me"] target=1, <br>
+              Pos 4: input=["wakes"] context=["up"] target=1. <br>
               A negative sample might look like <br>
-              input=["wakes"] context=["plant"] target=0.<br><br>
+              Neg: input=["wakes"] context=["plant"] target=0.<br><br>
               
               After generating these samples, the window would move one word to the right, and the process repeats.
               <br><br>
@@ -355,32 +355,34 @@
               The neural network is composed of an input layer of size <span class="emp">M</span>, a hidden layer of size <span class="emp">N</span>, and an output layer of size <span class="emp">M</span>.<br><br>
 
               For the forward step, we take one positive example and multiple negative examples for the same focus word.
-              We essentially compute the dot product between the word embeddings of the input word and context word for each example, and apply a () softmax function to it so that the output
-              represents the probability of each example being true neighbors.<br><br>
+              We essentially compute the dot product between the word embeddings of the input word and context word for each example, and apply a 
+              <a href="https://cs231n.github.io/linear-classify/#softmax">softmax fuction</a> to it so that the output represents the probability of each example being true neighbors.<br><br>
 
               We can compute a loss or error by comparing the difference between the target value (1 for true neighbors and 0 for false neighbors) and the model generated probability.
-              We then use this error in the backpropagation step () to update the weights.
+              We then use this error in the <a href="https://purnasaigudikandula.medium.com/a-beginner-intro-to-neural-networks-543267bda3c8">backpropagation step</a> to update the weights.
               The first layer of weights is ultimately our word embedding.<br><br>
               </p>
 
               <button type="button" class="collapsible"> Read More </button>
               <div class="extended" id="w2v_more">
                 <p> <br>
-                  The input layer has a one hot encoding () of the input word meaning that all values are 0 except at an index representing that word where the value is 1.
+                  The input layer has a <a href="https://hackernoon.com/what-is-one-hot-encoding-why-and-when-do-you-have-to-use-it-e3c6186d008f">one hot encoding</a> of the input word meaning that all values are 0 except at an index representing that word where the value is 1.
                   (For skip-gram, only one value is 1.  For CBOW, all input word indices have a value of 1)
                   There is a connection between each input neuron and all neurons in the hidden layer, and each of those connections has a weight.
                   The weights on the connections between the input word and all <span class="emp">N</span> hidden neurons is our embedding for that word.<br><br>
 
                   On the forward pass, we multiply each input neuron's value (all 0 except this example's input words which has a value of 1) by the weight of its connection, and
                   sum these values for all incoming connections to each hidden neuron.  In skip-gram, the hidden neuron's value will always just be the weight of its connection to
-                  the input word and will therefore be the word embedding.  We apply an (activation function) to this value and then do the same thing for the next layer.
-                  This means that each neuron in the output layer is now equal to the weighted sum of each value of the hidden layer where the weights are defined by the connections
-                  between two neurons. From there, we apply a softmax function () which allows us to interpret each output neuron value as a probability.
+                  the input word and will therefore be the word embedding.  We apply an <a href="https://purnasaigudikandula.medium.com/a-beginner-intro-to-neural-networks-543267bda3c8">activation function</a> 
+                  to this value and then do the same thing for the next layer.  This means that each neuron in the output layer is now equal to the weighted sum of each value 
+                  of the hidden layer where the weights are defined by the connections between two neurons. 
+                  From there, we apply a softmax function <a href="https://cs231n.github.io/linear-classify/#softmax">softmax fuction</a> which allows us to interpret each output neuron value as a probability.
                   Similar to the input layer, each neuron in the output layer represents a word in the vocabulary, so each output neuron value represents the probability of that word
                   being a neighbor of our input word.<br><br>
     
                   We can compute a loss or error by comparing the difference between the target value (1 for true neighbors and 0 for false neighbors) and the model generated probability.
-                  Rather than backpropagating all of the error and updating all of the weights, we only update the weights for the one positive example and multiple negative examples ().
+                  Rather than backpropagating all of the error and updating all of the weights, we only update the weights for the one positive example and 
+                  <a href="http://mccormickml.com/2017/01/11/word2vec-tutorial-part-2-negative-sampling/">multiple negative examples</a>.
                   Backpropagating the error updates the weights and therefore updates the word embedding making it more likely to predict neighboring words.
                 </p>
               </div>
