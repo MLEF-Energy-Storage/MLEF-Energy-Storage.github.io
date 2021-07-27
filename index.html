@@ -132,7 +132,12 @@
             (<span class="emp"> ex: the topic of "pets" has a high probability of containing the word "cat" and a low probability of containing the word "solar_panel". </span>)<br>
             Topics can be represented by the words that have the highest probability of belonging to the topic. Furthermore, each document has a certain probability of containing each topic.  <br>
             (<span class="emp"> ex: An article about healthy pet diets has a high probability of containing the topics "food", "pets", and "health" and a low probability of containing the topic "energy_storage."</span>)<br>
-            We performed topic modeling with 100 topics and then produced a graph where nodes represent topics and edges represent the probability of topics occuring in the same document.<br>
+            
+            <a href="https://thinkinfi.com/latent-dirichlet-allocation-for-beginners-a-high-level-overview/">
+              <img src="lda_fig.png", alt="lda figure" class="center_fig" style='height: 50%; width: 50%; object-fit: contain'>
+            </a>
+            
+            <br><br>We performed topic modeling with 100 topics and then produced a graph where nodes represent topics and edges represent the probability of topics occuring in the same document.<br>
             (<span class="emp"> ex: the topics "health" and "food" are more likely to co-occur than "pets" and "energy_storage".</span>) <br>
           </p>
           
@@ -182,8 +187,11 @@
 
           <p> <br><br> 
             <span class="bolded"> Louvain Community Detection </span>
-            The Louvain method for community detection is used on large intereconnected graphs to separate nodes into related groups or communities.
-            It starts out by defining each node as an individual community.
+            The Louvain method for community detection is used on large intereconnected graphs to separate nodes into related groups or communities.<br>
+            <a href="https://towardsdatascience.com/community-detection-algorithms-9bd8951e7dae">
+              <img src="louvain_fig.png", alt="louvain figure" class="center_fig" style='height: 50%; width: 50%; object-fit: contain'>
+            </a>
+            <br><br>It starts out by defining each node as an individual community.
             It then uses a similarity metric to compare adjacent nodes, and if they are similar enough, it merges the two communities.
             When it has gone through every node, it creates a new graph in which each community is a single node.
             It repeats this process until no nodes are similar enough to merge.
@@ -196,8 +204,7 @@
             <p><br> 
               The Louvain method for community detection seeks to extract communities from large networks.
               The method was invented by Blondel et al. in their 2008 paper <a href="https://arxiv.org/pdf/0803.0476.pdf"> Fast unfolding communities in large networks</a>. 
-              The communities are sets of highly interconnected nodes such that connections within communities are dense while connections between communities are sparse.
-              Precise optimization for this problem is computationally intractable... <br><br>
+              The communities are sets of highly interconnected nodes such that connections within communities are dense while connections between communities are sparse.<br><br>
               
               The algorithm has two iterative phases.
               To begin, each node in the network is assigned a different community.
@@ -235,7 +242,12 @@
               The new edge weights are set to the sum of the weights of the edges between the two communities in the previous network.
               Edges between nodes in the same community become self loops in the new network.<br><br>
 
-              Once the second phase is complete, the first phase is repeated on this new graph, and the process repeats until there is no positive modularity gain from combining communities.<br>
+              
+              <a href="https://www.nature.com/articles/s41598-019-41695-z">
+                <img src="louvain_fig2.png", alt="louvain figure 2" class="center_fig" style='height: 50%; width: 50%; object-fit: contain'>
+              </a>
+
+              <br><br>Once the second phase is complete, the first phase is repeated on this new graph, and the process repeats until there is no positive modularity gain from combining communities.<br>
               The Louvain method for community detection runs in <span class="emp">O(nlogn)</span> time where <span class="emp">n</span> is the number of nodes in the network.
 
             </p>
@@ -263,12 +275,15 @@
           In natural language processing, words are often embedded into a numerical vector that encodes the meaning of the words.
           The embeddings are learned from the context and surrounding words using machine learning algorithms.
           These word vectors can be conceptualized as a point in high dimensional space.
+
           We can easily compare how close these vectors are in high dimensional space, giving us a good idea of how similar the words are.
           We then projected these words onto a two dimensional plane so that we could spacially visualize the relationships between different words.
           Another cool feature of word vectors is that you can do math with them.  
           By adding and subtracting vectors, you can search for relevant words.<br>
           <span class="emp"> ex: if you take the embedding of "King" and subtract the embedding of "Man", the resultant vector represents the relationship between "King" and "Man".
           If you then add this new vector to the embedding of "Woman", the resulting vector is most similar to the embedding of "Queen".</span><br><br>
+
+
         </p>
         <p>
           <span class="fieldname"> Goal: </span> 
@@ -288,8 +303,12 @@
             Word2vec is a word embedding technique that uses a neural network to learn word associations from a large corpus of text.
             For each word, it uses the current word embedding to try to predict the words in some window around it.
             When it incorrectly predicts a word, it uses the error to update the word embedding and improve.
-            The end result is a word embedding for each word in the corpus that is learned from the context of surrounding words.
-            <br>
+            The end result is a word embedding for each word in the corpus that is learned from the context of surrounding words.<br><br>
+            
+            <a href="https://jalammar.github.io/illustrated-word2vec/">
+              <img src="king_man.png", alt="word math fig" class="center_fig" style='height: 50%; width: 50%; object-fit: contain'>
+            </a>
+            
           </p>
           
           <button type="button" class="collapsible"> Read More </button>
@@ -316,8 +335,12 @@
               The result will be a new word vector representing the difference between "king" and "man".
               If you then add this result to the vector for "woman", you get a new word vector, that is most similar to the word vector for "queen".
               Ultimately, by summing negative and positive word representations, you can find similar words derived from the meanings of the input words.<br><br>
+            
+              <a href="https://jalammar.github.io/illustrated-word2vec/">
+                <img src="king_queen.png", alt="word math fig" class="center_fig" style='height: 50%; width: 50%; object-fit: contain'>
+              </a>
 
-              To learn these useful word embeddings, Word2Vec uses a <a href="https://purnasaigudikandula.medium.com/a-beginner-intro-to-neural-networks-543267bda3c8">neural network</a>. 
+              <br><br>To learn these useful word embeddings, Word2Vec uses a <a href="https://purnasaigudikandula.medium.com/a-beginner-intro-to-neural-networks-543267bda3c8">neural network</a>. 
 
               The data used to train the model is generated from the text of interest.  This could be all articles on wikipedia or, in our case, a corpus of scientific papers.
               We define a sliding window that scans through the text generating training samples for the model.  
