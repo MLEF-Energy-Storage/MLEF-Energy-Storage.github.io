@@ -17,7 +17,6 @@
       <h2> The Problem </h2>
       <p>
         Storing energy from intermittent renewables, such as wind and solar, is one of the most pressing challenges we face for enabling a sustainable civilization. 
-        A wide array of energy storage technologies are under development, each with their own advantages and disadvantages for various use cases. 
         Scientific research into energy storage technologies has exploded in recent years and sorting through this large body of knowledge to understand the state of field 
         is an important and challenging problem.<br>      
       </p>
@@ -29,8 +28,10 @@
         </p>
            <img src="Years.png" alt="Timeline of publications" class="center_fig" style='height: 70%; width: 70%; object-fit: contain'>
         <p>
-          The plot above shows the distribution of publication year for the papers in our dataset, and it clearly demonstrates that the body of research is expanding at an unprecidented rate.
-          While this increase is a good thing, it makes it very difficult to maintain a high-level understanding of the state of the field and to stay aware of what progress is being made.
+          The plot above shows the distribution of publication years for the papers in our dataset.
+          It clearly demonstrates that the body of research is expanding at an unprecidented rate.
+          While this increase is a good thing, it makes it very difficult to maintain a high-level understanding of the state of the field 
+          and to stay aware of where progress is being made.
           This lack of insight can lead to redundant research, inefficient investing of time and money, and oversight of areas with the greatest potential.
           To optimize effective allocation of resources, investigators and administrative bodies need a broad understanding of the current state of the field including
           different areas of study and their connections as well as trends in areas of interest.
@@ -45,14 +46,24 @@
       <button type="button" class="collapsible"> Read More </button>
       <div class="extended">
         <p> <br>
-          While it's nearly impossible for any individual to read through the tens of thousands of papers found in our dataset, recent AI technology has the power to process all this 
-          data and more and to extract insights without the constraints of human pre-conceived ideas of what is or is not important.  
-          Furthermore, the machine learning techniques we use may find patterns and connections between different areas of the field that humans might not be able to recognize on their own.<br><br>
-          We have ultimately generated two interactive plots to allow researchers to explore the learned models of the field of energy storage.  (More details on techniques in the sections below)
+          While it's nearly impossible for any individual to read through the tens of thousands of papers found in our dataset, 
+          recent AI technology has the power to process all this data and more.  
+          Furthermore, the machine learning techniques we use may find patterns and connections between different areas of the field 
+          that humans might not be able to recognize on their own.
+          We have ultimately generated two interactive plots to allow researchers to explore the learned models of the field of energy storage
+          (More details on techniques in the sections below).<br><br>
+
           The first plot shows a graph of topics extracted from the abstracts in our dataset.
-          Researchers can click on topics and find related papers and information about topic trends.  They can also look at the connections between topics and find papers and trends at the intersection of topics.
+          Researchers can click on topics and find related papers and information about topic trends.  
+          They can also look at the connections between topics and find papers and trends at the intersection of topics.
+          This interactive visualization allows users to easily explore different areas of the field,
+          access meta data on papers and topics, and quickly do a literature search in the area of interest. <br><br>
+
+
           The second plot zooms in further to look at the relationships between individual key words in the data.
-          It allows researcher to explore embedded words from our data projected onto a 2D plane, and use word-vector math to look at relationships between different words (details on this in the Word2Vec section).
+          We embed each word as a vector projected onto a 2D plane.
+          Researchers can explore similar words in the field and even do word-vector math to
+          to look at relationships between different words (details on this in the Word2Vec section).
         </p>
       </div>
 
@@ -66,26 +77,33 @@
       <div class="extended">
         <p> <br>
           Our models were trained on 54,125 abstracts from scientific papers relating to energy storage pulled from the Semantic Scholar Open Research Corpus.
-          The corpus is a collection of research papers published in all fields in a JSON archive designed for ease of use in natural language processing tasks.
+          The corpus is a collection of research papers stored in a JSON archive designed for ease of use in natural language processing tasks.
           The corpus is rich with metadata including the fields of study the abstract is from, authors, years published, and the in-citations 
-          (papers that cite the current paper) and the out-citations (papers cited by the current paper).  The plots below give an overview of these features for our dataset.<br><br>
+          (papers that cite the current paper) and the out-citations (papers cited by the current paper).  
+          The plots below give an overview of these features for our dataset.<br><br>
         </p>
-        <img src="FOS.png" alt="Fields of Study Figure" class="center_fig" style='height: 70%; width: 70%; object-fit: contain'>
+        <img src="FOS.png" alt="Fields of Study Figure" class="center_fig" style='height: 65%; width: 65%; object-fit: contain'>
+        <br>
         <div> 
-          <img src="Length.png" alt="Length of Abstract" style='height: 30%; width: 30%; object-fit: contain'>
-          <img src="InCite.png" alt="Number of external citations" style='height: 30%; width: 30%; object-fit: contain'>
-          <img src="OutCite.png" alt="Number of references per paper" style='height: 30%; width: 30%; object-fit: contain'>
+          <img src="Length.png" alt="Length of Abstract" style='height: 25%; width: 25%; object-fit: contain'>
+          <img src="InCite.png" alt="Number of external citations" style='height: 25%; width: 25%; object-fit: contain'>
+          <img src="OutCite.png" alt="Number of references per paper" style='height: 25%; width: 25%; object-fit: contain'>
         </div>
         <p> <br>
-          To cultivate our dataset, we pulled all abstracts from the entire semantic scholar dataset with the search term "Energy Storage" in the title or abstract. (extract_papers_semantic.py).
-          Then we processed the the raw text.  First, we excluded papers in any language that wasn't english.  
-          Then we removed stop words, which are commonly used words in the english language that carry very little useful information for natural language processing such as (the, a, is, are) and punctuation.
+          To cultivate our dataset, we pulled all abstracts from the entire <a href="https://allenai.org/data/open-research-corpus">semantic scholar dataset</a> 
+          with the search term "Energy Storage" in the title or abstract. 
+          Then we processed the the raw text.  
+          First, we excluded papers in any language that wasn't english.  
+          Then we removed stop words, which are commonly used words in the english language that carry very little useful information for natural language processing 
+          such as (the, a, is, are) and punctuation.
           Since many of the papers in our database are related to chemical and material engineering, we used the
           <a href="https://github.com/materialsintelligence/mat2vec#supplementary-materials-for-unsupervised-word-embeddings-capture-latent-knowledge-from-materials-science-literature-nature--571-9598-2019"> mat2vec</a> processing library
-          to standardize the representation of checmical formulas. For example, converting all instances of "Lithium" to "li" to avoid redundancy.
+          to standardize the representation of checmical formulas. 
+          For example, converting all instances of "Lithium" to "li" to avoid redundancy.
           We used WordNetLemmatizer which converts words to their meaningful base form while also considering the context.
-          We also used porter stemming which reduces all variations of words to one root.  This is effective, though may limit interpretability in some cases.  
+          We also used <a href="https://www.geeksforgeeks.org/introduction-to-stemming/">porter stemming</a> which reduces all variations of words to one root.  
           For example, the words "cycle", "cyclic", "cycled", and "cycling" would all be converted to "cycl".
+          This is effective, though may limit interpretability in some cases.  
           The result is the processed text we use to train our models.
         </p>
       </div>
@@ -418,51 +436,88 @@
           </div>
           
           <p><br><br>
-            <span class="bolded"> Principal Component Analysis (PCA) </span>
+            <span class="bolded"> t-distributed Stochastic Neighbor Embedding (tSNE) </span>
             is a dimensionality reduction technique that projects points in higher dimensions into a lower dimensional space.
-            Each of the word vectors are 200 dimensional, but we can visualize at most 3 dimensions, and in this case, we want to view the vectors on a 2D screen.
-            There are many different ways you could project down to 2D, but we want to choose the one that preserves as much of the initial information as possible.
-            PCA uses linear algebra to find the projection that preserves the most variance/relevant information so that we can visualize these 200D vectors on a 2D screen without losing too much information.
+            Each of the word vectors are 100 dimensional, but we want to view the vectors on a 2D screen.
+            There are many different ways you could project down to 2D.
+            Since we're interested in comparing the similarity of our words (how close they are in vector space), 
+            we want to find a projection that preserves the relative distance between points.
+            tSNE calculates a similarity measure between points in high dimensional space 
+            and then finds the optimal projection to lower dimensional space that preserves the neighborhood of each point.
+            <a href="https://www.kdnuggets.com/2017/11/3-different-types-machine-learning.html/2">
+              <img src="dim_reduct.jpg", alt="dimensionality reduction" class="center_fig" style='height: 50%; width: 50%; object-fit: contain'>
+            </a>
             <br>
           </p>
+
           
           <button type="button" class="collapsible"> Read More </button>
           <div class="extended" id="pca">
             <p><br>
               Often times data science and machine learning involves dealing with high dimensional vectors which can be difficult to work with and to visualize.
               It's often the case that the majority of the information stored in the data exists in a lower dimensional representation of the data.
-              One specific example of this is the Schwerpunkt sculture at the MIT McGovern Institute (below).<br><br>
+              In this case, we want to find a projection of our 100 dimensional vectors onto a 2D plot while preserving the most important information.
+              In our case, the information we want to preserve is the relative neighborhood of each point.
+              Word vectors that are close together (similar) in high dimensional space should appear close together on our 2D plot.<br><br>
+              
+              To accomplish this, we use the <a href="https://www.jmlr.org/papers/volume9/vandermaaten08a/vandermaaten08a.pdf">t-distributed Storchastic Neighbor Embedding (tSNE)</a>
+              proposed by Geoffrey Hinton and Laurens van der Maaten in 2008.
+              This algorithm can be thought of in three steps where the second and third step repeat iteratively until the optimal projection is found.<br><br>
+
+              <span class="bolded">Step 1. Determine the similarity of all points in the data.</span><br>
+              The objective is to preserve the neighborhood in high dimensional space when we project to lower dimensions.
+              For each point, we calculate its "similarity" to all other points in our data.
+              To do this, we center a <a href="https://machinelearningmastery.com/statistical-data-distributions/">Gaussian distribution</a> 
+              around our point of interest that represents the probable distance to all other points.
+              We can adjust the perplexity parameter to change the expected density around each point.<br>
             </p>
-            <img src="sculpture.jpg" alt="wrong angle" class="center_fig" style='height: 40%; width: 40%; object-fit: contain'>
-            <img src="brain.jpg" alt="right angle" class="center_fig" style='height: 40%; width: 40%; object-fit: contain'>
+            
+            <a href="https://www.youtube.com/watch?v=NEaUSP4YerM">
+              <img src="tsne_step1.PNG", alt="tsne step 1" class="center_fig" style='height: 50%; width: 50%; object-fit: contain'>
+            </a>
+            
+            <p><br><br>
+              We normalize the distances to get probabilities that are proportional to the similarity of two points.
+              Because two different points can have two distributions, the probability of <span class="bolded">a --> b</span> 
+              might not equal the probability of <span class="bolded">b --> a</span>.
+              The final similarity is equal to the average of the paired probabilities divided by the number of data points.<br><br>
+            </p>
+            
+            <img src="tsne_pij_eq.png", alt="tsne equations" class="center_fig" style='height: 45%; width: 45%; object-fit: contain'>
+            
             <p><br>
-              The sculpture exists in three dimensions with gold neurons hanging from the ceiling on strings.
-              From most angles, the sculpture appears to be just that: a 3D jumble of gold neurons, but from one specific angle, it forms a perfect two dimensional outline of a human brain.
-              If you find the right view point, you can take a picture of it and cut the dimensions down from three to two while preserving the majority of the information of interest.
-              Principal component analysis is the mathematical process of finding that viewpoint when looking at data in high dimensional space.<br><br>
+              Where <span class="bolded">x</span><span class="sub">i</span> and <span class="bolded">x</span><span class="sub">j</span> are distinct points in high dimensional space,
+              <span class="bolded">N</span> is the number of data points, 
+              and <span class="bolded">&sigma;</span><span class="sub">i</span> is the perplexity of the <span class="bolded">i</span>th Gaussian kernel.
+              The end result is a distribution of the similarity scores between each point in high dimensional space which we will call <span class="bolded">P</span>.<br><br>
+              
+              <span class="bolded">Step 2: Project data to lower dimensional space and calculate new similarity score in lower dimensions.</span><br>
+               Once we have the higher dimension similarities, we project our points down to lower dimensional space (our end goal space).
+               Here again, we compute similarity scores between each point, but instead of using a Gaussian kernel, 
+               we use a <a href="https://machinelearningmastery.com/statistical-data-distributions/">student t distribution</a> with 1 degree of freedom.
+               The student t distribution has more weight in the tails which helps to prevent clusters from clumping in the center.
+               Just like in higher dimensions, we normalize the similarities.
+            </p>
 
-              To accomplish this, PCA uses linear algebra to find the optimal representation of the data such that dimensions can be removed while preserving most of the information.
-              Data with <span class="emp">n</span> points, each of which has <span class="emp">d</span> features can be represented as a data matrix.
-              Since all of our data is numeric, this can be thought of <span class="emp">n</span> vectors of length <span class="emp">d</span>.
-              Each vector can be expressed as a linear combination of the <a href="https://mathworld.wolfram.com/StandardBasis.html"> standard basis vectors</a>.
-              We can also find a new set of basis vectors and use matrix multiplication to transform our data to the coordinate system spanned by this new basis.
-              Each data point can be expressed as a linear combination of this new basis.<br><br>
+            <img src="tsne_qij_eq.png", alt="tsne equations" class="center_fig" style='height: 35%; width: 35%; object-fit: contain'>
+            
+            <p>
+              Where <span class="bolded">y</span><span class="sub">i</span> and <span class="bolded">y</span><span class="sub">j</span> are distinct points in low dimensional space,
+              The end result is a distribution of the similarity scores between each point in low dimensional space which we will call <span class="bolded">Q</span>.<br><br>
+              
+              <span class="bolded"> 3. Use the KL divergence score as a loss function and SGD to move points in lower dimensional space </span><br>
+              Since the objective is to preserve the similarity between points, we use the 
+              <a href="https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence">Kullback-Leibler divergence</a> of <span class="bolded">P</span>
+              and <span class="bolded">Q</span> to measure how much our similarity distributions differ between high dimensional space and low dimensional space.
+              This is used as a loss function for <a href="https://machinelearningmastery.com/gradient-descent-for-machine-learning/">gradient descent</a> allowing 
+              us to iteratively update our projection in low dimensional space to make the similarity distribution closer to the high dimensional distribution.<br>
+            </p>
 
-              We can reduce the dimensionality of our data by expressing each point as a linear combination of some subset of these basis vectors.
-              The key is finding the best basis to represent our data such that the amount of information (variance) of each basis vector is in decreasing order 
-              with the majority of the information being contained in very few basis vectors.
-              Conveniently, it turns out we can easily calculate such a basis by finding the <a href="https://www.mathsisfun.com/algebra/eigenvalue.html"> eigenvalues and eigenvectors </a> 
-              of the <a href="https://datascienceplus.com/understanding-the-covariance-matrix/">covariance matrix</a> of the 
-              centered data matrix (the data matrix where the mean of the matrix is subtracted from each entry). <br><br>
+            <img src="KL.png", alt="Kullback-Leibler Divergence" class="center_fig" style='height: 25%; width: 25%; object-fit: contain'>
 
-              If we take the eigenvalues of the covariance matrix and their corresponding eigenvectors and put them in nonincreasing order, then we can use the first <span class="emp">r</span>
-              eigenvectors as our basis.
-              The first eigenvector is called the first principal component, and the first eigenvalue represents the amount of projected variance in that dimension.
-              The second eigenvector is called the second principal component and so on.
-              We use this basis to create a projection matrix to project our <span class="emp">d</span> dimensional vectors into this new, optimized <span class="emp">r</span> dimensional space 
-              where <span class="emp">r</span> is less than <span class="emp">d</span>.<br><br>
-
-              The result is a new <span class="emp">r</span> dimensional representation of the data that preserves the majority of the variance and minimizes the mean squared error.
+            <p>
+            By minimizing the KL divergence of the distributions <span class="bolded">P</span> and <span class="bolded">Q</span> with respect to each point in our projection
+            <span class="bolded">y</span><span class="sub">i</span>, we can produce a projection that optimally preserves high dimensional similarities.
             </p>
           </div>
         </div>

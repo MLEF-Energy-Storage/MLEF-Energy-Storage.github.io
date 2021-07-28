@@ -1,0 +1,50 @@
+
+          <p><br><br>
+            <span class="bolded"> Principal Component Analysis (PCA) </span>
+            is a dimensionality reduction technique that projects points in higher dimensions into a lower dimensional space.
+            Each of the word vectors are 200 dimensional, but we can visualize at most 3 dimensions, and in this case, we want to view the vectors on a 2D screen.
+            There are many different ways you could project down to 2D, but we want to choose the one that preserves as much of the initial information as possible.
+            PCA uses linear algebra to find the projection that preserves the most variance/relevant information so that we can visualize these 200D vectors on a 2D screen without losing too much information.
+            <br>
+          </p>
+          
+          <button type="button" class="collapsible"> Read More </button>
+          <div class="extended" id="pca">
+            <p><br>
+              Often times data science and machine learning involves dealing with high dimensional vectors which can be difficult to work with and to visualize.
+              It's often the case that the majority of the information stored in the data exists in a lower dimensional representation of the data.
+              One specific example of this is the Schwerpunkt sculture at the MIT McGovern Institute (below).<br><br>
+            </p>
+            <img src="sculpture.jpg" alt="wrong angle" class="center_fig" style='height: 40%; width: 40%; object-fit: contain'>
+            <img src="brain.jpg" alt="right angle" class="center_fig" style='height: 40%; width: 40%; object-fit: contain'>
+            <p><br>
+              The sculpture exists in three dimensions with gold neurons hanging from the ceiling on strings.
+              From most angles, the sculpture appears to be just that: a 3D jumble of gold neurons, but from one specific angle, it forms a perfect two dimensional outline of a human brain.
+              If you find the right view point, you can take a picture of it and cut the dimensions down from three to two while preserving the majority of the information of interest.
+              Principal component analysis is the mathematical process of finding that viewpoint when looking at data in high dimensional space.<br><br>
+
+              To accomplish this, PCA uses linear algebra to find the optimal representation of the data such that dimensions can be removed while preserving most of the information.
+              Data with <span class="emp">n</span> points, each of which has <span class="emp">d</span> features can be represented as a data matrix.
+              Since all of our data is numeric, this can be thought of <span class="emp">n</span> vectors of length <span class="emp">d</span>.
+              Each vector can be expressed as a linear combination of the <a href="https://mathworld.wolfram.com/StandardBasis.html"> standard basis vectors</a>.
+              We can also find a new set of basis vectors and use matrix multiplication to transform our data to the coordinate system spanned by this new basis.
+              Each data point can be expressed as a linear combination of this new basis.<br><br>
+
+              We can reduce the dimensionality of our data by expressing each point as a linear combination of some subset of these basis vectors.
+              The key is finding the best basis to represent our data such that the amount of information (variance) of each basis vector is in decreasing order 
+              with the majority of the information being contained in very few basis vectors.
+              Conveniently, it turns out we can easily calculate such a basis by finding the <a href="https://www.mathsisfun.com/algebra/eigenvalue.html"> eigenvalues and eigenvectors </a> 
+              of the <a href="https://datascienceplus.com/understanding-the-covariance-matrix/">covariance matrix</a> of the 
+              centered data matrix (the data matrix where the mean of the matrix is subtracted from each entry). <br><br>
+
+              If we take the eigenvalues of the covariance matrix and their corresponding eigenvectors and put them in nonincreasing order, then we can use the first <span class="emp">r</span>
+              eigenvectors as our basis.
+              The first eigenvector is called the first principal component, and the first eigenvalue represents the amount of projected variance in that dimension.
+              The second eigenvector is called the second principal component and so on.
+              We use this basis to create a projection matrix to project our <span class="emp">d</span> dimensional vectors into this new, optimized <span class="emp">r</span> dimensional space 
+              where <span class="emp">r</span> is less than <span class="emp">d</span>.<br><br>
+
+              The result is a new <span class="emp">r</span> dimensional representation of the data that preserves the majority of the variance and minimizes the mean squared error.
+            </p>
+          </div>
+        </div>
