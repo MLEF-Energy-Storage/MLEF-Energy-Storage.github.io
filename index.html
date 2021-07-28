@@ -126,7 +126,7 @@
           <span class="fieldname"> Description: </span> 
           
           Topic modeling is a machine learning problem where you have a collection (corpus) of documents, and you want to extract topics from the unstructured text data.
-          In our case, our corpus is the set of abstracts pulled from Microsoft Academic, and we want to extract topics of interesting research from these texts.
+          In our case, our corpus is the set of abstracts pulled from the Semantic Scholar Open Research Corpus, and we want to extract topics of interesting research from these texts.
           Once we've extracted these topics, we create a graph of topics where each node is a topic and each edge represents the probability of these topics co-occuring in an abstract.
           Different features of the graph convey further information about how prevelant a topic is or how frequently it has shown up in abstracts in the past five years.<br><br>
 
@@ -148,14 +148,17 @@
             <span class="bolded"> Latent Dirichlet Allocation (LDA) </span> is a popular method used for topic modeling.
             It models topics as probability distributions over words. <br> 
             (<span class="emp"> ex: the topic of "pets" has a high probability of containing the word "cat" and a low probability of containing the word "solar_panel". </span>)<br>
-            Topics can be represented by the words that have the highest probability of belonging to the topic. Furthermore, each document has a certain probability of containing each topic.  <br>
-            (<span class="emp"> ex: An article about healthy pet diets has a high probability of containing the topics "food", "pets", and "health" and a low probability of containing the topic "energy_storage."</span>)<br>
-            
+            Topics can be represented by the words that have the highest probability of belonging to the topic. 
+            Furthermore, each document has a certain probability of containing each topic.
+            (<span class="emp"> ex: An article about healthy pet diets has a high probability of containing the topics "food", "pets", and "health" and a low probability of containing the topic "energy_storage."</span>)<br><br>
+          </p>
+
             <a href="https://thinkinfi.com/latent-dirichlet-allocation-for-beginners-a-high-level-overview/">
               <img src="lda_fig.png", alt="lda figure" class="center_fig" style='height: 50%; width: 50%; object-fit: contain'>
             </a>
             
-            <br><br>We performed topic modeling with 100 topics and then produced a graph where nodes represent topics and edges represent the probability of topics occuring in the same document.<br>
+          <p><br><br>
+            We performed topic modeling with 50 topics and then produced a graph where nodes represent topics and edges represent the probability of topics occuring in the same document
             (<span class="emp"> ex: the topics "health" and "food" are more likely to co-occur than "pets" and "energy_storage".</span>) <br>
           </p>
           
@@ -165,41 +168,59 @@
               Latent Dirichlet Allocation is a generative probabilistic model often used for topic modeling.  It was first applied to machine learning 
               by David Blei, Andrew Ng, and Michael Jordan in their 2003 paper <a href="https://www.jmlr.org/papers/volume3/blei03a/blei03a.pdf"> Latent Dirichlet Allocation </a>.
               A generative probabilistic model simulates the random production of some outcome by defining a graph in which the nodes are conditionally 
-              dependent random variables and the edges represent their relationship.  <br>
+              dependent random variables and the edges represent their relationship.<br><br>
+
               For instance, if we wanted to simulate whether or not you wear a coat each day for a week, we might model it using the graph below.<br>
             </p>
+
             <img src="gen_prob_model.PNG" alt="generative probabilistic model" class="center_fig" style='height: 50%; width: 50%; object-fit: contain'>
+
             <p> <br>
               Each day, there's some probability of it being cloudy or sunny.  Depending on that, there's some probability of it being cold or warm.
               And depending on that, there's some probability of you wearing a coat.  
               If we know the exact probability distributions, we can generate a simulation of your coat wearing habits.
               However, it's often difficult to know all of the probability distributions.
               Often, the only observable part of the graph is the outcome (in this example, whether or not you're wearing a coat).
-              In this case, we can apply sampling methods and <a href="http://mathcenter.oxford.emory.edu/site/math117/bayesTheorem/"> Bayes theorem </a> to use the observable variables to estimate the underlying distributions for the latent variables (unobservable variables).<br><br>
+              In this case, we can apply sampling methods and <a href="http://mathcenter.oxford.emory.edu/site/math117/bayesTheorem/"> Bayes theorem </a> 
+              to use the observable variables to estimate the underlying distributions for the latent variables (unobservable variables).<br><br>
               
               Using a more complex generative model, we can generate a simplified simulation of writing scientific papers.
-              The model used in LDA is a three tier hierarchical Bayesian model. The boxes are "plates" representing repeated entities such as multiple papers, words, and topics.<br><br>
+              The model used in LDA is a three tier hierarchical Bayesian model. 
+              The boxes are "plates" representing repeated entities such as multiple papers, words, and topics.<br><br>
             </p>
+
             <img src="LDA_plate.png" alt="LDA plate model" class="center_fig" style='height: 50%; width: 50%; object-fit: contain'>
+
             <p><br>
               The only observable variable is the words in each paper.  The latent variables are the topics in the corpus of papers.
-              In this model, each topic is a <a href="http://mathcenter.oxford.emory.edu/site/math117/multinomialDistribution"> multinomial distribution</a> over words with parameter &phi; representing the probability of each word being used in that topic.
+              In this model, each topic is a <a href="http://mathcenter.oxford.emory.edu/site/math117/multinomialDistribution"> multinomial distribution</a> 
+              over words with parameter &phi; representing the probability of each word being used in that topic.
               Each paper is a multinomial distribution over topics with parameter &theta; representing the probability of each topic being used in that document.
-              So for each document <span class="bolded">M</span> in our corpus, there is a probability of it including topic <span class="bolded">Z</span> which in turn has a probability of including each word <span class="bolded">N</span> in the document.<br><br>
+              So for each document <span class="bolded">M</span> in our corpus, 
+              there is a probability of it including topic <span class="bolded">Z</span> 
+              which in turn has a probability of including each word <span class="bolded">N</span> in the document.<br><br>
               
-              Taking it one step further, we model the parameters of our multinomial distributions using <a href="https://towardsdatascience.com/dirichlet-distribution-a82ab942a879"> Dirichlet distributions</a>.
-              In order to get the parameters &phi;<span class="sub">1</span>...&phi;<span class="sub">K</span> representing the probability of each word being used in topics 1-<span class="bolded">K</span>, we use a Dirichlet distribution with parameter &beta;.
-              We use another Dirichlet distribution with parameter &alpha; to get the parameters &theta;<span class="sub">1</span>...&theta;<span class="sub">M</span> representing the probability of each topic being used in documents 1-<span class="bolded">M</span>.
-              The Dirichlet distributions is the <a href="https://towardsdatascience.com/conjugate-prior-explained-75957dc80bfb"> conjugate prior </a> for the multinomial distribution parameters.  For our model, we set &alpha; as 1/num_topics and &beta; as 0.03.<br><br>
+              Taking it one step further, we model the parameters of our multinomial distributions 
+              using <a href="https://towardsdatascience.com/dirichlet-distribution-a82ab942a879"> Dirichlet distributions</a>.
+              In order to get the parameters &phi;<span class="sub">1</span>...&phi;<span class="sub">K</span> 
+              representing the probability of each word being used in topics 1-<span class="bolded">K</span>, 
+              we use a Dirichlet distribution with parameter &beta;.
+              We use another Dirichlet distribution with parameter &alpha; to get the parameters &theta;<span class="sub">1</span>...&theta;<span class="sub">M</span> 
+              representing the probability of each topic being used in documents 1-<span class="bolded">M</span>.
+              The Dirichlet distributions is the <a href="https://towardsdatascience.com/conjugate-prior-explained-75957dc80bfb"> conjugate prior </a> 
+              for the multinomial distribution parameters.  For our model, we set &alpha; as 1/num_topics and &beta; as 0.03.<br><br>
 
               Now that we have our model, we can reverse engineer it using the words to infer the topics.
-              To do this, we use <a href="https://towardsdatascience.com/gibbs-sampling-8e4844560ae5"> Gibbs sampling </a> which is a Markov chain Monte Carlo algorithm for approximating multivariate probability distributions.
+              To do this, we use <a href="https://towardsdatascience.com/gibbs-sampling-8e4844560ae5"> Gibbs sampling </a> 
+              which is a Markov chain Monte Carlo algorithm for approximating multivariate probability distributions.
               This process approximates the joint distribution for all random variables in our plot.
               At the end of this process, we can define each topic by the top most probable words for that topic.
-              We can also keep track of the documents with the highest probability of containing each topic as well as the probability of two topics co-occuring in the same document.
+              We can also keep track of the documents with the highest probability of containing each topic 
+              as well as the probability of two topics co-occuring in the same document.
               This information can be used to define a graph in which the nodes are topics and the edges are weighted probabilities of topics co-occuring.
 
-              This work was largely inspired and based off of the work of Manuel W. Bickel in 2019 <a href="https://energsustainsoc.biomedcentral.com/articles/10.1186/s13705-019-0226-z">Reflecting trends in the academic landscape of sustainable energy using probabilistic topic modeling</a>.
+              This work was largely inspired and based off of the work of Manuel W. Bickel in 2019 
+              <a href="https://energsustainsoc.biomedcentral.com/articles/10.1186/s13705-019-0226-z">Reflecting trends in the academic landscape of sustainable energy using probabilistic topic modeling</a>.
             </p>
           </div>
 
@@ -225,8 +246,9 @@
               The communities are sets of highly interconnected nodes such that connections within communities are dense while connections between communities are sparse.<br><br>
               
               The algorithm has two iterative phases.
-              To begin, each node in the network is assigned a different community.
-              In the first step,
+              To begin, each node in the network is assigned a different community.<br><br>
+
+              <span class="bolded">Phase 1:</span>
               For each node, <span class="bolded">i</span>, the gain modularity is calculated for the event in which <span class="bolded">i</span> 
               is removed from its community and placed in the community of each of its neighbors <span class="bolded">j</span>.
               The modularity is a value in the range of [-1/2,1] measuring the ratio of edge density inside vs between communities defined as
@@ -247,7 +269,7 @@
             <img src="modularity_gain.png" alt="modularity gain formula" class="center_fig" style='height: 60%; width: 60%; object-fit: contain'>
             <p><br>
               Where <br>
-              <span class="bolded">&Sigma;</span><span class="sub">in</span> is the sum of the weights of the edges inside the community <span class="bolded">C</span>that <span class="bolded">i</span> is joining<br>
+              <span class="bolded">&Sigma;</span><span class="sub">in</span> is the sum of the weights of the edges inside the community <span class="bolded">C</span> that <span class="bolded">i</span> is joining<br>
               <span class="bolded">k</span><span class="sub">i,in</span> is the sum of the weights of edges from <span class="bolded">i</span> to nodes in <span class="bolded">C</span><br>
               <span class="bolded">m</span> is the total sum of edge weights in the graph<br>
               <span class="bolded">&Sigma;</span><span class="sub">tot</span> is the sum of the weights of the edges incident to nodes in the <span class="bolded">C</span><br>
@@ -256,7 +278,8 @@
               If the max gain is positive, then the node <span class="bolded">i</span> is placed in the community with maximum gain.
               Otherwise <span class="bolded">i</span> remains in its own community.<br><br>
 
-              In the second phase, a new network is defined in which the nodes are the communities found during the previous phase.
+              <span class="bolded">Phase 2:</span> 
+              A new network is defined in which the nodes are the communities found during the previous phase.
               The new edge weights are set to the sum of the weights of the edges between the two communities in the previous network.
               Edges between nodes in the same community become self loops in the new network.<br><br>
 
@@ -266,7 +289,6 @@
               </a>
 
               <br><br>Once the second phase is complete, the first phase is repeated on this new graph, and the process repeats until there is no positive modularity gain from combining communities.<br>
-              The Louvain method for community detection runs in <span class="emp">O(nlogn)</span> time where <span class="emp">n</span> is the number of nodes in the network.
 
             </p>
 
@@ -292,21 +314,14 @@
           <span class="fieldname"> Description: </span> 
           In natural language processing, words are often embedded into a numerical vector that encodes the meaning of the words.
           The embeddings are learned from the context and surrounding words using machine learning algorithms.
-          These word vectors can be conceptualized as a point in high dimensional space.
-
-          We can easily compare how close these vectors are in high dimensional space, giving us a good idea of how similar the words are.
-          We then projected these words onto a two dimensional plane so that we could spacially visualize the relationships between different words.
-          Another cool feature of word vectors is that you can do math with them.  
-          By adding and subtracting vectors, you can search for relevant words.<br>
-          <span class="emp"> ex: if you take the embedding of "King" and subtract the embedding of "Man", the resultant vector represents the relationship between "King" and "Man".
-          If you then add this new vector to the embedding of "Woman", the resulting vector is most similar to the embedding of "Queen".</span><br><br>
-
-
+          We can easily compare how close words are by comparing how close their word vectors are.
+          Another cool feature of word vectors is that you can add and subtract word vectors to search for relevant words.
+          We've plotted some of the top word vectors on a 2D plane, and provided a tool for users to do vector math with words in our corpus.<br><br>
         </p>
         <p>
           <span class="fieldname"> Goal: </span> 
           The goal of this visualization is to be able to choose words out of the collection of abstracts and explore their relationships either by
-          seeing how close they are on the two dimensional visualization, or my experimenting with vector math. <br><br>
+          seeing how close they are on the two dimensional visualization, or by experimenting with vector math. <br><br>
         </p>
         
         <p>
@@ -321,12 +336,19 @@
             Word2vec is a word embedding technique that uses a neural network to learn word associations from a large corpus of text.
             For each word, it uses the current word embedding to try to predict the words in some window around it.
             When it incorrectly predicts a word, it uses the error to update the word embedding and improve.
-            The end result is a word embedding for each word in the corpus that is learned from the context of surrounding words.<br><br>
-            
-            <a href="https://jalammar.github.io/illustrated-word2vec/">
-              <img src="king_man.png", alt="word math fig" class="center_fig" style='height: 50%; width: 50%; object-fit: contain'>
-            </a>
-            
+            The end result is a word embedding for each word in the corpus that is learned from the context of surrounding words.<br><br>          
+          </p>
+
+          <a href="https://jalammar.github.io/illustrated-word2vec/">
+            <img src="king_man.png", alt="word math fig" class="center_fig" style='height: 50%; width: 50%; object-fit: contain'>
+          </a>
+
+          <p><br><br>
+            One interesting thing you can do with word vectors is to add and subtract them to find related words.
+            A classic example is that if you take the embedding of <span class="bolded">"King"</span> and subtract the embedding of <span class="bolded">"Man"</span>, 
+            the resultant vector represents the relationship between <span class="bolded">"King"</span> and <span class="bolded">"Man"</span>.
+            If you then add this new vector to the embedding of <span class="bolded">"Woman"</span>, 
+            the resulting vector is most similar to the embedding of <span class="bolded">"Queen"</span>.
           </p>
           
           <button type="button" class="collapsible"> Read More </button>
@@ -349,16 +371,18 @@
               One of the main ideas of Word2Vec is that the vectors it produces preserve the similarities of word representations.
               That is to say, similar words in our vocabulary (for example "boy" and "man") will have a greater <a href="https://en.wikipedia.org/wiki/Cosine_similarity">cosine similarity</a> and will be closer together in vector space.
               One interesting result of this is that you can perform operations using the vectors and find the nearest word vector to the solution.
-              The famous example of this is that you can take the word vector for "king" and subtract the word vector for "man".
+              As described above, the most famous example of this is that you can take the word vector for "king" and subtract the word vector for "man".
               The result will be a new word vector representing the difference between "king" and "man".
               If you then add this result to the vector for "woman", you get a new word vector, that is most similar to the word vector for "queen".
               Ultimately, by summing negative and positive word representations, you can find similar words derived from the meanings of the input words.<br><br>
+            </p>
             
-              <a href="https://jalammar.github.io/illustrated-word2vec/">
-                <img src="king_queen.png", alt="word math fig" class="center_fig" style='height: 50%; width: 50%; object-fit: contain'>
-              </a>
-
-              <br><br>To learn these useful word embeddings, Word2Vec uses a <a href="https://purnasaigudikandula.medium.com/a-beginner-intro-to-neural-networks-543267bda3c8">neural network</a>. 
+            <a href="https://jalammar.github.io/illustrated-word2vec/">
+              <img src="king_queen.png", alt="word math fig" class="center_fig" style='height: 50%; width: 50%; object-fit: contain'>
+            </a>
+            
+            <p><br><br>
+              To learn these useful word embeddings, Word2Vec uses a <a href="https://purnasaigudikandula.medium.com/a-beginner-intro-to-neural-networks-543267bda3c8">neural network</a>. 
 
               The data used to train the model is generated from the text of interest.  This could be all articles on wikipedia or, in our case, a corpus of scientific papers.
               We define a sliding window that scans through the text generating training samples for the model.  
@@ -369,10 +393,15 @@
               The positive samples are words that are actually neighbors, and the negative samples are random words from the vocab which are probably not neighbors. 
               There are two possible approaches for generating the positive samples: 
               <a href="https://jalammar.github.io/illustrated-word2vec/">the first is a continuous bag-of-words model (CBOW), and the second is a continuous skip-gram model.</a><br><br>
+              For this project, we use the CBOW model with a window size of 11 and 14 negative samples per positive sample.
 
               This explanation will use the example with a window of size 5 where the current window is "drinking coffee wakes me up".<br><br>
-
-              For this project, we use the CBOW model where each training sample consists of one input word, your window size (<span class="emp">n</span>) minus 1 context words
+            </p>
+            
+            <img src="w2v_window.PNG", alt="word2vec window example" class="center_fig" style='height: 30%; width: 30%; object-fit: contain'>
+            
+            <p><br><br>
+              In the continuous bag-of-words model (CBOW), each training sample consists of one input word, your window size (<span class="emp">n</span>) minus 1 context words
               and a target value which is 1 for positive samples and 0 for negative samples.
               The input word is at the center of the sample. So for our example, the positive sample will have <br>
               Pos: input = ["drinking", "coffee", "me", "up"] context = ["wakes"] target = 1. <br>
@@ -394,7 +423,11 @@
               Now that we know what our data looks like, we can build some intuition as to how our model learns word embeddings.
               To begin, we define the vocabulary size (<span class="emp">M</span>) and the dimension of the word embeddings (<span class="emp">N</span>), and we initialize the weights randomly.
               The neural network is composed of an input layer of size <span class="emp">M</span>, a hidden layer of size <span class="emp">N</span>, and an output layer of size <span class="emp">M</span>.<br><br>
+            </p>
 
+            <img src="w2v_network.PNG", alt="word2vec network" class="center_fig" style='height: 40%; width: 40%; object-fit: contain'>
+            
+            <p><br><br>
               For the forward step, we take one positive example and multiple negative examples for the same focus word.
               We essentially compute the dot product between the word embeddings of the input word and context word for each example, and apply a 
               <a href="https://cs231n.github.io/linear-classify/#softmax">softmax fuction</a> to it so that the output represents the probability of each example being true neighbors.<br><br>
@@ -429,7 +462,7 @@
               </div>
     
               <p><br>
-                This is repeated for every word in the data, and the whole data set is run through multiple times (each time is called an epoch).
+                This is repeated for every word in the data, and the whole data set is run through multiple times. 
                 Once training is completed, we can take our word embeddings and plot them or perform operations on them and gain insight about the relationships between words in our dataset.
               </p>
 
