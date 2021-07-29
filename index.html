@@ -26,8 +26,8 @@
         <p><br> 
           As the need for clean, sustainable energy has become more imperative, the amount of research in the field of energy storage has skyrocketed.<br><br>
         </p>
-           <img src="Years.png" alt="Timeline of publications" class="center_fig" style='height: 30%; width: 30%; object-fit: contain'>
-           <img src="Frac.png" alt="Timeline of fraction of publications" class="center_fig" style='height: 30%; width: 30%; object-fit: contain'>
+           <img src="Years.png" alt="Timeline of publications" style='height: 30%; width: 30%; object-fit: contain; margin: 1% 1% 1% 16%'>
+           <img src="Frac.png" alt="Timeline of fraction of publications" style='height: 30%; width: 30%; object-fit: contain; margin: 1% 16% 1% 1%'>
         <p><br>
           The plots above respectively show the distribution of publication years for the papers in our dataset 
           and the fraction of papers in the entire Semantic Scholar Open Research Corpus containing the term "Energy Storage" over time.
@@ -84,13 +84,12 @@
           (papers that cite the current paper) and the out-citations (papers cited by the current paper).  
           The plots below give an overview of these features for our dataset.<br><br>
         </p>
-        <img src="FOS.png" alt="Fields of Study Figure" class="center_fig" style='height: 65%; width: 65%; object-fit: contain'>
-        <br>
-        <div> 
-          <img src="Length.png" alt="Length of Abstract" style='height: 25%; width: 25%; object-fit: contain'>
-          <img src="InCite.png" alt="Number of external citations" style='height: 25%; width: 25%; object-fit: contain'>
-          <img src="OutCite.png" alt="Number of references per paper" style='height: 25%; width: 25%; object-fit: contain'>
-        </div>
+      
+      <img src="FOS.png" alt="Fields of Study Figure" class="picture" style='height: 60%; width: 60%; object-fit: contain; margin: 1% 20%'>
+      <img src="Length.png" alt="Length of Abstract" style='height: 25%; width: 25%; object-fit: contain; margin: 1% 1% 1% 10%'>
+      <img src="InCite.png" alt="Number of external citations" style='height: 25%; width: 25%; object-fit: contain'>
+      <img src="OutCite.png" alt="Number of references per paper" style='height: 25%; width: 25%; object-fit: contain; margin: 1% 10% 1% 1%'>
+      
         <p> <br>
           To cultivate our dataset, we pulled all abstracts from the entire <a href="https://allenai.org/data/open-research-corpus">semantic scholar dataset</a> 
           with the search term "Energy Storage" in the title or abstract. 
@@ -118,11 +117,11 @@
     
     <section id="LDA">
       <h2>
-        Topic Modeling with LDA and Louvian Communities
+        Topic Modeling with LDA 
       </h2>
       <div class="photo">
         <a href="ES_networkplot.html">
-          <img src="lda.PNG", alt="lda" class="picture" style='height: 100%; width: 100%; object-fit: contain'>
+          <img src="lda.PNG", alt="lda" style='height: 100%; width: 100%; object-fit: contain'>
         </a>
       </div>
       <div class="description">
@@ -157,10 +156,10 @@
             (<span class="emp"> ex: An article about healthy pet diets has a high probability of containing the topics "food", "pets", and "health" and a low probability of containing the topic "energy_storage."</span>)<br><br>
           </p>
 
-            <a href="https://thinkinfi.com/latent-dirichlet-allocation-for-beginners-a-high-level-overview/">
-              <img src="lda_fig.png", alt="lda figure" class="center_fig" style='height: 50%; width: 50%; object-fit: contain'>
-            </a>
-            
+          <a href="https://thinkinfi.com/latent-dirichlet-allocation-for-beginners-a-high-level-overview/">
+            <img src="lda_fig.png", alt="lda figure" style='height: 50%; width: 50%; object-fit: contain; margin: 1% 24%'>
+          </a>      
+
           <p><br><br>
             We performed topic modeling with 50 topics and then produced a graph where nodes represent topics and edges represent the probability of topics occuring in the same document
             (<span class="emp"> ex: the topics "health" and "food" are more likely to co-occur than "pets" and "energy_storage".</span>) <br>
@@ -177,7 +176,7 @@
               For instance, if we wanted to simulate whether or not you wear a coat each day for a week, we might model it using the graph below.<br>
             </p>
 
-            <img src="gen_prob_model.PNG" alt="generative probabilistic model" class="center_fig" style='height: 50%; width: 50%; object-fit: contain'>
+            <img src="gen_prob_model.PNG" alt="generative probabilistic model" style='height: 50%; width: 50%; object-fit: contain; margin: 1% 24%'>
 
             <p> <br>
               Each day, there's some probability of it being cloudy or sunny.  Depending on that, there's some probability of it being cold or warm.
@@ -193,7 +192,7 @@
               The boxes are "plates" representing repeated entities such as multiple papers, words, and topics.<br><br>
             </p>
 
-            <img src="LDA_plate.png" alt="LDA plate model" class="center_fig" style='height: 50%; width: 50%; object-fit: contain'>
+            <img src="LDA_plate.png" alt="LDA plate model" style='height: 50%; width: 50%; object-fit: contain; margin: 1% 24%'>
 
             <p><br>
               The only observable variable is the words in each paper.  The latent variables are the topics in the corpus of papers.
@@ -231,10 +230,14 @@
           <p> <br><br> 
             <span class="bolded"> Louvain Community Detection </span>
             The Louvain method for community detection is used on large intereconnected graphs to separate nodes into related groups or communities.<br>
-            <a href="https://towardsdatascience.com/community-detection-algorithms-9bd8951e7dae">
-              <img src="louvain_fig.png", alt="louvain figure" class="center_fig" style='height: 50%; width: 50%; object-fit: contain'>
-            </a>
-            <br><br>It starts out by defining each node as an individual community.
+          </p>
+          
+          <a href="https://towardsdatascience.com/community-detection-algorithms-9bd8951e7dae">
+            <img src="louvain_fig.png", alt="louvain figure" style='height: 50%; width: 50%; object-fit: contain; margin: 1% 24%'>
+          </a>
+         
+          <p><br><br>
+            It starts out by defining each node as an individual community.
             It then uses a similarity metric to compare adjacent nodes, and if they are similar enough, it merges the two communities.
             When it has gone through every node, it creates a new graph in which each community is a single node.
             It repeats this process until no nodes are similar enough to merge.
@@ -257,7 +260,9 @@
               is removed from its community and placed in the community of each of its neighbors <span class="bolded">j</span>.
               The modularity is a value in the range of [-1/2,1] measuring the ratio of edge density inside vs between communities defined as
             </p>
-            <img src="modularity.png" alt="modularity formula" class="center_fig" style='height: 30%; width: 30%; object-fit: contain'>
+
+            <img src="modularity.png" alt="modularity formula" style='height: 30%; width: 30%; object-fit: contain; margin: 1% 34%'>
+            
             <p> <br>
               Where<br>
               <span class="bolded">m</span> is the total sum of edge weights in the graph<br>
@@ -270,7 +275,9 @@
 
               The modularity gain is the change in modularity defined by<br>
             </p>
-            <img src="modularity_gain.png" alt="modularity gain formula" class="center_fig" style='height: 60%; width: 60%; object-fit: contain'>
+
+            <img src="modularity_gain.png" alt="modularity gain formula" style='height: 60%; width: 60%; object-fit: contain; margin: 1% 19%'>
+
             <p><br>
               Where <br>
               <span class="bolded">&Sigma;</span><span class="sub">in</span> is the sum of the weights of the edges inside the community <span class="bolded">C</span> that <span class="bolded">i</span> is joining<br>
@@ -286,14 +293,14 @@
               A new network is defined in which the nodes are the communities found during the previous phase.
               The new edge weights are set to the sum of the weights of the edges between the two communities in the previous network.
               Edges between nodes in the same community become self loops in the new network.<br><br>
+            </p>
 
-              
-              <a href="https://www.nature.com/articles/s41598-019-41695-z">
-                <img src="louvain_fig2.png", alt="louvain figure 2" class="center_fig" style='height: 50%; width: 50%; object-fit: contain'>
-              </a>
-
-              <br><br>Once the second phase is complete, the first phase is repeated on this new graph, and the process repeats until there is no positive modularity gain from combining communities.<br>
-
+            <a href="https://www.nature.com/articles/s41598-019-41695-z">
+              <img src="louvain_fig2.png", alt="louvain figure 2" style='height: 50%; width: 50%; object-fit: contain; margin: 1% 24%'>
+            </a>
+            
+            <p><br><br>
+              Once the second phase is complete, the first phase is repeated on this new graph, and the process repeats until there is no positive modularity gain from combining communities.<br>
             </p>
 
           </div>
@@ -308,7 +315,7 @@
     </section>
     <section id="w2v">
       <h2>
-        Word2Vec Visualized with PCA
+        Word Vector Visualization
       </h2>
       <div class="photo">
         <a href="W2V_tSNE.html">
@@ -346,7 +353,7 @@
           </p>
 
           <a href="https://jalammar.github.io/illustrated-word2vec/">
-            <img src="king_man.png", alt="word math fig" class="center_fig" style='height: 50%; width: 50%; object-fit: contain'>
+            <img src="king_man.png", alt="word math fig" style='height: 50%; width: 50%; object-fit: contain; margin: 1% 24%'>
           </a>
 
           <p><br><br>
@@ -364,8 +371,10 @@
               One way of doing this is to embed the feature in a numeric vector in which each place in the vector represents a different aspect of the feature.
               For instance, we often represent color as a vector of length 3 in which the first value represents the intensity of red light in the color,
               the second value represents the intensity of green light in the color, and the third value represents the intensity of blue light, all on a scale of 0 to 255.<br><br>
-            </p>  
-            <img src="colorvec.png" alt="Color Vectors" class="center_fig" style='height: 40%; width: 40%; object-fit: contain'>
+            </p> 
+            
+            <img src="colorvec.png" alt="Color Vectors" style='height: 40%; width: 40%; object-fit: contain; margin: 1% 29%'>
+            
             <p><br>
               When creating word embeddings for use in natural language processing tasks, the goal is to create a vector representation of each word in our vocabulary.
               However, unlike with color, we don't have a good idea of what each of the values should represent about the word.
@@ -384,7 +393,7 @@
             </p>
             
             <a href="https://jalammar.github.io/illustrated-word2vec/">
-              <img src="king_queen.png", alt="word math fig" class="center_fig" style='height: 50%; width: 50%; object-fit: contain'>
+              <img src="king_queen.png", alt="word math fig" style='height: 50%; width: 50%; object-fit: contain; margin: 1% 24%'>
             </a>
             
             <p><br><br>
@@ -404,7 +413,7 @@
               This explanation will use the example with a window of size 5 where the current window is "drinking coffee wakes me up".<br><br>
             </p>
             
-            <img src="w2v_window.PNG", alt="word2vec window example" class="center_fig" style='height: 30%; width: 30%; object-fit: contain'>
+            <img src="w2v_window.PNG", alt="word2vec window example" style='height: 30%; width: 30%; object-fit: contain; margin: 1% 34%'>
             
             <p><br><br>
               In the continuous bag-of-words model (CBOW), each training sample consists of one input word, your window size (<span class="emp">n</span>) minus 1 context words
@@ -431,7 +440,7 @@
               The neural network is composed of an input layer of size <span class="emp">M</span>, a hidden layer of size <span class="emp">N</span>, and an output layer of size <span class="emp">M</span>.<br><br>
             </p>
 
-            <img src="w2v_network.PNG", alt="word2vec network" class="center_fig" style='height: 40%; width: 40%; object-fit: contain'>
+            <img src="w2v_network.PNG", alt="word2vec network" style='height: 40%; width: 40%; object-fit: contain; margin: 1% 29%'>
             
             <p><br><br>
               For the forward step, we take one positive example and multiple negative examples for the same focus word.
@@ -450,7 +459,11 @@
                   (For skip-gram, only one value is 1.  For CBOW, all input word indices have a value of 1)
                   There is a connection between each input neuron and all neurons in the hidden layer, and each of those connections has a weight.
                   The weights on the connections between the input word and all <span class="emp">N</span> hidden neurons is our embedding for that word.<br><br>
+                </p>
 
+                <img src="w2v_extra_fig.PNG", alt="w2v_network_fig" style='height: 60%; width: 60%; object-fit: contain; margin: 1% 19%'>
+
+                <p><br><br>
                   On the forward pass, we multiply each input neuron's value (all 0 except this example's input words which has a value of 1) by the weight of its connection, and
                   sum these values for all incoming connections to each hidden neuron.  In skip-gram, the hidden neuron's value will always just be the weight of its connection to
                   the input word and will therefore be the word embedding.  We apply an <a href="https://purnasaigudikandula.medium.com/a-beginner-intro-to-neural-networks-543267bda3c8">activation function</a> 
@@ -482,13 +495,12 @@
             Since we're interested in comparing the similarity of our words (how close they are in vector space), 
             we want to find a projection that preserves the relative distance between points.
             tSNE calculates a similarity measure between points in high dimensional space 
-            and then finds the optimal projection to lower dimensional space that preserves the neighborhood of each point.
-            <a href="https://www.kdnuggets.com/2017/11/3-different-types-machine-learning.html/2">
-              <img src="dim_reduct.jpg", alt="dimensionality reduction" class="center_fig" style='height: 50%; width: 50%; object-fit: contain'>
-            </a>
-            <br>
+            and then finds the optimal projection to lower dimensional space that preserves the neighborhood of each point.<br><br>
           </p>
-
+          
+          <a href="https://www.kdnuggets.com/2017/11/3-different-types-machine-learning.html/2">
+            <img src="dim_reduct.jpg", alt="dimensionality reduction" style='height: 50%; width: 50%; object-fit: contain; margin: 1% 24%'>
+          </a>
           
           <button type="button" class="collapsible"> Read More </button>
           <div class="extended" id="tSNE">
@@ -510,9 +522,9 @@
               around our point of interest that represents the probable distance to all other points.
               We can adjust the perplexity parameter to change the expected density around each point.<br>
             </p>
-            
+           
             <a href="https://www.youtube.com/watch?v=NEaUSP4YerM">
-              <img src="tsne_step1.PNG", alt="tsne step 1" class="center_fig" style='height: 50%; width: 50%; object-fit: contain'>
+              <img src="tsne_step1.PNG", alt="tsne step 1" style='height: 50%; width: 50%; object-fit: contain; margin: 1% 24%'>
             </a>
             
             <p><br><br>
@@ -522,7 +534,7 @@
               The final similarity is equal to the average of the paired probabilities divided by the number of data points.<br><br>
             </p>
             
-            <img src="tsne_pij_eq.png", alt="tsne equations" class="center_fig" style='height: 45%; width: 45%; object-fit: contain'>
+            <img src="tsne_pij_eq.png", alt="tsne equations" style='height: 45%; width: 45%; object-fit: contain; margin: 1% 27%'>
             
             <p><br>
               Where <span class="bolded">x</span><span class="sub">i</span> and <span class="bolded">x</span><span class="sub">j</span> are distinct points in high dimensional space,
@@ -538,7 +550,7 @@
                Just like in higher dimensions, we normalize the similarities.
             </p>
 
-            <img src="tsne_qij_eq.png", alt="tsne equations" class="center_fig" style='height: 35%; width: 35%; object-fit: contain'>
+            <img src="tsne_qij_eq.png", alt="tsne equations" style='height: 35%; width: 35%; object-fit: contain; margin: 1% 32%'>
             
             <p>
               Where <span class="bolded">y</span><span class="sub">i</span> and <span class="bolded">y</span><span class="sub">j</span> are distinct points in low dimensional space,
@@ -552,7 +564,7 @@
               us to iteratively update our projection in low dimensional space to make the similarity distribution closer to the high dimensional distribution.<br>
             </p>
 
-            <img src="KL.png", alt="Kullback-Leibler Divergence" class="center_fig" style='height: 25%; width: 25%; object-fit: contain'>
+            <img src="KL.png", alt="Kullback-Leibler Divergence" style='height: 25%; width: 25%; object-fit: contain; margin: 1% 37%'>
 
             <p>
             By minimizing the KL divergence of the distributions <span class="bolded">P</span> and <span class="bolded">Q</span> with respect to each point in our projection
