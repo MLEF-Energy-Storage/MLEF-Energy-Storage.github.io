@@ -42,8 +42,8 @@
 
       <h2> <br> The Goal </h2> 
       <p>
-        This project uses a variety of natural language processing techniques to extract insights from the scientific literature with the goal of being able to better direct research 
-        efforts and investments towards promising technologies.<br>
+        This project uses a variety of natural language processing techniques to extract insights from the scientific literature. The ultimate goal is to create a tool 
+        to better direct research efforts and investments towards promising technologies.<br>
       </p>
       <button type="button" class="collapsible"> Read More </button>
       <div class="extended">
@@ -52,20 +52,19 @@
           recent AI technology has the power to process all this data and more.  
           Furthermore, the machine learning techniques we use may find patterns and connections between different areas of the field 
           that humans might not be able to recognize on their own.
-          We have ultimately generated two interactive plots to allow researchers to explore the learned models of the field of energy storage
-          (More details on techniques in the sections below).<br><br>
+          We have ultimately generated two interactive plots to allow researchers to explore the models of the field of energy storage.<br><br>
 
           The first plot shows a graph of topics extracted from the abstracts in our dataset.
           Researchers can click on topics and find related papers and information about topic trends.  
           They can also look at the connections between topics and find papers and trends at the intersection of topics.
           This interactive visualization allows users to easily explore different areas of the field,
-          access meta data on papers and topics, and quickly do a literature search in the area of interest. <br><br>
-
+          access meta data on papers and topics, and quickly do a literature search in the area of interest
+          (More details in the Topic Modeling Section). <br><br>
 
           The second plot zooms in further to look at the relationships between individual key words in the data.
           We embed each word as a vector projected onto a 2D plane.
           Researchers can explore similar words in the field and even do word-vector math to
-          to look at relationships between different words (details on this in the Word2Vec section).
+          to look at relationships between different words (details on this in the Word Vector section).
         </p>
       </div>
 
@@ -91,28 +90,23 @@
       <img src="OutCite.png" alt="Number of references per paper" style='height: 25%; width: 25%; object-fit: contain; margin: 1% 10% 1% 1%'>
       
         <p> <br>
-          To cultivate our dataset, we pulled all abstracts from the entire <a href="https://allenai.org/data/open-research-corpus">semantic scholar dataset</a> 
+          To cultivate our dataset, we pulled all abstracts from the entire <a class="outlink" href="https://allenai.org/data/open-research-corpus">semantic scholar dataset</a> 
           with the search term "Energy Storage" in the title or abstract. 
           Then we processed the the raw text.  
           First, we excluded papers in any language that wasn't english.  
           Then we removed stop words, which are commonly used words in the english language that carry very little useful information for natural language processing 
           such as (the, a, is, are) and punctuation.
           Since many of the papers in our database are related to chemical and material engineering, we used the
-          <a href="https://github.com/materialsintelligence/mat2vec#supplementary-materials-for-unsupervised-word-embeddings-capture-latent-knowledge-from-materials-science-literature-nature--571-9598-2019"> mat2vec</a> processing library
+          <a class="outlink" href="https://github.com/materialsintelligence/mat2vec#supplementary-materials-for-unsupervised-word-embeddings-capture-latent-knowledge-from-materials-science-literature-nature--571-9598-2019"> mat2vec</a> processing library
           to standardize the representation of checmical formulas. 
           For example, converting all instances of "Lithium" to "li" to avoid redundancy.
           We used WordNetLemmatizer which converts words to their meaningful base form while also considering the context.
-          We also used <a href="https://www.geeksforgeeks.org/introduction-to-stemming/">porter stemming</a> which reduces all variations of words to one root.  
+          We also used <a class="outlink" href="https://www.geeksforgeeks.org/introduction-to-stemming/">porter stemming</a> which reduces all variations of words to one root.  
           For example, the words "cycle", "cyclic", "cycled", and "cycling" would all be converted to "cycl".
           This is effective, though may limit interpretability in some cases.  
           The result is the processed text we use to train our models.
         </p>
       </div>
-            
-      <h2>
-        <br>To see our code, please visit our    
-        <a class="gitlink" href="https://github.com/MLEF-Energy-Storage"> GitHub </a>
-      </h2>
     </section>
     
     <section id="LDA">
@@ -130,7 +124,7 @@
           
           Topic modeling is a machine learning problem where you have a collection (corpus) of documents, and you want to extract topics from the unstructured text data.
           In our case, our corpus is the set of abstracts pulled from the Semantic Scholar Open Research Corpus, and we want to extract topics of interesting research from these texts.
-          Once we've extracted these topics, we create a graph of topics where each node is a topic and each edge represents the probability of these topics co-occuring in an abstract.
+          Once we've extracted these topics, we create a graph where each node is a topic and each edge represents the probability of these topics co-occuring in an abstract.
           Different features of the graph convey further information about how prevelant a topic is or how frequently it has shown up in abstracts in the past five years.<br><br>
 
           <span class="fieldname"> Goal: </span> 
@@ -169,7 +163,7 @@
           <div class="extended" id="lda">
             <p> <br>
               Latent Dirichlet Allocation is a generative probabilistic model often used for topic modeling.  It was first applied to machine learning 
-              by David Blei, Andrew Ng, and Michael Jordan in their 2003 paper <a href="https://www.jmlr.org/papers/volume3/blei03a/blei03a.pdf"> Latent Dirichlet Allocation </a>.
+              by David Blei, Andrew Ng, and Michael Jordan in their 2003 paper <a class="outlink" href="https://www.jmlr.org/papers/volume3/blei03a/blei03a.pdf"> Latent Dirichlet Allocation </a>.
               A generative probabilistic model simulates the random production of some outcome by defining a graph in which the nodes are conditionally 
               dependent random variables and the edges represent their relationship.<br><br>
 
@@ -184,7 +178,7 @@
               If we know the exact probability distributions, we can generate a simulation of your coat wearing habits.
               However, it's often difficult to know all of the probability distributions.
               Often, the only observable part of the graph is the outcome (in this example, whether or not you're wearing a coat).
-              In this case, we can apply sampling methods and <a href="http://mathcenter.oxford.emory.edu/site/math117/bayesTheorem/"> Bayes theorem </a> 
+              In this case, we can apply sampling methods and <a class="outlink" href="http://mathcenter.oxford.emory.edu/site/math117/bayesTheorem/"> Bayes theorem </a> 
               to use the observable variables to estimate the underlying distributions for the latent variables (unobservable variables).<br><br>
               
               Using a more complex generative model, we can generate a simplified simulation of writing scientific papers.
@@ -192,11 +186,13 @@
               The boxes are "plates" representing repeated entities such as multiple papers, words, and topics.<br><br>
             </p>
 
-            <img src="LDA_plate.png" alt="LDA plate model" style='height: 50%; width: 50%; object-fit: contain; margin: 1% 24%'>
+            <a href="https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation">
+              <img src="LDA_plate.png" alt="LDA plate model" style='height: 50%; width: 50%; object-fit: contain; margin: 1% 24%'>
+            </a>
 
             <p><br>
               The only observable variable is the words in each paper.  The latent variables are the topics in the corpus of papers.
-              In this model, each topic is a <a href="http://mathcenter.oxford.emory.edu/site/math117/multinomialDistribution"> multinomial distribution</a> 
+              In this model, each topic is a <a class="outlink" href="http://mathcenter.oxford.emory.edu/site/math117/multinomialDistribution"> multinomial distribution</a> 
               over words with parameter &phi; representing the probability of each word being used in that topic.
               Each paper is a multinomial distribution over topics with parameter &theta; representing the probability of each topic being used in that document.
               So for each document <span class="bolded">M</span> in our corpus, 
@@ -204,17 +200,17 @@
               which in turn has a probability of including each word <span class="bolded">N</span> in the document.<br><br>
               
               Taking it one step further, we model the parameters of our multinomial distributions 
-              using <a href="https://towardsdatascience.com/dirichlet-distribution-a82ab942a879"> Dirichlet distributions</a>.
+              using <a class="outlink" href="https://towardsdatascience.com/dirichlet-distribution-a82ab942a879"> Dirichlet distributions</a>.
               In order to get the parameters &phi;<span class="sub">1</span>...&phi;<span class="sub">K</span> 
               representing the probability of each word being used in topics 1-<span class="bolded">K</span>, 
               we use a Dirichlet distribution with parameter &beta;.
               We use another Dirichlet distribution with parameter &alpha; to get the parameters &theta;<span class="sub">1</span>...&theta;<span class="sub">M</span> 
               representing the probability of each topic being used in documents 1-<span class="bolded">M</span>.
-              The Dirichlet distributions is the <a href="https://towardsdatascience.com/conjugate-prior-explained-75957dc80bfb"> conjugate prior </a> 
+              The Dirichlet distributions is the <a class="outlink" href="https://towardsdatascience.com/conjugate-prior-explained-75957dc80bfb"> conjugate prior </a> 
               for the multinomial distribution parameters.  For our model, we set &alpha; as 1/num_topics and &beta; as 0.03.<br><br>
 
               Now that we have our model, we can reverse engineer it using the words to infer the topics.
-              To do this, we use <a href="https://towardsdatascience.com/gibbs-sampling-8e4844560ae5"> Gibbs sampling </a> 
+              To do this, we use <a class="outlink" href="https://towardsdatascience.com/gibbs-sampling-8e4844560ae5"> Gibbs sampling </a> 
               which is a Markov chain Monte Carlo algorithm for approximating multivariate probability distributions.
               This process approximates the joint distribution for all random variables in our plot.
               At the end of this process, we can define each topic by the top most probable words for that topic.
@@ -223,7 +219,7 @@
               This information can be used to define a graph in which the nodes are topics and the edges are weighted probabilities of topics co-occuring.
 
               This work was largely inspired and based off of the work of Manuel W. Bickel in 2019 
-              <a href="https://energsustainsoc.biomedcentral.com/articles/10.1186/s13705-019-0226-z">Reflecting trends in the academic landscape of sustainable energy using probabilistic topic modeling</a>.
+              <a class="outlink" href="https://energsustainsoc.biomedcentral.com/articles/10.1186/s13705-019-0226-z">Reflecting trends in the academic landscape of sustainable energy using probabilistic topic modeling</a>.
             </p>
           </div>
 
@@ -249,7 +245,7 @@
           <div class="extended" id="louvain">
             <p><br> 
               The Louvain method for community detection seeks to extract communities from large networks.
-              The method was invented by Blondel et al. in their 2008 paper <a href="https://arxiv.org/pdf/0803.0476.pdf"> Fast unfolding communities in large networks</a>. 
+              The method was invented by Blondel et al. in their 2008 paper <a class="outlink" href="https://arxiv.org/pdf/0803.0476.pdf"> Fast unfolding communities in large networks</a>. 
               The communities are sets of highly interconnected nodes such that connections within communities are dense while connections between communities are sparse.<br><br>
               
               The algorithm has two iterative phases.
@@ -325,9 +321,9 @@
       <div class="description">
         <p>
           <span class="fieldname"> Description: </span> 
-          In natural language processing, words are often embedded into a numerical vector that encodes the meaning of the words.
-          The embeddings are learned from the context and surrounding words using machine learning algorithms.
-          We can easily compare how close words are by comparing how close their word vectors are.
+          In natural language processing, words are often embedded into numerical vectors that encode the meanings of the words.
+          The embeddings are learned from the context of surrounding words using machine learning algorithms.
+          We can easily compare how similar words are by comparing how close their word vectors are.
           Another cool feature of word vectors is that you can add and subtract word vectors to search for relevant words.
           We've plotted some of the top word vectors on a 2D plane, and provided a tool for users to do vector math with words in our corpus.<br><br>
         </p>
@@ -339,7 +335,7 @@
         
         <p>
           <span class="fieldname"> Algorithms: </span> 
-          This visualization relies primarily on two techniques: Word2Vec and Principal Component Analysis.<br><br>
+          This visualization relies primarily on two techniques: Word2Vec and t-distributed Stochastic Neighbor Embedding (tSNE).<br><br>
         </p>
 
         <button type="button" class="collapsible"> Read More </button>
@@ -369,8 +365,8 @@
             <p> <br>
               When working with non-numeric data in machine learning, it is often necessary to create a numeric representation of the data in order to perform operations and analysis.
               One way of doing this is to embed the feature in a numeric vector in which each place in the vector represents a different aspect of the feature.
-              For instance, we often represent color as a vector of length 3 in which the first value represents the intensity of red light in the color,
-              the second value represents the intensity of green light in the color, and the third value represents the intensity of blue light, all on a scale of 0 to 255.<br><br>
+              For instance, we often represent color as a vector of length 3 in which the first value represents the intensity of red light,
+              the second value represents the intensity of green light, and the third value represents the intensity of blue light, all on a scale of 0 to 255.<br><br>
             </p> 
             
             <img src="colorvec.png" alt="Color Vectors" style='height: 40%; width: 40%; object-fit: contain; margin: 1% 29%'>
@@ -382,9 +378,9 @@
               accurate model this way would be nearly impossible.
               Instead, we use machine learning algorithms to learn embeddings from the natural patterns of words in written texts.<br><br>
 
-              Word2Vec is one such algorithm proposed by Google in 2013 in the paper <a href="https://arxiv.org/pdf/1301.3781.pdf">Efficient Estimation of Word Representations in Vector Space</a>.
+              Word2Vec is one such algorithm proposed by Google in 2013 in the paper <a class="outlink" href="https://arxiv.org/pdf/1301.3781.pdf">Efficient Estimation of Word Representations in Vector Space</a>.
               One of the main ideas of Word2Vec is that the vectors it produces preserve the similarities of word representations.
-              That is to say, similar words in our vocabulary (for example "boy" and "man") will have a greater <a href="https://en.wikipedia.org/wiki/Cosine_similarity">cosine similarity</a> and will be closer together in vector space.
+              That is to say, similar words in our vocabulary (for example "boy" and "man") will have a greater <a class="outlink" href="https://en.wikipedia.org/wiki/Cosine_similarity">cosine similarity</a> and will be closer together in vector space.
               One interesting result of this is that you can perform operations using the vectors and find the nearest word vector to the solution.
               As described above, the most famous example of this is that you can take the word vector for "king" and subtract the word vector for "man".
               The result will be a new word vector representing the difference between "king" and "man".
@@ -397,17 +393,17 @@
             </a>
             
             <p><br><br>
-              To learn these useful word embeddings, Word2Vec uses a <a href="https://purnasaigudikandula.medium.com/a-beginner-intro-to-neural-networks-543267bda3c8">neural network</a>. 
+              To learn these useful word embeddings, Word2Vec uses a <a class="outlink" href="https://purnasaigudikandula.medium.com/a-beginner-intro-to-neural-networks-543267bda3c8">neural network</a>. 
 
               The data used to train the model is generated from the text of interest.  This could be all articles on wikipedia or, in our case, a corpus of scientific papers.
               We define a sliding window that scans through the text generating training samples for the model.  
               So if your window is 5 words long, then the first training sample will be the first 5 words of your text data, and the second will be words 2-6 and so on.<br><br>
 
               The ultimate goal will be for the model to predict whether or not words are neighbors (appear together in the text).
-              To do this, we generate positive and <a href="http://mccormickml.com/2017/01/11/word2vec-tutorial-part-2-negative-sampling/">negative samples</a> for each word in the text.  
+              To do this, we generate positive and <a class="outlink" href="http://mccormickml.com/2017/01/11/word2vec-tutorial-part-2-negative-sampling/">negative samples</a> for each word in the text.  
               The positive samples are words that are actually neighbors, and the negative samples are random words from the vocab which are probably not neighbors. 
               There are two possible approaches for generating the positive samples: 
-              <a href="https://jalammar.github.io/illustrated-word2vec/">the first is a continuous bag-of-words model (CBOW), and the second is a continuous skip-gram model.</a><br><br>
+              <a class="outlink" href="https://jalammar.github.io/illustrated-word2vec/">a continuous bag-of-words model (CBOW) and continuous skip-gram model.</a><br><br>
               For this project, we use the CBOW model with a window size of 11 and 14 negative samples per positive sample.
 
               This explanation will use the example with a window of size 5 where the current window is "drinking coffee wakes me up".<br><br>
@@ -416,22 +412,13 @@
             <img src="w2v_window.PNG", alt="word2vec window example" style='height: 30%; width: 30%; object-fit: contain; margin: 1% 34%'>
             
             <p><br><br>
-              In the continuous bag-of-words model (CBOW), each training sample consists of one input word, your window size (<span class="emp">n</span>) minus 1 context words
+              In the continuous bag-of-words model (CBOW), each training sample consists of one focus word, your window size (<span class="emp">n</span>) minus 1 context words
               and a target value which is 1 for positive samples and 0 for negative samples.
-              The input word is at the center of the sample. So for our example, the positive sample will have <br>
-              Pos: input = ["drinking", "coffee", "me", "up"] context = ["wakes"] target = 1. <br>
+              The focus word is at the center of the sample. So for our example, the positive sample will have <br>
+              Pos: focus = ["wakes"] context = ["drinking", "coffee", "me", "up"] target = 1. <br>
               A negative sample might have<br> 
-              Neg: input = ["drinking", "coffee", "me", "up"] context = ["dentist"] target = 0. <br><br>
+              Neg: focus = ["dentist"] context = ["drinking", "coffee", "me", "up"] target = 0. <br><br>
 
-              The skip-gram model is similar to CBOW except that instead of that window creating one sample, it will create <span class="emp">n</span>-1 separate samples. 
-              For this example, the resulting four positive samples would be <br>
-              Pos 1: input=["wakes"] context=["drinking"] target=1, <br>
-              Pos 2: input=["wakes"] context=["coffee"] target=1, <br>
-              Pos 3: input=["wakes"] context=["me"] target=1, <br>
-              Pos 4: input=["wakes"] context=["up"] target=1. <br>
-              A negative sample might look like <br>
-              Neg: input=["wakes"] context=["plant"] target=0.<br><br>
-              
               After generating these samples, the window would move one word to the right, and the process repeats.
               <br><br>
 
@@ -443,46 +430,51 @@
             <img src="w2v_network.PNG", alt="word2vec network" style='height: 40%; width: 40%; object-fit: contain; margin: 1% 29%'>
             
             <p><br><br>
-              For the forward step, we take one positive example and multiple negative examples for the same focus word.
-              We essentially compute the dot product between the word embeddings of the input word and context word for each example, and apply a 
-              <a href="https://cs231n.github.io/linear-classify/#softmax">softmax fuction</a> to it so that the output represents the probability of each example being true neighbors.<br><br>
+              For the forward step, we take one positive sample and multiple negative samples for the same focus word.
+              We essentially compute the dot product between the word embeddings of the focus word and context word for each example, and apply a 
+              <a class="outlink" href="https://cs231n.github.io/linear-classify/#softmax">softmax fuction</a> to it so that the output represents the probability of each sample being true neighbors.<br><br>
 
-              We can compute a loss or error by comparing the difference between the target value (1 for true neighbors and 0 for false neighbors) and the model generated probability.
-              We then use this error in the <a href="https://purnasaigudikandula.medium.com/a-beginner-intro-to-neural-networks-543267bda3c8">backpropagation step</a> to update the weights.
+              We can compute a loss or error by comparing the difference between the target value (1 for true neighbors and 0 for false neighbors) and the probability generated by the model. 
+              We then use this error in the <a class="outlink" href="https://purnasaigudikandula.medium.com/a-beginner-intro-to-neural-networks-543267bda3c8">backpropagation step</a> to update the weights.
               The first layer of weights is ultimately our word embedding.<br><br>
               </p>
 
               <button type="button" class="collapsible"> Read More </button>
               <div class="extended" id="w2v_more">
                 <p> <br>
-                  The input layer has a <a href="https://hackernoon.com/what-is-one-hot-encoding-why-and-when-do-you-have-to-use-it-e3c6186d008f">one hot encoding</a> of the input word meaning that all values are 0 except at an index representing that word where the value is 1.
-                  (For skip-gram, only one value is 1.  For CBOW, all input word indices have a value of 1)
+                  The input layer has a <a class="outlink" href="https://hackernoon.com/what-is-one-hot-encoding-why-and-when-do-you-have-to-use-it-e3c6186d008f">one hot encoding</a> 
+                  of the context words meaning that all values are 0 except at an indexes representing that context words where the value is 1.
                   There is a connection between each input neuron and all neurons in the hidden layer, and each of those connections has a weight.
-                  The weights on the connections between the input word and all <span class="emp">N</span> hidden neurons is our embedding for that word.<br><br>
+                  The weights on the connections between each input word and all <span class="emp">N</span> hidden neurons represents the embedding for that word.<br><br>
                 </p>
 
                 <img src="w2v_extra_fig.PNG", alt="w2v_network_fig" style='height: 60%; width: 60%; object-fit: contain; margin: 1% 19%'>
 
                 <p><br><br>
-                  On the forward pass, we multiply each input neuron's value (all 0 except this example's input words which has a value of 1) by the weight of its connection, and
+                  On the forward pass, we multiply each input neuron's value (all 0 except this example's context words which each have a value of 1) by the weight of its connection, and
                   sum these values for all incoming connections to each hidden neuron.  In skip-gram, the hidden neuron's value will always just be the weight of its connection to
-                  the input word and will therefore be the word embedding.  We apply an <a href="https://purnasaigudikandula.medium.com/a-beginner-intro-to-neural-networks-543267bda3c8">activation function</a> 
+                  the input word and will therefore be the word embedding.  We apply an <a class="outlink" href="https://purnasaigudikandula.medium.com/a-beginner-intro-to-neural-networks-543267bda3c8">activation function</a> 
                   to this value and then do the same thing for the next layer.  This means that each neuron in the output layer is now equal to the weighted sum of each value 
                   of the hidden layer where the weights are defined by the connections between two neurons. 
-                  From there, we apply a softmax function <a href="https://cs231n.github.io/linear-classify/#softmax">softmax fuction</a> which allows us to interpret each output neuron value as a probability.
+                  From there, we apply a softmax function <a class="outlink" href="https://cs231n.github.io/linear-classify/#softmax">softmax fuction</a> which allows us to interpret each output neuron value as a probability.
                   Similar to the input layer, each neuron in the output layer represents a word in the vocabulary, so each output neuron value represents the probability of that word
-                  being a neighbor of our input word.<br><br>
+                  being a neighbor of our input words.<br><br>
     
                   We can compute a loss or error by comparing the difference between the target value (1 for true neighbors and 0 for false neighbors) and the model generated probability.
                   Rather than backpropagating all of the error and updating all of the weights, we only update the weights for the one positive example and 
-                  <a href="http://mccormickml.com/2017/01/11/word2vec-tutorial-part-2-negative-sampling/">multiple negative examples</a>.
-                  Backpropagating the error updates the weights and therefore updates the word embedding making it more likely to predict neighboring words.
+                  <a class="outlink" href="http://mccormickml.com/2017/01/11/word2vec-tutorial-part-2-negative-sampling/">multiple negative examples</a>.
+                  Backpropagating the error updates the weights and therefore updates the word embedding making it more likely to correctly predict neighboring words.
+                  In the figure above, our context words are emphasized on the input side.  On the output side, the positive sample (focus word) is emphasized as well as
+                  a small set of negative samples.  Only these values are used for calculating the loss and backpropagation. 
                 </p>
               </div>
     
               <p><br>
                 This is repeated for every word in the data, and the whole data set is run through multiple times. 
-                Once training is completed, we can take our word embeddings and plot them or perform operations on them and gain insight about the relationships between words in our dataset.
+                Once training is completed, we can take our word embeddings and plot them or perform operations on them and gain insight about the relationships between words in our dataset.<br><br>
+
+                This work was largely inspired by the work of Vahe Tshitoyan et. al in 2019 
+                <a class="outlink" href="https://www.nature.com/articles/s41586-019-1335-8">Unsupervised word embeddings capture latent knowledge from materials science literature</a>.
               </p>
 
           </div>
@@ -505,20 +497,20 @@
           <button type="button" class="collapsible"> Read More </button>
           <div class="extended" id="tSNE">
             <p><br>
-              Often times data science and machine learning involves dealing with high dimensional vectors which can be difficult to work with and to visualize.
+              Often times, data science and machine learning involves dealing with high dimensional vectors which can be difficult to work with and to visualize.
               It's often the case that the majority of the information stored in the data exists in a lower dimensional representation of the data.
-              In this case, we want to find a projection of our 100 dimensional vectors onto a 2D plot while preserving the most important information.
-              In our case, the information we want to preserve is the relative neighborhood of each point.
+              In our case, we want to find a projection of our 100 dimensional vectors onto a 2D plot while preserving the most important information: 
+              the relative neighborhood of each point.
               Word vectors that are close together (similar) in high dimensional space should appear close together on our 2D plot.<br><br>
               
-              To accomplish this, we use the <a href="https://www.jmlr.org/papers/volume9/vandermaaten08a/vandermaaten08a.pdf">t-distributed Storchastic Neighbor Embedding (tSNE)</a>
+              To accomplish this, we use <a class="outlink" href="https://www.jmlr.org/papers/volume9/vandermaaten08a/vandermaaten08a.pdf">t-distributed Stochastic Neighbor Embedding (tSNE)</a>
               proposed by Geoffrey Hinton and Laurens van der Maaten in 2008.
               This algorithm can be thought of in three steps where the second and third step repeat iteratively until the optimal projection is found.<br><br>
 
-              <span class="bolded">Step 1. Determine the similarity of all points in the data.</span><br>
+              <span class="bolded">Step 1. Determine the similarity of all points in high dimensional space.</span><br>
               The objective is to preserve the neighborhood in high dimensional space when we project to lower dimensions.
-              For each point, we calculate its "similarity" to all other points in our data.
-              To do this, we center a <a href="https://machinelearningmastery.com/statistical-data-distributions/">Gaussian distribution</a> 
+              For each point, we calculate its "similarity" to all other points in our data in high dimensions.
+              To do this, we center a <a class="outlink" href="https://machinelearningmastery.com/statistical-data-distributions/">Gaussian distribution</a> 
               around our point of interest that represents the probable distance to all other points.
               We can adjust the perplexity parameter to change the expected density around each point.<br>
             </p>
@@ -542,10 +534,10 @@
               and <span class="bolded">&sigma;</span><span class="sub">i</span> is the perplexity of the <span class="bolded">i</span>th Gaussian kernel.
               The end result is a distribution of the similarity scores between each point in high dimensional space which we will call <span class="bolded">P</span>.<br><br>
               
-              <span class="bolded">Step 2: Project data to lower dimensional space and calculate new similarity score in lower dimensions.</span><br>
+              <span class="bolded">Step 2: Naively project data to lower dimensional space and calculate new similarity score in lower dimensions.</span><br>
                Once we have the higher dimension similarities, we project our points down to lower dimensional space (our end goal space).
                Here again, we compute similarity scores between each point, but instead of using a Gaussian kernel, 
-               we use a <a href="https://machinelearningmastery.com/statistical-data-distributions/">student t distribution</a> with 1 degree of freedom.
+               we use a <a class="outlink" href="https://machinelearningmastery.com/statistical-data-distributions/">student t distribution</a> with 1 degree of freedom.
                The student t distribution has more weight in the tails which helps to prevent clusters from clumping in the center.
                Just like in higher dimensions, we normalize the similarities.
             </p>
@@ -556,12 +548,13 @@
               Where <span class="bolded">y</span><span class="sub">i</span> and <span class="bolded">y</span><span class="sub">j</span> are distinct points in low dimensional space,
               The end result is a distribution of the similarity scores between each point in low dimensional space which we will call <span class="bolded">Q</span>.<br><br>
               
-              <span class="bolded"> 3. Use the KL divergence score as a loss function and SGD to move points in lower dimensional space </span><br>
+              <span class="bolded"> 3. Use the KL divergence score as a loss function and gradient descient to iteratively improve the projection. </span><br>
               Since the objective is to preserve the similarity between points, we use the 
-              <a href="https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence">Kullback-Leibler divergence</a> of <span class="bolded">P</span>
+              <a class="outlink" href="https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence">Kullback-Leibler divergence</a> of <span class="bolded">P</span>
               and <span class="bolded">Q</span> to measure how much our similarity distributions differ between high dimensional space and low dimensional space.
-              This is used as a loss function for <a href="https://machinelearningmastery.com/gradient-descent-for-machine-learning/">gradient descent</a> allowing 
-              us to iteratively update our projection in low dimensional space to make the similarity distribution closer to the high dimensional distribution.<br>
+              This is used as a loss function for <a class="outlink" href="https://machinelearningmastery.com/gradient-descent-for-machine-learning/">gradient descent</a> allowing 
+              us to iteratively adjust our points in low dimensional space to make the similarity distribution closer to the high dimensional distribution.
+              <br>
             </p>
 
             <img src="KL.png", alt="Kullback-Leibler Divergence" style='height: 25%; width: 25%; object-fit: contain; margin: 1% 37%'>
@@ -569,6 +562,9 @@
             <p>
             By minimizing the KL divergence of the distributions <span class="bolded">P</span> and <span class="bolded">Q</span> with respect to each point in our projection
             <span class="bolded">y</span><span class="sub">i</span>, we can produce a projection that optimally preserves high dimensional similarities.
+            Put simply, we systematically adjust the location of our points in low dimensional space, calculate the new similarity distribution 
+            <span class="bolded">Q</span>, and compare it to our high dimensional similarity distribution <span class="bolded">P</span> 
+            until the two distributions are as close as we can get them.
             </p>
           </div>
         </div>
@@ -604,7 +600,7 @@
           photography.  She won a scholarship for a tuition free fifth year of college to study how photography can shape our perspectives and world views.<br><br>
           
           <span class="bolded"> Raihan Ahmed </span> was a rising senior pursuing his Bachelor of Science in computer science and minor in linguistics at Northeastern Illinois 
-          University in Chicago, IL at the time of this work. Raihan intends to pursue a PhD in computer science or linguistics. From 2017 to 2018, he was an undergraduate 
+          University in Chicago, IL at the time of this work. Raihan intended to pursue a PhD in computer science or linguistics. From 2017 to 2018, he was an undergraduate 
           research assistant at the University of Illinois at Urbana-Champaign’s (UIUC) College of Agricultural, Consumer, and Environmental Sciences, as well as a teaching 
           assistant and academic tutor with UIUC’s Department of Physics. Between 2018 and 2019, he was an information systems and technology co-op student with Apple. 
           Since then, he has been a research fellow at the National Energy Technology Laboratory in Albany, Oregon. Mr. Ahmed’s awards and honors include the Mickey Leland 

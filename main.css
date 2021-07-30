@@ -94,10 +94,6 @@ section {
   width: 20%;
 }
 
-.picture img{
-  margin: auto;
-}
-
 .description {
   display: inline-block;
   width: 75%;
@@ -176,6 +172,13 @@ p {
   font-size: 35px;
   color: #6DA367;
 }
+
+.outlink {
+  display: inline-block;
+  text-decoration: none;
+  color: #6DA367;
+  font-weight: 500;
+ }
 
 .collapsible {
   background-color: #8CC286;
