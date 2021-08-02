@@ -136,7 +136,7 @@
           
           <span class="fieldname"> Algorithms: </span> 
           
-          This visualization relies primarily on two techniques: Latend Dirichlet Allocation and Louvain Community Detection.<br><br>
+          This visualization relies primarily on two techniques: Latend Dirichlet Allocation and Louvain Community Detection.<br>
         </p>
     
         <button type="button" class="collapsible"> Read More </button>
@@ -296,18 +296,31 @@
             </a>
             
             <p><br><br>
-              Once the second phase is complete, the first phase is repeated on this new graph, and the process repeats until there is no positive modularity gain from combining communities.<br>
+              Once the second phase is complete, the first phase is repeated on this new graph, and the process repeats until there is no positive modularity gain from combining communities.<br><br>
             </p>
-
           </div>
-        </div>
-                    
-        <p> <br>
-          <span class="fieldname"> Visuals: </span> 
-          <a class="btn" href="html_files/ES_networkplot.html"> Energy Storage Network Plot </a>
+         </div> 
+        
+         <!---LEE, the results for LDA are here-->
+        <p><br>
+          <span class="fieldname">Results: </span>
+          We found that the model generated topics that were sensible and specific, and that the community detection made groupings that were interpretable and interesting.
+          Some topics were very concrete such as topic 49 which is centered around electric vehicles.  Other concepts were more abstract such as topic 23 which had more
+          to do with grid optimization and energy management.  Below you can find details of specific results and observations.<br>
         </p>
         
-      </div>
+        <button type="button" class="collapsible"> Read More </button>
+        <div class="extended">
+          <p><br>
+          While there is still much exploration and discovery to do, we've compiled some of the observations we've made from using this visualization.
+          </p>
+        </div>
+
+      <p> <br>
+        <span class="fieldname"> Visuals: </span> 
+        <a class="btn" href="html_files/ES_networkplot.html"> Energy Storage Network Plot </a>
+      </p>
+        
     </section>
     <section id="w2v">
       <h2>
@@ -335,7 +348,7 @@
         
         <p>
           <span class="fieldname"> Algorithms: </span> 
-          This visualization relies primarily on two techniques: Word2Vec and t-distributed Stochastic Neighbor Embedding (tSNE).<br><br>
+          This visualization relies primarily on two techniques: Word2Vec and t-distributed Stochastic Neighbor Embedding (tSNE).<br>
         </p>
 
         <button type="button" class="collapsible"> Read More </button>
@@ -566,9 +579,72 @@
             <span class="bolded">Q</span>, and compare it to our high dimensional similarity distribution <span class="bolded">P</span> 
             until the two distributions are as close as we can get them.
             </p>
+
           </div>
         </div>
+
+        <!---LEE, the results for W2V are here-->
+        <p><br>
+          <span class="fieldname">Results: </span>
+          We found this visualization a bit more difficult to interpret, but still potentially useful.
+          The words most similar to the selected words seem to make clear sense, but this isn't always reflected in the 
+          two dimensional projection.  We've found a number of word equations that produce meaningful results, but it takes
+          some time to develop intuition for how to build word equations.  Specific results are listed below.
+        </p>
+        
+        <button type="button" class="collapsible"> Read More </button>
+        <div class="extended">
+          <p><br>
+            We found that the similar words generally make a lot of sense.
+            Some examples of then ten nearest words are listed below.<br>
+          </p>
+
+          <p><br><br>            
+            <span class="bolded">batteri:</span> pb_acid, recharg, li, stationari, super-capacitor, lib, ultracapacitor, cell, pack, bm<br>
+            <span class="bolded">cost:</span> bill, invest, ghg_emiss, consumpt, price, expens, payment, incom, lcoe, penalti<br>
+            <span class="bolded">solar:</span> sun, photovolta, sunlight, parabol_trough, pvt, csp, plant, flat_plate, geotherm, panel<br>
+            <span class="bolded">geotherm:</span> subsurfac, geolog, ocean, ute, aquif, ground, underground, tidal, groundwat, shallow<br>
+            <span class="bolded">li:</span> na, lib, zn, cathod, recharg, batteri, multival, anod, li-, alkali<br><br>
+
+            Some word equations we found are shown below.
+          </p>
+            
+          <img src="figures/cathod+anod.PNG", alt="cathod+anod=electrod" style='height: 50%; width: 50%; object-fit: contain; margin: 1% 24%'>
+          <p><br>
+            An electrode is composed of an anode and a cathode.<br>
+          </p>
+
+          <img src="figures/batt+h_li.PNG" alt="batteri+h-li=electrolys" style='height: 50%; width: 50%; object-fit: contain; margin: 1% 24%'>
+          <p><br>
+            Hydrogen is made through electrolyzers.<br>
+          </p>
+
+          <img src="figures/salt+chem_therm.PNG", alt="molten_salt+chemic-thermal=synthet" style='height: 50%; width: 50%; object-fit: contain; margin: 1% 24%'>
+          <p><br>
+            Molten salt is a thermal storage medium and synthetics are a chemical storage medium.<br>
+          </p>
+
+          <img src="figures/cost+cyc-effic.PNG", alt="cost+cycle-effici=long_term" style='height: 50%; width: 50%; object-fit: contain; margin: 1% 24%'>
+          <p><br>
+            The efficiency is to the cost as the cyclability is to the lifetime.<br>
+          </p>
+
+          <img src="figures/overpot+g1-macm2.PNG", alt="overpotenti + g1 - ma_cm2 = cm_2" style='height: 50%; width: 50%; object-fit: contain; margin: 1% 24%'>
+          <p><br>
+            I'm not sure about this one.  Lee help?<br><br>
+
+            This process doesn't always work as expected.  For instance<br> 
+          </p>
           
+          <img src="figures/colio2+anod-cathod.PNG", alt="colio2 - cathod + anod = felio4p" style='height: 50%; width: 50%; object-fit: contain; margin: 1% 24%'>
+          <p><br>
+            We expect that this would produce an anode material for lithium batteries, but it instead producees primarily cathode materials.<br><br>
+
+            These are all promising results, but more exploration is required to realize the full potential of this tool.
+          </p>
+
+        </div>
+        
         <p> <br>
           <span class="fieldname"> Visuals: </span> 
           <a class="btn" href="html_files/W2V_tSNE.html"> Word2Vector Plot </a>
