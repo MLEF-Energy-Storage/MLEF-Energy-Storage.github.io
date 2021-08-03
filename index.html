@@ -31,8 +31,8 @@
         <p><br>
           The plots above respectively show the distribution of publication years for the papers in our dataset 
           and the fraction of papers in the entire Semantic Scholar Open Research Corpus containing the term "Energy Storage" over time.
-          They clearly demonstrates that the body of research is expanding at an unprecidented rate and becoming a more prominent area of focus in the scientific community at large.
-          While this increase is a good thing, it makes it very difficult to maintain a high-level understanding of the state of the field 
+          They clearly demonstrates that the body of research is rapidly expanding and becoming a more prominent area of focus in the scientific community at large.
+          This increase makes it difficult to maintain a high-level understanding of the state of the field 
           and to stay aware of where progress is being made.
           This lack of insight can lead to redundant research, inefficient investing of time and money, and oversight of areas with the greatest potential.
           To optimize effective allocation of resources, investigators and administrative bodies need a broad understanding of the current state of the field including
@@ -52,7 +52,7 @@
           recent AI technology has the power to process all this data and more.  
           Furthermore, the machine learning techniques we use may find patterns and connections between different areas of the field 
           that humans might not be able to recognize on their own.
-          We have ultimately generated two interactive plots to allow researchers to explore the models of the field of energy storage.<br><br>
+          In this work, we have generated two interactive plots to allow researchers to explore the models of the field of energy storage.<br><br>
 
           The first plot shows a graph of topics extracted from the abstracts in our dataset.
           Researchers can click on topics and find related papers and information about topic trends.  
@@ -61,8 +61,8 @@
           access meta data on papers and topics, and quickly do a literature search in the area of interest
           (More details in the Topic Modeling Section). <br><br>
 
-          The second plot zooms in further to look at the relationships between individual key words in the data.
-          We embed each word as a vector projected onto a 2D plane.
+          The second plot looks at the relationships between individual key words in the data with a technique known as Word2Vec.
+          Word2Vec represents each word as a vector that can be visualized with projection onto a 2D plane.
           Researchers can explore similar words in the field and even do word-vector math to
           to look at relationships between different words (details on this in the Word Vector section).
         </p>
@@ -124,8 +124,8 @@
           
           Topic modeling is a machine learning problem where you have a collection (corpus) of documents, and you want to extract topics from the unstructured text data.
           In our case, our corpus is the set of abstracts pulled from the Semantic Scholar Open Research Corpus, and we want to extract topics of interesting research from these texts.
-          Once we've extracted these topics, we create a graph where each node is a topic and each edge represents the probability of these topics co-occuring in an abstract.
-          Different features of the graph convey further information about how prevelant a topic is or how frequently it has shown up in abstracts in the past five years.<br><br>
+          Once we've extracted these topics, we create a graph where each node is a topic and each edge represents the probability of these topics co-occurring in an abstract.
+          Different features of the graph convey further information about how prevalent a topic is or how frequently it has shown up in abstracts in the past five years.<br><br>
 
           <span class="fieldname"> Goal: </span> 
           
@@ -136,7 +136,7 @@
           
           <span class="fieldname"> Algorithms: </span> 
           
-          This visualization relies primarily on two techniques: Latend Dirichlet Allocation and Louvain Community Detection.<br>
+          This visualization relies primarily on two techniques: Latent Dirichlet Allocation (LDA) and Louvain Community Detection.<br>
         </p>
     
         <button type="button" class="collapsible"> Read More </button>
@@ -215,7 +215,7 @@
               This process approximates the joint distribution for all random variables in our plot.
               At the end of this process, we can define each topic by the top most probable words for that topic.
               We can also keep track of the documents with the highest probability of containing each topic 
-              as well as the probability of two topics co-occuring in the same document.
+              as well as the probability of two topics co-occurring in the same document.
               This information can be used to define a graph in which the nodes are topics and the edges are weighted probabilities of topics co-occuring.
 
               This work was largely inspired and based off of the work of Manuel W. Bickel in 2019 
@@ -305,7 +305,7 @@
         <p><br>
           <span class="fieldname">Results: </span>
           We found that the model generated topics that were sensible and specific, and that the community detection made groupings that were interpretable and interesting.
-          Some topics were very concrete such as topic 49 which is centered around electric vehicles.  Other concepts were more abstract such as topic 23 which had more
+          Some topics were technology-focused such as topic 49 which is centered around electric vehicles.  Other concepts were more abstract such as topic 23 which had more
           to do with grid optimization and energy management.  Below you can find details of specific results and observations.<br>
         </p>
         
@@ -332,9 +332,9 @@
           <img src="figures/37-41-fig.png", alt="topic 41 and topic 37 connection" style='height: 50%; width: 50%; object-fit: contain; margin: 1% 24%'>
           
           <p><br>
-            For instance, at the intersection of Topic 41 and Topic 37, we find papers relating to regenerative fuel cells.
-            This intersection makes sense because topic 41 is essentially about using electricity to split water, and topic 37 is essentially about getting energy out of split water.
-            There intersection is about going back and forth between the two processes.<br><br>
+            For instance, at the intersection of Topic 41 and Topic 37, we find papers that relate to testing of fuel cells with a focus on the electrochemical components
+            This intersection makes sense because topic 41 relates to water splitting catalysis, and topic 37 is relates to general fuel cell design and testing.
+          <br><br>
           </p>
           
           <img src="figures/23-49-fig.png", alt="topic 23 and topic 49 connection" style='height: 50%; width: 50%; object-fit: contain; margin: 1% 24%'>
@@ -343,9 +343,9 @@
             The intersection between Topic 23 and Topic 49 is also of great interest.
             Topic 23 is a more abstract topic we've labeled "Grid Optimization".
             It involves energy storage through regulating grid use through things like virtual energy storage and demand side management.
-            For instance, using the internet of things, your dryer could wait to run until demand was low and the cost of the energy you're using decreased.
+            For instance, using the internet of things, your dryer could wait to run until demand was low and the cost of electricity is low.
             Topic 49 is generally about electric vehicles.
-            The intersection between Topic 23 and Topic 49 is about vehicle to grid and grid to vehicle interactions such as creating optimal charging stategies
+            The intersection between Topic 23 and Topic 49 is about vehicle to grid and grid to vehicle interactions such as creating optimal charging strategies
             or using electric vehicles as power sources while they're plugged into the grid.<br><br>
 
             These are just two examples of what our model is capable of.  There are many more topics and connections to explore.<br><br>
@@ -353,15 +353,15 @@
             On a broader scale, the communities also are of interest.
             While people with different expertise could pull out more nuanced descriptions of each category, and the categories are much more diverse than these descriptions, 
             it seems that broadly, <br>
-            <span class="bolded">Group 0:</span> thermal and hydrolic energy<br>
-            <span class="bolded">Group 1:</span> abstract concepts such as research, economics, optimization, and management<br>
-            <span class="bolded">Group 2:</span> battery and capacitor chemistry<br>
-            <span class="bolded">Group 3:</span> biology, biochemistry, and natural environments<br>
-            <span class="boled">Group 4:</span> physical and mechanical technologies such as magnets and kinetic energy <br>
-            <span class="bolded">Group 5:</span> wind and solar as well as energy control, load, and management<br>
-            <span class="bolded">Group 6:</span> battery and capacitor structure such as using nano-materials<br><br>
+            <span class="bolded">Group 0:</span> Thermal energy storage systems<br>
+            <span class="bolded">Group 1:</span> Abstract concepts such as research, economics, optimization, and management<br>
+            <span class="bolded">Group 2:</span> Battery and capacitor chemistry<br>
+            <span class="bolded">Group 3:</span> Energy in biological systems<br>
+            <span class="boled">Group 4:</span> Technologies utilizing motors/generators (EVs, Flywheels) <br>
+            <span class="bolded">Group 5:</span> Wind and solar as well as energy control, load, and management<br>
+            <span class="bolded">Group 6:</span> Nano-materials for batteries and supercapacitors<br><br>
 
-            Again, there's a great diversity within each community, and further investigation can provide deeper insight into what actually connects the communities.
+            There's a great diversity within each community, and further investigation can provide deeper insight into what actually connects the communities.
             One example of this is group 4.
             This group includes topic 17 with keywords "flywheel, rotor, speed, rotat, machin, bear" and topic 49 with keywords "vehicl, electr, ev, drive, hybrid, brake".
             We believe this grouping exists because regenerative breaking in electric vehicles uses the same concept as flywheel energy storage.
@@ -392,7 +392,7 @@
           In natural language processing, words are often embedded into numerical vectors that encode the meanings of the words.
           The embeddings are learned from the context of surrounding words using machine learning algorithms.
           We can easily compare how similar words are by comparing how close their word vectors are.
-          Another cool feature of word vectors is that you can add and subtract word vectors to search for relevant words.
+          Another useful feature of word vectors is that you can add and subtract word vectors to search for relevant words.
           We've plotted some of the top word vectors on a 2D plane, and provided a tool for users to do vector math with words in our corpus.<br><br>
         </p>
         <p>
@@ -638,7 +638,6 @@
           </div>
         </div>
 
-        <!---LEE, the results for W2V are here-->
         <p><br>
           <span class="fieldname">Results: </span>
           We found this visualization a bit more difficult to interpret, but still potentially useful.
@@ -661,22 +660,33 @@
             <span class="bolded">geotherm:</span> subsurfac, geolog, ocean, ute, aquif, ground, underground, tidal, groundwat, shallow<br>
             <span class="bolded">li:</span> na, lib, zn, cathod, recharg, batteri, multival, anod, li-, alkali<br><br>
 
-            Some word equations we found are shown below.
+            Some word equations we found are shown below along with some
+            interpetations of why the word equation might make sense. 
+            <br><br>
+            The way to read these equations is: 
+            <br>
+            A + B - C = D
+            <br>
+            As C is to A, B is to D. 
           </p>
             
-          <img src="figures/cathod+anod.PNG", alt="cathod+anod=electrod" style='height: 50%; width: 50%; object-fit: contain; margin: 1% 24%'>
+          <!-- <img src="figures/cathod+anod.PNG", alt="cathod+anod=electrod" style='height: 50%; width: 50%; object-fit: contain; margin: 1% 24%'>
           <p><br>
             An electrode is composed of an anode and a cathode.<br>
-          </p>
+          </p> -->
 
           <img src="figures/batt+h_li.PNG" alt="batteri+h-li=electrolys" style='height: 50%; width: 50%; object-fit: contain; margin: 1% 24%'>
           <p><br>
-            Hydrogen is made through electrolyzers.<br>
+            An electrolyzer stores electrical energy in the form of chemical
+            energy by producing hydrogen from electricity.This is similar way to
+            how a battery stores electrical energy in the form of chemical
+            energy by moving Lithium from one electrode to another with
+            electricity<br>
           </p>
 
           <img src="figures/salt+chem_therm.PNG", alt="molten_salt+chemic-thermal=synthet" style='height: 50%; width: 50%; object-fit: contain; margin: 1% 24%'>
           <p><br>
-            Molten salt is a thermal storage medium and synthetics are a chemical storage medium.<br>
+            Molten salt is a thermal storage medium and synthetic fuels(hydrogen/hydrocarbons) are a chemical storage medium.<br>
           </p>
 
           <img src="figures/cost+cyc-effic.PNG", alt="cost+cycle-effici=long_term" style='height: 50%; width: 50%; object-fit: contain; margin: 1% 24%'>
@@ -684,9 +694,8 @@
             The efficiency is to the cost as the cyclability is to the lifetime.<br>
           </p>
 
-          <img src="figures/overpot+g1-macm2.PNG", alt="overpotenti + g1 - ma_cm2 = cm_2" style='height: 50%; width: 50%; object-fit: contain; margin: 1% 24%'>
+          <!-- <img src="figures/overpot+g1-macm2.PNG", alt="overpotenti + g1 - ma_cm2 = cm_2" style='height: 50%; width: 50%; object-fit: contain; margin: 1% 24%'> -->
           <p><br>
-            I'm not sure about this one.  Lee help?<br><br>
 
             This process doesn't always work as expected.  For instance<br> 
           </p>
@@ -702,7 +711,7 @@
         
         <p> <br>
           <span class="fieldname"> Visuals: </span> 
-          <a class="btn" href="html_files/W2V_tSNE.html"> Word2Vector Plot </a>
+          <a class="btn" href="html_files/W2V_tSNE.html"> Word2Vec Plot </a>
         </p>
       </div>
     </section>
