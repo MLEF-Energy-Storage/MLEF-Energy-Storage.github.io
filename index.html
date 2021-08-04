@@ -31,7 +31,7 @@
         <p><br>
           The plots above respectively show the distribution of publication years for the papers in our dataset 
           and the fraction of papers in the entire Semantic Scholar Open Research Corpus containing the term "Energy Storage" over time.
-          They clearly demonstrates that the body of research is rapidly expanding and becoming a more prominent area of focus in the scientific community at large.
+          They clearly demonstrate that the body of research is rapidly expanding and becoming a more prominent area of focus in the scientific community at large.
           This increase makes it difficult to maintain a high-level understanding of the state of the field 
           and to stay aware of where progress is being made.
           This lack of insight can lead to redundant research, inefficient investing of time and money, and oversight of areas with the greatest potential.
@@ -63,7 +63,7 @@
 
           The second plot looks at the relationships between individual key words in the data with a technique known as Word2Vec.
           Word2Vec represents each word as a vector that can be visualized with projection onto a 2D plane.
-          Researchers can explore similar words in the field and even do word-vector math to
+          Researchers can explore similar words in the field and even do word-vector math 
           to look at relationships between different words (details on this in the Word Vector section).
         </p>
       </div>
@@ -92,13 +92,13 @@
         <p> <br>
           To cultivate our dataset, we pulled all abstracts from the entire <a class="outlink" href="https://allenai.org/data/open-research-corpus">semantic scholar dataset</a> 
           with the search term "Energy Storage" in the title or abstract. 
-          Then we processed the the raw text.  
-          First, we excluded papers in any language that wasn't english.  
-          Then we removed stop words, which are commonly used words in the english language that carry very little useful information for natural language processing 
-          such as (the, a, is, are) and punctuation.
+          Then we processed the raw text.  
+          First, we excluded papers in any language that wasn't English.  
+          Then we removed stop words, which are commonly used words in the English language that carry very little useful information for natural language processing 
+          such as (the, a, is, are).
           Since many of the papers in our database are related to chemical and material engineering, we used the
           <a class="outlink" href="https://github.com/materialsintelligence/mat2vec#supplementary-materials-for-unsupervised-word-embeddings-capture-latent-knowledge-from-materials-science-literature-nature--571-9598-2019"> mat2vec</a> processing library
-          to standardize the representation of checmical formulas. 
+          to standardize the representation of chemical formulas. 
           For example, converting all instances of "Lithium" to "li" to avoid redundancy.
           We used WordNetLemmatizer which converts words to their meaningful base form while also considering the context.
           We also used <a class="outlink" href="https://www.geeksforgeeks.org/introduction-to-stemming/">porter stemming</a> which reduces all variations of words to one root.  
@@ -207,7 +207,7 @@
               We use another Dirichlet distribution with parameter &alpha; to get the parameters &theta;<span class="sub">1</span>...&theta;<span class="sub">M</span> 
               representing the probability of each topic being used in documents 1-<span class="bolded">M</span>.
               The Dirichlet distributions is the <a class="outlink" href="https://towardsdatascience.com/conjugate-prior-explained-75957dc80bfb"> conjugate prior </a> 
-              for the multinomial distribution parameters.  For our model, we set &alpha; as 1/num_topics and &beta; as 0.03.<br><br>
+              for the multinomial distribution parameters.  For our model, we set &alpha; as 1/num_topics and &beta; as 0.03 where num_topics=50.<br><br>
 
               Now that we have our model, we can reverse engineer it using the words to infer the topics.
               To do this, we use <a class="outlink" href="https://towardsdatascience.com/gibbs-sampling-8e4844560ae5"> Gibbs sampling </a> 
@@ -216,7 +216,7 @@
               At the end of this process, we can define each topic by the top most probable words for that topic.
               We can also keep track of the documents with the highest probability of containing each topic 
               as well as the probability of two topics co-occurring in the same document.
-              This information can be used to define a graph in which the nodes are topics and the edges are weighted probabilities of topics co-occuring.
+              This information can be used to define a graph in which the nodes are topics and the edges are weighted probabilities of topics co-occurring.
 
               This work was largely inspired and based off of the work of Manuel W. Bickel in 2019 
               <a class="outlink" href="https://energsustainsoc.biomedcentral.com/articles/10.1186/s13705-019-0226-z">Reflecting trends in the academic landscape of sustainable energy using probabilistic topic modeling</a>.
@@ -288,7 +288,7 @@
               <span class="bolded">Phase 2:</span> 
               A new network is defined in which the nodes are the communities found during the previous phase.
               The new edge weights are set to the sum of the weights of the edges between the two communities in the previous network.
-              Edges between nodes in the same community become self loops in the new network.<br><br>
+              Edges between nodes in the same community become self-loops in the new network.<br><br>
             </p>
 
             <a href="https://www.nature.com/articles/s41598-019-41695-z">
@@ -326,7 +326,7 @@
             Note, these topic descriptions were generated by us from the topic keywords and the related papers.
             For instance, Topic 49 has the keywords "vehicl, electr, ev, drive, hybrid, brake" which we then summarize as "electric vehicles".<br><br>
 
-            The connections between these nodes is also of great interest.<br><br>
+            The connections between these nodes are also of great interest.<br><br>
           </p>
         
           <img src="figures/37-41-fig.png", alt="topic 41 and topic 37 connection" style='height: 50%; width: 50%; object-fit: contain; margin: 1% 24%'>
@@ -398,7 +398,7 @@
         <p>
           <span class="fieldname"> Goal: </span> 
           The goal of this visualization is to be able to choose words out of the collection of abstracts and explore their relationships either by
-          seeing how close they are on the two dimensional visualization, or by experimenting with vector math. <br><br>
+          seeing how close they are on the two-dimensional visualization, or by experimenting with vector math. <br><br>
         </p>
         
         <p>
@@ -594,7 +594,7 @@
               The final similarity is equal to the average of the paired probabilities divided by the number of data points.<br><br>
             </p>
             
-            <img src="figures/tsne_pij_eq.png", alt="tsne equations" style='height: 45%; width: 45%; object-fit: contain; margin: 1% 27%'>
+            <img src="figures/tsne_pij_eq.PNG", alt="tsne equations" style='height: 45%; width: 45%; object-fit: contain; margin: 1% 27%'>
             
             <p><br>
               Where <span class="bolded">x</span><span class="sub">i</span> and <span class="bolded">x</span><span class="sub">j</span> are distinct points in high dimensional space,
@@ -610,7 +610,7 @@
                Just like in higher dimensions, we normalize the similarities.
             </p>
 
-            <img src="figures/tsne_qij_eq.png", alt="tsne equations" style='height: 35%; width: 35%; object-fit: contain; margin: 1% 32%'>
+            <img src="figures/tsne_qij_eq.PNG", alt="tsne equations" style='height: 35%; width: 35%; object-fit: contain; margin: 1% 32%'>
             
             <p>
               Where <span class="bolded">y</span><span class="sub">i</span> and <span class="bolded">y</span><span class="sub">j</span> are distinct points in low dimensional space,
@@ -625,7 +625,7 @@
               <br>
             </p>
 
-            <img src="figures/KL.png", alt="Kullback-Leibler Divergence" style='height: 25%; width: 25%; object-fit: contain; margin: 1% 37%'>
+            <img src="figures/KL.PNG", alt="Kullback-Leibler Divergence" style='height: 25%; width: 25%; object-fit: contain; margin: 1% 37%'>
 
             <p>
             By minimizing the KL divergence of the distributions <span class="bolded">P</span> and <span class="bolded">Q</span> with respect to each point in our projection
